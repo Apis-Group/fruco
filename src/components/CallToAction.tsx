@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { useFadeIn, useSlideUp } from '../hooks/useGSAP';
+import { useSlideUp } from '../hooks/useGSAP';
 import { gsap } from 'gsap';
 
 interface CallToActionProps {
@@ -35,9 +35,60 @@ const CallToAction: React.FC<CallToActionProps> = ({
    const formRef = useRef<HTMLDivElement>(null);
    const decorativeRef = useRef<HTMLDivElement>(null);
 
-   // Animaciones
-   useFadeIn(titleRef, { scrollTrigger: { start: 'top 80%' } });
-   useFadeIn(subtitleRef, { scrollTrigger: { start: 'top 75%' }, delay: 0.2 });
+   // Configurar animaciones después del montaje
+   useEffect(() => {
+      const titleElement = titleRef.current;
+      const subtitleElement = subtitleRef.current;
+      const animations: gsap.core.Tween[] = [];
+
+      if (titleElement) {
+         gsap.set(titleElement, { opacity: 0, y: 30 });
+         const titleAnimation = gsap.to(titleElement, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: 'power2.out',
+            scrollTrigger: {
+               trigger: titleElement,
+               start: 'top 80%',
+               toggleActions: 'play none none none',
+               once: true,
+            },
+         });
+         animations.push(titleAnimation);
+      }
+
+      if (subtitleElement) {
+         gsap.set(subtitleElement, { opacity: 0, y: 30 });
+         const subtitleAnimation = gsap.to(subtitleElement, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: 'power2.out',
+            delay: 0.2,
+            scrollTrigger: {
+               trigger: subtitleElement,
+               start: 'top 75%',
+               toggleActions: 'play none none none',
+               once: true,
+            },
+         });
+         animations.push(subtitleAnimation);
+      }
+
+      // Cleanup function
+      return () => {
+         animations.forEach(animation => {
+            if (animation && animation.scrollTrigger) {
+               animation.scrollTrigger.kill();
+            }
+            if (animation && animation.kill) {
+               animation.kill();
+            }
+         });
+      };
+   }, []);
+
    useSlideUp(buttonRef, 0.4);
    useSlideUp(contactRef, 0.6);
 
@@ -66,6 +117,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
             scale: hovered ? 1.05 : 1,
             duration: 0.3,
             ease: 'power2.out',
+            overwrite: 'auto',
          });
       }
    };
@@ -82,6 +134,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
             yoyo: true,
             repeat: 1,
             ease: 'power2.inOut',
+            overwrite: 'auto',
          });
       }
    };

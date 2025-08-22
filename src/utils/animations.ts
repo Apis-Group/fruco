@@ -54,7 +54,8 @@ export const fadeInOnScroll = (element: string | Element, options?: ScrollTrigge
             trigger: element,
             start: 'top 80%',
             end: 'bottom 20%',
-            toggleActions: 'play none none reverse',
+            toggleActions: 'play none none none',
+            once: true,
             ...options,
          },
       }
@@ -78,7 +79,8 @@ export const slideUpOnScroll = (element: string | Element, delay: number = 0) =>
          scrollTrigger: {
             trigger: element,
             start: 'top 85%',
-            toggleActions: 'play none none reverse',
+            toggleActions: 'play none none none',
+            once: true,
          },
       }
    );
