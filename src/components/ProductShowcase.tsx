@@ -132,7 +132,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           ref={imageRef}
           src={product.imageSrc}
           alt={product.name}
-          className="w-full h-full object-cover transition-transform duration-400"
+          className="w-full h-full object-cover transition-transform duration-400 p-2"
           style={{ willChange: 'transform' }}
         />
         
