@@ -191,6 +191,12 @@ const BrandInfo: React.FC<BrandInfoProps> = ({
             </div>
          </div>
 
+         {/* Elementos de fondo */}
+         <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {/* Gradientes de fondo */}
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-fruco-green/7 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-fruco-red/5 rounded-full blur-3xl" />
+         </div>
       </section>
    );
 };
