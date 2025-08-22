@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useHeroEntrance } from '@/hooks/useGSAP';
+import { gsap } from 'gsap';
 
 interface HeroSectionProps {
    logoSrc?: string;
@@ -16,9 +17,32 @@ const HeroSection: React.FC<HeroSectionProps> = ({
    const titleRef = useRef<HTMLHeadingElement>(null);
    const subtitleRef = useRef<HTMLParagraphElement>(null);
    const containerRef = useRef<HTMLElement>(null);
+   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
 
    // Usar el hook de animación de entrada del hero
    useHeroEntrance(logoRef, titleRef, subtitleRef);
+
+   // Animación del scroll indicator
+   useEffect(() => {
+      if (scrollIndicatorRef.current) {
+         gsap.fromTo(
+            scrollIndicatorRef.current,
+            {
+               y: -6,
+               opacity: 0,
+            },
+            {
+               y: 24,
+               opacity: 1,
+               duration: 1.5,
+               ease: 'power2.inOut',
+               repeat: -1,
+               yoyo: true,
+               repeatDelay: 0,
+            }
+         );
+      }
+   }, []);
 
    // Efecto de parallax sutil en el contenedor
    useEffect(() => {
@@ -126,11 +150,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             <span className="text-white/60 text-xs font-light tracking-widest uppercase">
                Desliza
             </span>
-            <div className="w-[2px] h-8 bg-gradient-to-b from-white/60 to-transparent relative overflow-hidden">
-               <div
-                  className="absolute top-0 left-0 w-full h-2 bg-white animate-pulse"
-                  style={{ animation: 'scrollIndicator 2s ease-in-out infinite' }}
-               />
+            <div className="w-[4px] h-8 bg-gradient-to-b from-white/60 to-transparent relative overflow-hidden">
+               <div ref={scrollIndicatorRef} className="absolute top-0 left-0 w-full h-2 bg-white" />
             </div>
          </div>
 

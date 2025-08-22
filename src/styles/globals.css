@@ -30,20 +30,6 @@
       }
    }
 
-   @keyframes scrollIndicator {
-      0% {
-         transform: translateY(-100%);
-         opacity: 0;
-      }
-      50% {
-         opacity: 1;
-      }
-      100% {
-         transform: translateY(200%);
-         opacity: 0;
-      }
-   }
-
    @keyframes floatGreen {
       0% {
          transform: translate(0, 0) scale(1);
@@ -139,6 +125,10 @@
 
 @utility section-container {
    @apply min-h-screen flex items-center justify-center px-4;
+}
+
+@utility scroll-indicator {
+   animation: scrollIndicator 1.5s linear infinite;
 }
 
 /* 🌍 Estilos base */
