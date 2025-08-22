@@ -52,9 +52,9 @@ const BrandInfo: React.FC<BrandInfoProps> = ({
          const tl = gsap.timeline({
             scrollTrigger: {
                trigger: currentStatsRef,
-               start: 'top 80%',
-               end: 'bottom 20%',
-               toggleActions: 'play none none reverse',
+               start: 'top 100%',
+               end: 'bottom 10%',
+               toggleActions: 'play none none none',
             },
          });
 
