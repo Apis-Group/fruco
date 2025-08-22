@@ -17,15 +17,15 @@ interface ProductShowcaseProps {
 
 const defaultProducts: Product[] = [
    {
-      id: 'brick',
-      name: 'Fruco Brick',
+      id: 'frito',
+      name: 'Tomate frito',
       imageSrc: '/products/fruco_brick_frito.avif',
       description: 'Un sabor único y auténtico, hecho con ingredientes frescos y de alta calidad',
       color: 'red',
    },
    {
       id: 'artesano',
-      name: 'Fruco Artesano',
+      name: 'Artesano',
       imageSrc: '/products/fruco_artesano.avif',
 
       description: 'Elaborado con técnicas tradicionales para un sabor único y auténtico',
@@ -33,7 +33,7 @@ const defaultProducts: Product[] = [
    },
    {
       id: 'clasico',
-      name: 'Fruco Clásico',
+      name: 'Clásico',
       imageSrc: '/products/fruco_clasico.avif',
 
       description: 'El sabor original que ha conquistado paladares por generaciones',
@@ -41,7 +41,7 @@ const defaultProducts: Product[] = [
    },
    {
       id: 'eco',
-      name: 'Fruco Eco',
+      name: 'Ecológico',
       imageSrc: '/products/fruco_eco.avif',
 
       description: 'Ingredientes orgánicos para una experiencia natural y sostenible',
@@ -49,7 +49,7 @@ const defaultProducts: Product[] = [
    },
    {
       id: 'pasta-pizza',
-      name: 'Fruco Pasta & Pizza',
+      name: 'Pasta & Pizza',
       imageSrc: '/products/fruco_pasta_pizza.avif',
       description: 'Perfecta combinación para tus platos italianos favoritos',
       color: 'red',
@@ -153,7 +153,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
          </div>
 
          {/* Contenido */}
-         <div ref={contentRef} className="p-6" style={{ willChange: 'transform' }}>
+         <div ref={contentRef} className="p-6 text-center" style={{ willChange: 'transform' }}>
             <h3 className="text-xl font-bold mb-3 text-white group-hover:text-gray-100 transition-colors duration-300">
                {product.name}
             </h3>
