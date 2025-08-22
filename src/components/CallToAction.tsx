@@ -190,7 +190,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
                onMouseLeave={() => handleButtonHover(false)}
                className={`
             relative px-12 py-4 text-lg font-semibold rounded-full
-            bg-gradient-to-r from-fruco-green to-fruco-red
+            bg-fruco-gold
             text-white shadow-2xl
             transition-all duration-300
             hover:shadow-fruco-green/25
@@ -250,7 +250,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
                      />
                      <button
                         type="submit"
-                        className="w-full py-3 bg-gradient-to-r from-fruco-red to-fruco-green text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]"
+                        className="w-full py-3 bg-fruco-gold text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]"
                      >
                         Enviar Mensaje
                      </button>
@@ -266,7 +266,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
             >
                {contactInfo.email && (
                   <div className="group cursor-pointer">
-                     <div className="w-12 h-12 mx-auto mb-4 bg-gradient-to-br from-fruco-green to-fruco-red rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                     <div className="w-12 h-12 mx-auto mb-4 bg-fruco-gold rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <svg
                            className="w-6 h-6 text-white"
                            fill="none"
@@ -289,7 +289,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
 
                {contactInfo.phone && (
                   <div className="group cursor-pointer">
-                     <div className="w-12 h-12 mx-auto mb-4 bg-gradient-to-br from-fruco-red to-fruco-green rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                     <div className="w-12 h-12 mx-auto mb-4 bg-fruco-gold rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <svg
                            className="w-6 h-6 text-white"
                            fill="none"
@@ -312,7 +312,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
 
                {contactInfo.address && (
                   <div className="group cursor-pointer">
-                     <div className="w-12 h-12 mx-auto mb-4 bg-gradient-to-br from-fruco-green to-fruco-red rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                     <div className="w-12 h-12 mx-auto mb-4 bg-fruco-gold rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <svg
                            className="w-6 h-6 text-white"
                            fill="none"

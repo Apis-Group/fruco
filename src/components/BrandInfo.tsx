@@ -96,7 +96,7 @@ const BrandInfo: React.FC<BrandInfoProps> = ({
                      style={{ willChange: 'transform, opacity' }}
                   >
                      Nuestra
-                     <span className="block bg-gradient-to-r from-fruco-green to-fruco-red bg-clip-text text-transparent">
+                     <span className="block bg-fruco-gold bg-clip-text text-transparent">
                         Historia
                      </span>
                   </h2>
