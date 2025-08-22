@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import { useHeroEntrance } from '@/hooks/useGSAP';
-import logoFruco from '@/assets/logo_fruco.avif';
 
 interface HeroSectionProps {
   logoSrc?: string;
@@ -9,7 +8,7 @@ interface HeroSectionProps {
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({
-  logoSrc = logoFruco,
+  logoSrc = "/logo_fruco.avif",
   title = "Fruco",
   subtitle = "Sabores auténticos que despiertan tus sentidos"
 }) => {

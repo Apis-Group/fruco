@@ -3,12 +3,6 @@ import React, { useRef, useEffect, RefObject } from 'react';
 import { useProductGrid, useProductHover, useFadeIn } from '../hooks/useGSAP';
 import { gsap } from 'gsap';
 
-// Importar imágenes de productos
-import frucoArtesano from '@/assets/fruco_artesano.avif';
-import frucoClasico from '@/assets/fruco_clasico.avif';
-import frucoEco from '@/assets/fruco_eco.avif';
-import frucoPastaPizza from '@/assets/fruco_pasta_pizza.avif';
-
 interface Product {
   id: string;
   name: string;
@@ -25,28 +19,28 @@ const defaultProducts: Product[] = [
   {
     id: 'artesano',
     name: 'Fruco Artesano',
-    imageSrc: frucoArtesano,
+    imageSrc: '/fruco_artesano.avif',
     description: 'Elaborado con técnicas tradicionales para un sabor único y auténtico',
     color: 'green'
   },
   {
     id: 'clasico',
     name: 'Fruco Clásico',
-    imageSrc: frucoClasico,
+    imageSrc: '/fruco_clasico.avif',
     description: 'El sabor original que ha conquistado paladares por generaciones',
     color: 'red'
   },
   {
     id: 'eco',
     name: 'Fruco Eco',
-    imageSrc: frucoEco,
+    imageSrc: '/fruco_eco.avif',
     description: 'Ingredientes orgánicos para una experiencia natural y sostenible',
     color: 'green'
   },
   {
     id: 'pasta-pizza',
     name: 'Fruco Pasta & Pizza',
-    imageSrc: frucoPastaPizza,
+    imageSrc: '/fruco_pasta_pizza.avif',
     description: 'Perfecta combinación para tus platos italianos favoritos',
     color: 'red'
   }
