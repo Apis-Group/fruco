@@ -73,7 +73,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({
          className="section-container relative overflow-hidden"
          id="inicio"
       >
-         
          <div className="absolute inset-0 overflow-hidden pointer-events-none">
             {/* Gradiente base */}
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-fruco-black/20" />
@@ -148,7 +147,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                Desliza
             </span>
             <div className="w-[4px] h-8 bg-gradient-to-b from-white/60 to-transparent relative overflow-hidden">
-               <div ref={scrollIndicatorRef} className="absolute top-0 left-0 w-full h-2 bg-white" />
+               <div
+                  ref={scrollIndicatorRef}
+                  className="absolute top-0 left-0 w-full h-2 bg-white"
+               />
             </div>
          </div>
       </section>

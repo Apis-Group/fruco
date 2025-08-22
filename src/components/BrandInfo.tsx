@@ -41,7 +41,7 @@ const BrandInfo: React.FC<BrandInfoProps> = ({
       // Guardar referencia actual para usar en cleanup
       const currentStatsRef = statsRef.current;
       const numberElements = currentStatsRef.querySelectorAll('.animate-number');
-      
+
       if (numberElements.length > 0) {
          // Establecer valores iniciales
          numberElements.forEach(element => {
@@ -54,25 +54,29 @@ const BrandInfo: React.FC<BrandInfoProps> = ({
                trigger: currentStatsRef,
                start: 'top 80%',
                end: 'bottom 20%',
-               toggleActions: 'play none none reverse'
-            }
+               toggleActions: 'play none none reverse',
+            },
          });
 
          numberElements.forEach((element, index) => {
             const target = parseInt(element.getAttribute('data-target') || '0');
-            
-            tl.to(element, {
-               textContent: target,
-               duration: 0.7,
-               ease: 'power2.out',
-               snap: { textContent: 1 },
-               onUpdate: function () {
-                  element.textContent = Math.round(this.targets()[0].textContent).toString();
+
+            tl.to(
+               element,
+               {
+                  textContent: target,
+                  duration: 0.7,
+                  ease: 'power2.out',
+                  snap: { textContent: 1 },
+                  onUpdate: function () {
+                     element.textContent = Math.round(this.targets()[0].textContent).toString();
+                  },
+                  onComplete: () => {
+                     element.textContent = target.toString();
+                  },
                },
-               onComplete: () => {
-                  element.textContent = target.toString();
-               },
-            }, index * 0.2);
+               index * 0.2
+            );
          });
       }
 
@@ -116,7 +120,10 @@ const BrandInfo: React.FC<BrandInfoProps> = ({
                   <div ref={statsRef} className="grid grid-cols-2 gap-8 pt-8">
                      <div className="text-center">
                         <div className="text-4xl md:text-5xl font-bold text-fruco-green mb-2">
-                           <span className="animate-number" data-target="65">65</span>+
+                           <span className="animate-number" data-target="65">
+                              65
+                           </span>
+                           +
                         </div>
                         <p className="text-gray-400 text-sm uppercase tracking-wider">
                            Años de Tradición
@@ -124,7 +131,10 @@ const BrandInfo: React.FC<BrandInfoProps> = ({
                      </div>
                      <div className="text-center">
                         <div className="text-4xl md:text-5xl font-bold text-fruco-red mb-2">
-                           <span className="animate-number" data-target="100">100</span>%
+                           <span className="animate-number" data-target="100">
+                              100
+                           </span>
+                           %
                         </div>
                         <p className="text-gray-400 text-sm uppercase tracking-wider">Natural</p>
                      </div>

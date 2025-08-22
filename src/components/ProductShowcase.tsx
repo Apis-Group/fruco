@@ -192,9 +192,7 @@ const ProductShowcase: React.FC<ProductShowcaseProps> = ({ products = defaultPro
                   style={{ willChange: 'transform, opacity' }}
                >
                   Nuestros
-                  <span className="block text-white">
-                     Productos
-                  </span>
+                  <span className="block text-white">Productos</span>
                </h2>
                <div className="w-24 h-1 bg-fruco-gold mx-auto rounded-full" />
             </div>
