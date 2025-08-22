@@ -1,0 +1,177 @@
+---
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Fruco - Sabores auténticos que despiertan tus sentidos. Más de 65 años de tradición desde 1959."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/avif" href="/src/assets/logo_fruco.avif" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @import "tailwindcss";
+
+  @theme {
+    --color-fruco-green: #2d5016;
+    --color-fruco-red: #c41e3a;
+    --color-fruco-black: #000000;
+
+    --font-elegant: "Inter", system-ui, sans-serif;
+
+    --animate-fade-in: fadeIn 1s ease-in-out;
+    --animate-slide-up: slideUp 0.8s ease-out;
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      0% {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes scrollIndicator {
+      0% {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(200%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes floatGreen {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      25% {
+        transform: translate(150px, -100px) scale(1.1);
+      }
+      50% {
+        transform: translate(-120px, -200px) scale(0.9);
+      }
+      75% {
+        transform: translate(-200px, 150px) scale(1.05);
+      }
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+    }
+
+    @keyframes floatRed {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      25% {
+        transform: translate(-180px, 120px) scale(0.95);
+      }
+      50% {
+        transform: translate(220px, 80px) scale(1.1);
+      }
+      75% {
+        transform: translate(100px, -180px) scale(0.9);
+      }
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+    }
+
+    @keyframes drift {
+      0% {
+        transform: translateX(0) translateY(0);
+      }
+      33% {
+        transform: translateX(100px) translateY(-80px);
+      }
+      66% {
+        transform: translateX(-80px) translateY(120px);
+      }
+      100% {
+        transform: translateX(0) translateY(0);
+      }
+    }
+
+    @keyframes slowFloat {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      20% {
+        transform: translate(300px, -150px) scale(1.05);
+      }
+      40% {
+        transform: translate(-200px, -300px) scale(0.95);
+      }
+      60% {
+        transform: translate(-400px, 200px) scale(1.1);
+      }
+      80% {
+        transform: translate(250px, 350px) scale(0.9);
+      }
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+    }
+
+    @keyframes glow {
+      0% {
+        opacity: 0.3;
+        filter: blur(20px);
+      }
+      50% {
+        opacity: 0.8;
+        filter: blur(30px);
+      }
+      100% {
+        opacity: 0.3;
+        filter: blur(20px);
+      }
+    }
+  }
+
+  /* 🔧 Utilidades personalizadas */
+  @utility elegant-button {
+    @apply px-8 py-3 border border-white/20 hover:bg-fruco-black hover:border-white transition-all duration-300;
+  }
+
+  @utility section-container {
+    @apply min-h-screen flex items-center justify-center px-4;
+  }
+
+  /* 🌍 Estilos base */
+  @layer base {
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      @apply bg-fruco-black text-white font-elegant;
+      overflow-x: hidden;
+    }
+  }
+</style>
