@@ -6,13 +6,26 @@ const { title } = Astro.props;
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="Fruco - Sabores auténticos que despiertan tus sentidos. Más de 65 años de tradición desde 1959."
-    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/avif" href="/src/assets/logo_fruco.avif" />
     <title>{title}</title>
+    <link rel="icon" type="image/avif" href="/src/assets/logo_fruco.avif" />
+    
+    <meta name="description" content="Fruco salsa de tomate 100% española de alta calidad" />
+    <meta name="keywords" content="fruco, apis, salsa, tomate, española, alta calidad" />
+    <meta name="author" content="Fruco" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Fruco" />
+    <meta name="twitter:description" content="Fruco salsa de tomate 100% española de alta calidad" />
+    <meta name="twitter:image" content="/src/assets/logo_fruco.avif" />
+
+    <meta property="og:title" content="Fruco" />
+    <meta property="og:description" content="Fruco salsa de tomate 100% española de alta calidad" />
+    <meta property="og:image" content="/src/assets/logo_fruco.avif" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://fruco.vercel.app/" />
   </head>
   <body>
     <slot />
