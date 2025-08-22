@@ -87,7 +87,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       
       {/* Indicador de scroll elegante - posicionado fuera del contenido principal */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-2 z-20">
-        <span className="text-white/60 text-xs font-light tracking-widest uppercase">Scroll</span>
+        <span className="text-white/60 text-xs font-light tracking-widest uppercase">Desliza</span>
         <div className="w-[2px] h-8 bg-gradient-to-b from-white/60 to-transparent relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-2 bg-white animate-pulse" style={{ animation: 'scrollIndicator 2s ease-in-out infinite' }} />
         </div>
