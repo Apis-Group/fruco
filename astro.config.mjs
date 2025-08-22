@@ -5,18 +5,16 @@ import path from 'path';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [
-    react()
-  ],
-  vite: {
-    plugins: [tailwindcss()],
-    resolve: {
-      alias: {
-        '@': path.resolve('./src')
-      }
-    },
-    optimizeDeps: {
-      include: ['gsap']
-    }
-  }
+   integrations: [react()],
+   vite: {
+      plugins: [tailwindcss()],
+      resolve: {
+         alias: {
+            '@': path.resolve('./src'),
+         },
+      },
+      optimizeDeps: {
+         include: ['gsap'],
+      },
+   },
 });
