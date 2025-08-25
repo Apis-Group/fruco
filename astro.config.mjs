@@ -6,6 +6,9 @@ import path from 'path';
 // https://astro.build/config
 export default defineConfig({
    integrations: [preact({ compat: true })],
+   build: {
+      inlineStylesheets: 'auto',
+   },
    vite: {
       plugins: [tailwindcss()],
       resolve: {
@@ -15,6 +18,33 @@ export default defineConfig({
       },
       optimizeDeps: {
          include: ['gsap'],
+      },
+      build: {
+         minify: 'terser',
+         terserOptions: {
+            compress: {
+               drop_console: true,
+               drop_debugger: true,
+               pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.warn'],
+               dead_code: true,
+               unused: true,
+            },
+            mangle: {
+               toplevel: true,
+            },
+         },
+         rollupOptions: {
+            output: {
+               manualChunks: {
+                  'gsap': ['gsap', 'gsap/ScrollTrigger'],
+                  'preact-vendor': ['preact', 'preact/hooks'],
+               },
+            },
+            treeshake: {
+               preset: 'recommended',
+               pureExternalModules: true,
+            },
+         },
       },
    },
    devToolbar: {

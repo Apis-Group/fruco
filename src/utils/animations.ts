@@ -223,29 +223,7 @@ export const productHoverEffect = (element: string | Element) => {
    };
 };
 
-// Función para animación de texto con efecto typewriter
-export const typewriterEffect = (element: string | Element, text: string, speed: number = 0.05) => {
-   const el = typeof element === 'string' ? document.querySelector(element) : element;
-   if (!el) return;
 
-   const tl = gsap.timeline();
-
-   // Limpiar el contenido
-   el.textContent = '';
-
-   // Animar cada carácter
-   for (let i = 0; i <= text.length; i++) {
-      tl.to(el, {
-         duration: speed,
-         ease: 'none',
-         onComplete: () => {
-            el.textContent = text.slice(0, i);
-         },
-      });
-   }
-
-   return tl;
-};
 
 // Función para limpiar todas las animaciones ScrollTrigger
 export const cleanupScrollTriggers = () => {

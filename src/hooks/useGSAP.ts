@@ -157,71 +157,35 @@ export const useProductHover = (elementRef: { current: HTMLElement | null }) => 
    }, [elementRef, addCleanup]);
 };
 
-// Hook para animaciones personalizadas
-export const useCustomAnimation = (
-   elementRef: { current: HTMLElement | null },
-   animationFn: (element: HTMLElement) => gsap.core.Tween | gsap.core.Timeline
-) => {
-   const { addAnimation } = useGSAP();
-
-   useEffect(() => {
-      if (elementRef.current) {
-         const animation = animationFn(elementRef.current);
-         addAnimation(animation as gsap.core.Tween);
-      }
-   }, [elementRef, animationFn, addAnimation]);
-};
-
-// Hook para manejar scroll suave
+// Hook para animaciones con scroll suave
 export const useSmoothScroll = () => {
-   const scrollTo = useCallback((target: string | HTMLElement, offset: number = 0) => {
-      gsap.to(window, {
-         duration: 1,
-         scrollTo: {
-            y: target,
-            offsetY: offset,
-         },
-         ease: 'power2.inOut',
-      });
-   }, []);
-
-   return { scrollTo };
-};
-
-// Hook para animaciones de texto
-export const useTextAnimation = (
-   elementRef: { current: HTMLElement | null },
-   animationType: 'fadeIn' | 'slideUp' | 'typewriter' = 'fadeIn'
-) => {
-   const { addAnimation } = useGSAP();
-
    useEffect(() => {
-      if (elementRef.current) {
-         let animation: gsap.core.Tween;
-
-         switch (animationType) {
-            case 'fadeIn':
-               animation = fadeInOnScroll(elementRef.current);
-               break;
-            case 'slideUp':
-               animation = slideUpOnScroll(elementRef.current);
-               break;
-            default:
-               animation = fadeInOnScroll(elementRef.current);
+      // Configurar scroll suave
+      const smoothScroll = (target: string) => {
+         const element = document.querySelector(target);
+         if (element) {
+            gsap.to(window, {
+               duration: 1,
+               scrollTo: { y: element, offsetY: 80 },
+               ease: 'power2.inOut',
+            });
          }
+      };
 
-         addAnimation(animation);
-      }
-   }, [elementRef, animationType, addAnimation]);
-};
+      // Agregar event listeners para navegación
+      const navLinks = document.querySelectorAll('a[href^="#"]');
+      navLinks.forEach(link => {
+         link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = link.getAttribute('href');
+            if (target) smoothScroll(target);
+         });
+      });
 
-// Hook para refresh de ScrollTrigger cuando cambia el contenido
-export const useScrollTriggerRefresh = (dependencies: unknown[]) => {
-   useEffect(() => {
-      const timer = setTimeout(() => {
-         refreshScrollTrigger();
-      }, 100);
-
-      return () => clearTimeout(timer);
-   }, dependencies);
+      return () => {
+         navLinks.forEach(link => {
+            link.removeEventListener('click', () => {});
+         });
+      };
+   }, []);
 };
