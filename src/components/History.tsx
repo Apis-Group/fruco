@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface BrandInfoProps {
+interface HistoryProps {
    content?: string;
    highlights?: string[];
 }
@@ -17,10 +17,10 @@ const defaultHighlights = [
    'Compromiso con la autenticidad y lo honesto',
 ];
 
-const BrandInfo = ({
-   content = 'Fruco nació en 1959 con una misión sencilla: llevar a cada hogar productos llenos de sabor y confianza. Comenzamos elaborando zumos que conquistaron generaciones, y hoy seguimos honrando esa historia con una gama de salsas de tomate creadas con el mismo cariño y dedicación de siempre. Nuestros tomates son fruto del trabajo de nuestros propios agricultores, que cuidan la tierra con paciencia y sabiduría, como se ha hecho toda la vida. En Fruco creemos en la tradición, en la calidad que se cultiva día a día y en el compromiso de ofrecer lo mejor.',
+const History = ({
+   content = 'Fruco nació en 1959 con una misión sencilla: llevar a cada hogar productos llenos de sabor y confianza. Comenzamos elaborando zumos que conquistaron generaciones, y hoy seguimos honrando esa historia con una gama de salsas de tomate creadas con el mismo cariño y dedicación de siempre.',
    highlights = defaultHighlights,
-}: BrandInfoProps) => {
+}: HistoryProps) => {
    const containerRef = useRef<HTMLElement>(null);
    const titleRef = useRef<HTMLHeadingElement>(null);
    const contentRef = useRef<HTMLParagraphElement>(null);
@@ -203,4 +203,4 @@ const BrandInfo = ({
    );
 };
 
-export default BrandInfo;
+export default History;

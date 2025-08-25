@@ -48,7 +48,7 @@ src/
 ├── components/          # Componentes Preact
 │   ├── HeroSection.tsx
 │   ├── ProductShowcase.tsx
-│   ├── BrandInfo.tsx
+│   ├── History.tsx
 │   ├── CallToAction.tsx
 │   ├── NavBar.tsx
 │   └── Footer.tsx
@@ -75,7 +75,7 @@ Sección principal con animaciones de entrada y parallax.
 
 Grid de productos con efectos hover y animaciones stagger.
 
-### BrandInfo
+### History
 
 Información de la marca con animaciones de scroll.
 
