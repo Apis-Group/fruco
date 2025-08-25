@@ -1,6 +1,6 @@
 ---
 const { title = 'Fruco - Salsa de Tomate Tradicional desde 1959' } = Astro.props;
-const descriptionDefault =
+const description =
    'Descubre Fruco, la auténtica salsa de tomate española con más de 60 años de tradición. Ingredientes naturales, sabor casero y calidad premium desde 1959.';
 ---
 
@@ -11,37 +11,22 @@ const descriptionDefault =
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>{title}</title>
 
-      <meta name="description" content={descriptionDefault} />
+      <meta name="description" content={description} />
       <meta
          name="keywords"
          content="fruco, salsa tomate, salsa, tomate, tradicional, salsa española, tomate natural, tradición 1959, salsa casera, ingredientes naturales, tomate premium, salsa artesanal, cocina española"
       />
       <meta name="author" content="Fruco" />
       <meta name="robots" content="index, follow" />
-      <meta name="googlebot" content="index, follow" />
 
       <!-- FAVICONS -->
-      <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
-      <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
-      <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-      <link
-         rel="icon"
-         type="image/png"
-         sizes="192x192"
-         href="/favicon/android-chrome-192x192.png"
-      />
-      <link
-         rel="icon"
-         type="image/png"
-         sizes="512x512"
-         href="/favicon/android-chrome-512x512.png"
-      />
+      <link rel="icon" href="/favicon/favicon.ico" />
+      <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+
       <link rel="manifest" href="/favicon/site.webmanifest" />
       <meta name="theme-color" content="#2d5016" />
       <meta name="msapplication-TileColor" content="#2d5016" />
 
-      <!-- PRELOAD CRITICAL RESOURCES -->
       <!-- Preload LCP image -->
       <link
          rel="preload"
@@ -54,6 +39,7 @@ const descriptionDefault =
       <!-- Optimized Google Fonts Loading -->
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
       <!-- Preload only critical font weights -->
       <link
          rel="preload"
@@ -74,98 +60,25 @@ const descriptionDefault =
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={descriptionDefault} />
+      <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content="/logo_fruco.avif" />
 
       <meta property="og:title" content={title} />
-      <meta property="og:description" content={descriptionDefault} />
+      <meta property="og:description" content={description} />
       <meta property="og:image" content="/logo_fruco.avif" />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://fruco.vercel.app/" />
 
-      <!-- Datos Estructurados JSON-LD -->
-      <script type="application/ld+json">
+      <script type="application/ld+json" is:inline>
          {
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "Fruco",
-            "description": "Fruco es una marca española de salsa de tomate con más de 60 años de tradición, especializada en productos naturales y de alta calidad desde 1959.",
             "url": "https://fruco.vercel.app/",
-            "logo": "https://fruco.vercel.app/logo_fruco.avif",
-            "foundingDate": "1959",
-            "foundingLocation": {
-               "@type": "Country",
-               "name": "España"
-            },
-            "sameAs": ["https://fruco.vercel.app/"],
-            "hasOfferCatalog": {
-               "@type": "OfferCatalog",
-               "name": "Productos Fruco",
-               "itemListElement": [
-                  {
-                     "@type": "Product",
-                     "name": "Tomate Frito Fruco",
-                     "description": "Un sabor único y auténtico, hecho con ingredientes frescos y de alta calidad",
-                     "brand": {
-                        "@type": "Brand",
-                        "name": "Fruco"
-                     },
-                     "category": "Salsa de Tomate"
-                  },
-                  {
-                     "@type": "Product",
-                     "name": "Fruco Artesano",
-                     "description": "Elaborado con técnicas tradicionales para un sabor único y auténtico",
-                     "brand": {
-                        "@type": "Brand",
-                        "name": "Fruco"
-                     },
-                     "category": "Salsa de Tomate"
-                  },
-                  {
-                     "@type": "Product",
-                     "name": "Fruco Clásico",
-                     "description": "El sabor original que ha conquistado paladares por generaciones",
-                     "brand": {
-                        "@type": "Brand",
-                        "name": "Fruco"
-                     },
-                     "category": "Salsa de Tomate"
-                  },
-                  {
-                     "@type": "Product",
-                     "name": "Fruco Pasta & Pizza",
-                     "description": "Perfecta combinación para tus platos italianos favoritos",
-                     "brand": {
-                        "@type": "Brand",
-                        "name": "Fruco"
-                     },
-                     "category": "Salsa de Tomate"
-                  }
-               ]
-            }
+            "logo": "https://fruco.vercel.app/logo_fruco.avif"
          }
       </script>
-
-      <script type="application/ld+json">
-         {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "name": "Fruco - Salsa de Tomate Española",
-            "description": "Descubre Fruco, la auténtica salsa de tomate española con más de 60 años de tradición. Ingredientes naturales, sabor casero y calidad premium desde 1959.",
-            "url": "https://fruco.vercel.app/",
-            "publisher": {
-               "@type": "Organization",
-               "name": "Fruco",
-               "logo": {
-                  "@type": "ImageObject",
-                  "url": "https://fruco.vercel.app/logo_fruco.avif"
-               }
-            },
-            "inLanguage": "es-ES",
-            "copyrightYear": "2024"
-         }
-      </script>
+      
    </head>
    <body>
       <slot />
