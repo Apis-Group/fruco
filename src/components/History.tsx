@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'preact/hooks';
-import { useFadeIn, useSlideUp, useParallax } from '../hooks/useGSAP';
+import { useFadeIn, useSlideUp, useParallax } from '@/hooks/useGSAP';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 

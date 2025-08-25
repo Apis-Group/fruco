@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'preact/hooks';
-import { useSlideUp } from '../hooks/useGSAP';
+import { useSlideUp } from '@/hooks/useGSAP';
 import { gsap } from 'gsap';
 
 interface CallToActionProps {

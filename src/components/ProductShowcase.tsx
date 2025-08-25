@@ -1,7 +1,7 @@
 import { useRef } from 'preact/hooks';
 import { memo } from 'preact/compat';
-import { useProductGrid, useFadeIn } from '../hooks/useGSAP';
-import { useLazyImage } from '../hooks/useLazyImage';
+import { useProductGrid, useFadeIn } from '@/hooks/useGSAP';
+import { useLazyImage } from '@/hooks/useLazyImage';
 
 interface Product {
    id: string;
