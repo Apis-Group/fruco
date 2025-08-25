@@ -58,43 +58,29 @@ function App() {
    }, []);
 
    return (
-      <div className="min-h-screen bg-fruco-black text-white overflow-x-hidden">
-         {/* Navegación flotante (opcional) */}
+      <>
          <NavBar />
-
-         {/* Secciones principales */}
          <main>
-            {/* Hero Section */}
             <HeroSection />
 
-            {/* Separador visual */}
             <Spliter />
 
-            {/* Product Showcase */}
             <ProductShowcase />
 
-            {/* Separador visual */}
             <Spliter />
 
-            {/* History */}
             <History />
 
-            {/* Separador visual */}
             <Spliter />
 
-            {/* Visión y Misión */}
             <VisionMision />
 
-            {/* Separador visual */}
             <Spliter />
 
-            {/* Call to Action */}
             <CallToAction />
          </main>
-
-         {/* Footer minimalista */}
          <Footer />
-      </div>
+      </>
    );
 }
 
