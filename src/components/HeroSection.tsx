@@ -18,12 +18,17 @@ const HeroSection = ({
    const containerRef = useRef<HTMLElement>(null);
    const scrollIndicatorRef = useRef<HTMLDivElement>(null);
 
-   // Usar el hook de animación de entrada del hero (optimizado para LCP)
+   // Usar el hook de animación de entrada del hero
    useEffect(() => {
       // Delay para permitir que la imagen se renderice primero
       const timer = setTimeout(() => {
-         if (titleRef.current && subtitleRef.current) {
-            // Solo animar título y subtítulo, no el logo para mejorar LCP
+         if (logoRef.current && titleRef.current && subtitleRef.current) {
+            // Animar logo, título y subtítulo con fade-in
+             gsap.fromTo(
+                logoRef.current,
+                { opacity: 0, transform: 'translate3d(0, 20px, 0)' },
+                { opacity: 1, transform: 'translate3d(0, 0, 0)', duration: 0.8, ease: 'power2.out', delay: 0.1 }
+             );
              gsap.fromTo(
                 titleRef.current,
                 { opacity: 0, transform: 'translate3d(0, 30px, 0)' },
@@ -101,9 +106,9 @@ const HeroSection = ({
                   alt="Fruco Logo"
                   className="mx-auto max-w-xs md:max-w-sm lg:max-w-md transition-transform duration-300 ease-out"
                   style={{ 
-                     willChange: 'transform',
-                     opacity: 1,
-                     transform: 'translateZ(0)' // Forzar aceleración por hardware
+                     willChange: 'transform, opacity',
+                     opacity: 0,
+                     transform: 'translateY(20px) translateZ(0)'
                   }}
                   width={600}
                   height={334}
