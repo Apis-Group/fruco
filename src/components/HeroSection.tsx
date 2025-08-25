@@ -1,5 +1,4 @@
 import { useRef, useEffect } from 'preact/hooks';
-import { useHeroEntrance } from '@/hooks/useGSAP';
 import { gsap } from 'gsap';
 
 interface HeroSectionProps {
@@ -19,8 +18,27 @@ const HeroSection = ({
    const containerRef = useRef<HTMLElement>(null);
    const scrollIndicatorRef = useRef<HTMLDivElement>(null);
 
-   // Usar el hook de animación de entrada del hero
-   useHeroEntrance(logoRef, titleRef, subtitleRef);
+   // Usar el hook de animación de entrada del hero (optimizado para LCP)
+   useEffect(() => {
+      // Delay para permitir que la imagen se renderice primero
+      const timer = setTimeout(() => {
+         if (titleRef.current && subtitleRef.current) {
+            // Solo animar título y subtítulo, no el logo para mejorar LCP
+             gsap.fromTo(
+                titleRef.current,
+                { opacity: 0, transform: 'translate3d(0, 30px, 0)' },
+                { opacity: 1, transform: 'translate3d(0, 0, 0)', duration: 0.8, ease: 'power2.out', delay: 0.3 }
+             );
+             gsap.fromTo(
+                subtitleRef.current,
+                { opacity: 0, transform: 'translate3d(0, 20px, 0)' },
+                { opacity: 1, transform: 'translate3d(0, 0, 0)', duration: 0.6, ease: 'power2.out', delay: 0.6 }
+             );
+         }
+      }, 100); // Pequeño delay para permitir el renderizado del logo
+
+      return () => clearTimeout(timer);
+   }, []);
 
    // Animación del scroll indicator
    useEffect(() => {
@@ -82,11 +100,17 @@ const HeroSection = ({
                   src={logoSrc}
                   alt="Fruco Logo"
                   className="mx-auto max-w-xs md:max-w-sm lg:max-w-md transition-transform duration-300 ease-out"
-                  style={{ willChange: 'transform' }}
+                  style={{ 
+                     willChange: 'transform',
+                     opacity: 1,
+                     transform: 'translateZ(0)' // Forzar aceleración por hardware
+                  }}
                   width={600}
                   height={334}
                   fetchPriority="high"
                   loading="eager"
+                  decoding="sync"
+                  sizes="(max-width: 768px) 320px, (max-width: 1024px) 384px, 448px"
                />
             </div>
 
@@ -94,7 +118,11 @@ const HeroSection = ({
             <h1
                ref={titleRef}
                className="text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-white tracking-tight"
-               style={{ willChange: 'transform, opacity' }}
+               style={{ 
+                  willChange: 'transform, opacity',
+                  opacity: 0,
+                  transform: 'translateY(30px) translateZ(0)'
+               }}
             >
                {title}
             </h1>
@@ -103,7 +131,11 @@ const HeroSection = ({
             <p
                ref={subtitleRef}
                className="text-xl md:text-2xl lg:text-3xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light"
-               style={{ willChange: 'transform, opacity' }}
+               style={{ 
+                  willChange: 'transform, opacity',
+                  opacity: 0,
+                  transform: 'translateY(20px) translateZ(0)'
+               }}
             >
                {subtitle}
             </p>
