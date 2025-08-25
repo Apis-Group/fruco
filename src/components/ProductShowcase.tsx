@@ -128,6 +128,10 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                alt={product.name}
                className="w-full h-full object-cover transition-transform duration-400 p-2"
                style={{ willChange: 'transform' }}
+               loading="lazy"
+               sizes="(max-width: 768px) 397px, (max-width: 1024px) 397px, 397px"
+               width="397"
+               height="451"
             />
          </div>
 
