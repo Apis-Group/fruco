@@ -34,12 +34,6 @@ const defaultProducts: Product[] = [
       description: 'El sabor original que ha conquistado paladares por generaciones',
    },
    {
-      id: 'eco',
-      name: 'Ecológico',
-      imageSrc: '/products/fruco_eco.avif',
-      description: 'Ingredientes orgánicos para una experiencia natural y sostenible',
-   },
-   {
       id: 'pasta-pizza',
       name: 'Pasta & Pizza',
       imageSrc: '/products/fruco_pasta_pizza.avif',
@@ -177,7 +171,7 @@ const ProductShowcase: React.FC<ProductShowcaseProps> = ({ products = defaultPro
             </div>
 
             {/* Grid de productos */}
-            <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+            <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                {products.map(product => (
                   <ProductCard key={product.id} product={product} />
                ))}
