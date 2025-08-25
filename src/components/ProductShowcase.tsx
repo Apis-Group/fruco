@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'preact/hooks';
 
 import { useProductGrid, useProductHover, useFadeIn } from '../hooks/useGSAP';
+import { useLazyImage } from '../hooks/useLazyImage';
 import { gsap } from 'gsap';
 
 interface Product {
@@ -43,8 +44,13 @@ const defaultProducts: Product[] = [
 
 const ProductCard = ({ product }: { product: Product }) => {
    const cardRef = useRef<HTMLDivElement>(null);
-   const imageRef = useRef<HTMLImageElement>(null);
    const contentRef = useRef<HTMLDivElement>(null);
+   
+   // Lazy loading mejorado
+   const { imgRef: imageRef, isLoaded, isInView } = useLazyImage({
+      rootMargin: '100px',
+      threshold: 0.1
+   });
 
    // Aplicar efectos hover
    useProductHover(cardRef);
@@ -118,15 +124,29 @@ const ProductCard = ({ product }: { product: Product }) => {
          <div className="relative overflow-hidden aspect-square">
             <img
                ref={imageRef}
-               src={product.imageSrc}
+               data-src={product.imageSrc.replace('/products/', '/products/optimized/medium/')}
+               data-srcset={`
+                  ${product.imageSrc.replace('/products/', '/products/optimized/small/')} 200w,
+                  ${product.imageSrc.replace('/products/', '/products/optimized/medium/')} 400w,
+                  ${product.imageSrc.replace('/products/', '/products/optimized/large/')} 800w
+               `}
                alt={product.name}
-               className="w-full h-full object-cover transition-transform duration-400 p-2"
-               style={{ willChange: 'transform' }}
-               loading="lazy"
-               sizes="(max-width: 768px) 397px, (max-width: 1024px) 397px, 397px"
-               width="397"
-               height="451"
+               className={`w-full h-full object-cover transition-all duration-400 p-2 ${
+                  isLoaded ? 'opacity-100' : 'opacity-0'
+               }`}
+               style={{ 
+                  willChange: 'transform, opacity',
+               }}
+               sizes="(max-width: 640px) 200px, (max-width: 768px) 280px, (max-width: 1024px) 240px, 280px"
+               width="280"
+               height="320"
+               decoding="async"
             />
+            {!isLoaded && isInView && (
+               <div className="absolute inset-0 flex items-center justify-center bg-gray-800/50 backdrop-blur-sm">
+                  <div className="w-8 h-8 border-2 border-fruco-gold border-t-transparent rounded-full animate-spin" />
+               </div>
+            )}
          </div>
 
          {/* Contenido */}
