@@ -86,6 +86,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                   style={{ willChange: 'transform' }}
                   width={600}
                   height={334}
+                  fetchPriority="high"
+                  loading="eager"
                />
             </div>
 
