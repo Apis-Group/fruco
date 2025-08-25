@@ -45,14 +45,14 @@
    font-family: var(--font-body);
 }
 
-/* 🌍 Estilos base */
 @layer base {
    html {
       scroll-behavior: smooth;
    }
 
    body {
-      @apply bg-fruco-black text-white;
+      @apply text-white;
+      background: var(--fruco-black);
       font-family: var(--font-body);
       overflow-x: hidden;
    }
