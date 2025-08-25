@@ -65,7 +65,7 @@ const History = ({
                element,
                {
                   textContent: target,
-                  duration: 0.7,
+                  duration: 1.5,
                   ease: 'power2.out',
                   snap: { textContent: 1 },
                   onUpdate: function () {
