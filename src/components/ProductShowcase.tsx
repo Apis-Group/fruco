@@ -43,11 +43,15 @@ const defaultProducts: Product[] = [
 
 const ProductCard = memo(({ product }: { product: Product }) => {
    const cardRef = useRef<HTMLDivElement>(null);
-   
+
    // Lazy loading optimizado
-   const { imgRef: imageRef, isLoaded, isInView } = useLazyImage({
+   const {
+      imgRef: imageRef,
+      isLoaded,
+      isInView,
+   } = useLazyImage({
       rootMargin: '50px',
-      threshold: 0.1
+      threshold: 0.1,
    });
    // Efectos hover ahora manejados completamente con CSS para mejor rendimiento
 
@@ -74,7 +78,7 @@ const ProductCard = memo(({ product }: { product: Product }) => {
                className={`w-full h-full object-cover transition-all duration-400 p-2 ${
                   isLoaded ? 'opacity-100' : 'opacity-0'
                }`}
-               style={{ 
+               style={{
                   willChange: 'transform, opacity',
                }}
                sizes="(max-width: 640px) 200px, (max-width: 768px) 280px, (max-width: 1024px) 240px, 280px"

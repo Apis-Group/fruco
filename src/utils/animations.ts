@@ -223,8 +223,6 @@ export const productHoverEffect = (element: string | Element) => {
    };
 };
 
-
-
 // Función para limpiar todas las animaciones ScrollTrigger
 export const cleanupScrollTriggers = () => {
    ScrollTrigger.getAll().forEach(trigger => trigger.kill());

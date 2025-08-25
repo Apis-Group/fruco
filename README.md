@@ -22,18 +22,21 @@ Sitio web moderno y optimizado para Fruco, la marca de salsas de tomate con más
 ## 🎯 Optimizaciones Implementadas
 
 ### Bundle Size
+
 - **Preact** en lugar de React: Reducción de ~40kB
 - **Minificación con Terser**: Compresión avanzada de JavaScript
 - **Code Splitting**: Separación inteligente de dependencias
 - **Tree Shaking**: Eliminación de código no utilizado
 
 ### Performance
+
 - **Eliminación de console.log** en producción
 - **Compresión gzip** automática
 - **Lazy loading** de componentes
 - **Optimización de imágenes** (AVIF format)
 
 ### Resultado
+
 - Bundle principal: **~133kB** (comprimido)
 - Preact core: **10.4kB**
 - Tiempo de carga mejorado significativamente
@@ -65,15 +68,19 @@ src/
 ## 🎨 Componentes
 
 ### HeroSection
+
 Sección principal con animaciones de entrada y parallax.
 
 ### ProductShowcase
+
 Grid de productos con efectos hover y animaciones stagger.
 
 ### BrandInfo
+
 Información de la marca con animaciones de scroll.
 
 ### CallToAction
+
 Sección de contacto con animaciones de entrada.
 
 ## 🎭 Animaciones
@@ -89,11 +96,13 @@ Todas las animaciones están optimizadas con GSAP:
 ## 🔧 Configuración
 
 ### Astro Config
+
 - Integración de Preact con compatibilidad React
 - Code splitting automático
 - Optimización de CSS inline
 
 ### TypeScript
+
 - Configuración estricta
 - TSX con Preact como fuente
 - Paths absolutos configurados
@@ -101,6 +110,7 @@ Todas las animaciones están optimizadas con GSAP:
 ## 📱 Responsive Design
 
 Diseño completamente responsive con breakpoints:
+
 - **Mobile**: < 768px
 - **Tablet**: 768px - 1024px
 - **Desktop**: > 1024px
@@ -116,6 +126,7 @@ Diseño completamente responsive con breakpoints:
 ## 🚀 Deploy
 
 El proyecto está optimizado para deploy en:
+
 - **Vercel** (recomendado)
 - **Netlify**
 - Cualquier hosting estático

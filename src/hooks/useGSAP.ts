@@ -153,7 +153,7 @@ export const useSmoothScroll = () => {
       // Agregar event listeners para navegación
       const navLinks = document.querySelectorAll('a[href^="#"]');
       navLinks.forEach(link => {
-         link.addEventListener('click', (e) => {
+         link.addEventListener('click', e => {
             e.preventDefault();
             const target = link.getAttribute('href');
             if (target) smoothScroll(target);

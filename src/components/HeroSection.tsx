@@ -22,16 +22,28 @@ const HeroSection = ({
       const timer = setTimeout(() => {
          if (logoRef.current && subtitleRef.current) {
             // Animar logo, título y subtítulo con fade-in
-             gsap.fromTo(
-                logoRef.current,
-                { opacity: 0, transform: 'translate3d(0, 20px, 0)' },
-                { opacity: 1, transform: 'translate3d(0, 0, 0)', duration: 0.8, ease: 'power2.out', delay: 0.1 }
-             );
-             gsap.fromTo(
-                subtitleRef.current,
-                { opacity: 0, transform: 'translate3d(0, 20px, 0)' },
-                { opacity: 1, transform: 'translate3d(0, 0, 0)', duration: 0.6, ease: 'power2.out', delay: 0.6 }
-             );
+            gsap.fromTo(
+               logoRef.current,
+               { opacity: 0, transform: 'translate3d(0, 20px, 0)' },
+               {
+                  opacity: 1,
+                  transform: 'translate3d(0, 0, 0)',
+                  duration: 0.8,
+                  ease: 'power2.out',
+                  delay: 0.1,
+               }
+            );
+            gsap.fromTo(
+               subtitleRef.current,
+               { opacity: 0, transform: 'translate3d(0, 20px, 0)' },
+               {
+                  opacity: 1,
+                  transform: 'translate3d(0, 0, 0)',
+                  duration: 0.6,
+                  ease: 'power2.out',
+                  delay: 0.6,
+               }
+            );
          }
       }, 100); // Pequeño delay para permitir el renderizado del logo
 
@@ -98,10 +110,10 @@ const HeroSection = ({
                   src={logoSrc}
                   alt="Fruco Logo"
                   className="mx-auto max-w-xs md:max-w-sm lg:max-w-md transition-transform duration-300 ease-out"
-                  style={{ 
+                  style={{
                      willChange: 'transform, opacity',
                      opacity: 0,
-                     transform: 'translateY(20px) translateZ(0)'
+                     transform: 'translateY(20px) translateZ(0)',
                   }}
                   width={600}
                   height={334}
@@ -116,10 +128,10 @@ const HeroSection = ({
             <h1
                ref={subtitleRef}
                className="text-xl md:text-2xl lg:text-3xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light font-body"
-               style={{ 
+               style={{
                   willChange: 'transform, opacity',
                   opacity: 0,
-                  transform: 'translateY(20px) translateZ(0)'
+                  transform: 'translateY(20px) translateZ(0)',
                }}
             >
                {subtitle}
