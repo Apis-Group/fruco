@@ -149,8 +149,9 @@ const BrandInfo: React.FC<BrandInfoProps> = ({
                      className="space-y-6"
                      style={{ willChange: 'transform, opacity' }}
                   >
-                     {highlights.map((highlight) => (
+                     {highlights.map((highlight, index) => (
                         <div
+                           key={index}
                            className="flex items-center space-x-4 group cursor-pointer"
                         >
                            {/* Icono decorativo */}
