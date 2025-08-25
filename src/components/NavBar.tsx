@@ -55,7 +55,7 @@ export default function NavBar() {
                         ?.scrollIntoView({ behavior: 'smooth', block: 'center' })
                   }
                   onMouseEnter={e => handleMouseEnter(index, e)}
-                  className="relative z-10 px-4 py-3 text-white/70 hover:text-white transition-colors duration-300 text-sm font-medium cursor-pointer"
+                  className="relative z-10 px-4 py-3 text-white/70 text-nowrap hover:text-white transition-colors duration-300 text-sm font-medium cursor-pointer"
                >
                   {item.label}
                </button>
