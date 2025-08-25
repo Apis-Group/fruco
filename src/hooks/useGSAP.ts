@@ -7,7 +7,6 @@ import {
    parallaxEffect,
    heroEntrance,
    productGridAnimation,
-   productHoverEffect,
    cleanupScrollTriggers,
    refreshScrollTrigger,
 } from '../utils/animations';
@@ -15,10 +14,9 @@ import {
 // Registrar ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
-// Hook principal para manejar animaciones GSAP
+// Hook principal para manejar animaciones GSAP - optimizado
 export const useGSAP = () => {
    const animationsRef = useRef<gsap.core.Tween[]>([]);
-   const cleanupFunctionsRef = useRef<(() => void)[]>([]);
 
    // Función para agregar animación al registro
    const addAnimation = useCallback((animation: gsap.core.Tween) => {
@@ -26,15 +24,9 @@ export const useGSAP = () => {
       return animation;
    }, []);
 
-   // Función para agregar función de cleanup
-   const addCleanup = useCallback((cleanupFn: () => void) => {
-      cleanupFunctionsRef.current.push(cleanupFn);
-   }, []);
-
-   // Limpiar todas las animaciones al desmontar
+   // Limpiar todas las animaciones al desmontar - optimizado
    useEffect(() => {
       const animations = animationsRef.current;
-      const cleanupFunctions = cleanupFunctionsRef.current;
 
       return () => {
          // Limpiar animaciones GSAP
@@ -44,9 +36,6 @@ export const useGSAP = () => {
             }
          });
 
-         // Ejecutar funciones de cleanup
-         cleanupFunctions.forEach(cleanup => cleanup());
-
          // Limpiar ScrollTriggers
          cleanupScrollTriggers();
       };
@@ -54,12 +43,11 @@ export const useGSAP = () => {
 
    return {
       addAnimation,
-      addCleanup,
       refreshScrollTrigger,
    };
 };
 
-// Hook específico para animaciones de fade in
+// Hook específico para animaciones de fade in - optimizado
 export const useFadeIn = (
    elementRef: { current: HTMLElement | null },
    options?: {
@@ -77,14 +65,16 @@ export const useFadeIn = (
       };
    }
 ) => {
-   const { addAnimation } = useGSAP();
-
    useEffect(() => {
       if (elementRef.current) {
          const animation = fadeInOnScroll(elementRef.current, options as ScrollTrigger.Vars);
-         addAnimation(animation);
+         return () => {
+            if (animation && animation.kill) {
+               animation.kill();
+            }
+         };
       }
-   }, [elementRef, addAnimation, options]);
+   }, [elementRef, options]);
 };
 
 // Hook específico para animaciones de slide up
@@ -143,19 +133,7 @@ export const useProductGrid = (containerRef: { current: HTMLElement | null }) =>
    }, [containerRef, addAnimation]);
 };
 
-// Hook para efectos hover en productos
-export const useProductHover = (elementRef: { current: HTMLElement | null }) => {
-   const { addCleanup } = useGSAP();
-
-   useEffect(() => {
-      if (elementRef.current) {
-         const cleanup = productHoverEffect(elementRef.current);
-         if (cleanup) {
-            addCleanup(cleanup);
-         }
-      }
-   }, [elementRef, addCleanup]);
-};
+// Hook eliminado: useProductHover - ahora se usa CSS para mejor rendimiento
 
 // Hook para animaciones con scroll suave
 export const useSmoothScroll = () => {
