@@ -9,11 +9,9 @@ interface HeroSectionProps {
 
 const HeroSection = ({
    logoSrc = '/logo_fruco.avif',
-   title = '',
    subtitle = 'Tradición y sabor desde 1959',
 }: HeroSectionProps) => {
    const logoRef = useRef<HTMLImageElement>(null);
-   const titleRef = useRef<HTMLHeadingElement>(null);
    const subtitleRef = useRef<HTMLParagraphElement>(null);
    const containerRef = useRef<HTMLElement>(null);
    const scrollIndicatorRef = useRef<HTMLDivElement>(null);
@@ -22,17 +20,12 @@ const HeroSection = ({
    useEffect(() => {
       // Delay para permitir que la imagen se renderice primero
       const timer = setTimeout(() => {
-         if (logoRef.current && titleRef.current && subtitleRef.current) {
+         if (logoRef.current && subtitleRef.current) {
             // Animar logo, título y subtítulo con fade-in
              gsap.fromTo(
                 logoRef.current,
                 { opacity: 0, transform: 'translate3d(0, 20px, 0)' },
                 { opacity: 1, transform: 'translate3d(0, 0, 0)', duration: 0.8, ease: 'power2.out', delay: 0.1 }
-             );
-             gsap.fromTo(
-                titleRef.current,
-                { opacity: 0, transform: 'translate3d(0, 30px, 0)' },
-                { opacity: 1, transform: 'translate3d(0, 0, 0)', duration: 0.8, ease: 'power2.out', delay: 0.3 }
              );
              gsap.fromTo(
                 subtitleRef.current,
@@ -98,7 +91,7 @@ const HeroSection = ({
       >
          {/* Contenido principal */}
          <div className="text-center z-10 relative">
-            {/* Logo con animación de entrada */}
+            {/* Logo */}
             <div className="mb-12">
                <img
                   ref={logoRef}
@@ -119,23 +112,10 @@ const HeroSection = ({
                />
             </div>
 
-            {/* Título principal */}
-            <h1
-               ref={titleRef}
-               className="text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-white tracking-tight"
-               style={{ 
-                  willChange: 'transform, opacity',
-                  opacity: 0,
-                  transform: 'translateY(30px) translateZ(0)'
-               }}
-            >
-               {title}
-            </h1>
-
             {/* Subtítulo */}
-            <p
+            <h1
                ref={subtitleRef}
-               className="text-xl md:text-2xl lg:text-3xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light"
+               className="text-xl md:text-2xl lg:text-3xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light font-body"
                style={{ 
                   willChange: 'transform, opacity',
                   opacity: 0,
@@ -143,10 +123,10 @@ const HeroSection = ({
                }}
             >
                {subtitle}
-            </p>
+            </h1>
          </div>
 
-         {/* Indicador de scroll elegante - posicionado fuera del contenido principal */}
+         {/* Indicador de scroll */}
          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-2 z-20">
             <span className="text-white/60 text-xs font-light tracking-widest uppercase">
                Desliza
