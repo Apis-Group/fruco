@@ -54,10 +54,6 @@ const description =
          /></noscript
       >
 
-      <style is:global>
-         @import '../styles/globals.css';
-      </style>
-
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
@@ -84,3 +80,7 @@ const description =
       <slot />
    </body>
 </html>
+
+<style is:global>
+   @import '../styles/globals.css';
+</style>
