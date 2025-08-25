@@ -17,4 +17,7 @@ export default defineConfig({
          include: ['gsap'],
       },
    },
+   devToolbar: {
+      enabled: false,
+   },
 });
