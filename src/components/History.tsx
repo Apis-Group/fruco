@@ -90,7 +90,7 @@ const History = ({
    }, []);
 
    return (
-      <section ref={containerRef} className="section-container relative overflow-hidden" id="marca">
+      <section ref={containerRef} className="section-container relative overflow-hidden" id="historia">
          <div className="max-w-6xl mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                {/* Contenido principal */}

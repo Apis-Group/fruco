@@ -8,7 +8,8 @@ export default function NavBar() {
    const navItems = [
       { label: 'Inicio', target: 'inicio' },
       { label: 'Productos', target: 'productos' },
-      { label: 'Marca', target: 'marca' },
+      { label: 'Historia', target: 'historia' },
+      { label: 'Visión y Misión', target: 'vision-mision' },
       { label: 'Contacto', target: 'contacto' },
    ];
 
