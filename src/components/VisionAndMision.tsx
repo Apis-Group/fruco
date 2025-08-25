@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'preact/hooks';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLazyImage } from '@/hooks/useLazyImage';
 
 // Constantes para los elementos dinámicos
 const VISION_ELEMENTS = [
@@ -169,18 +170,31 @@ function VisionMision() {
          </div>
 
          <div ref={visionElementsRef} className="flex justify-between align-middle flex-col md:flex-row mt-15 gap-15 w-[50%] mx-auto">
-            {VISION_ELEMENTS.map((element) => (
-               <div key={element.id} className="w-30 relative vision-element">
-                  <img 
-                     src={element.image}
-                     alt={element.alt} 
-                     className="rounded-full scale-130 grayscale-50"
-                  />
-                  <p className="uppercase absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white px-4 py-1 rounded-4xl text-4xl font-bold z-10">
-                     {element.title}
-                  </p>
-               </div>
-            ))}
+            {VISION_ELEMENTS.map((element) => {
+               const { imgRef, isLoaded } = useLazyImage({
+                  rootMargin: '100px',
+                  threshold: 0.1
+               });
+               
+               return (
+                  <div key={element.id} className="w-30 relative vision-element">
+                     <img 
+                        ref={imgRef}
+                        data-src={element.image}
+                        alt={element.alt} 
+                        className={`rounded-full scale-130 grayscale-50 transition-opacity duration-500 ${
+                           isLoaded ? 'opacity-100' : 'opacity-0'
+                        }`}
+                        style={{
+                           backgroundColor: isLoaded ? 'transparent' : '#1a1a1a'
+                        }}
+                     />
+                     <p className="uppercase absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white px-4 py-1 rounded-4xl text-4xl font-bold z-10">
+                        {element.title}
+                     </p>
+                  </div>
+               );
+            })}
          </div>
       </section>
    );
