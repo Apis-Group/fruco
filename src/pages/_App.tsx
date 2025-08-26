@@ -18,72 +18,72 @@ import Footer from '@/components/Footer';
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
-   // Hook para scroll suave
-   useSmoothScroll();
+	// Hook para scroll suave
+	useSmoothScroll();
 
-   useEffect(() => {
-      // Configuración inicial de GSAP
-      gsap.config({
-         force3D: true,
-         nullTargetWarn: false,
-      });
+	useEffect(() => {
+		// Configuración inicial de GSAP
+		gsap.config({
+			force3D: true,
+			nullTargetWarn: false,
+		});
 
-      // Configuración de ScrollTrigger
-      ScrollTrigger.config({
-         autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load',
-         ignoreMobileResize: true,
-      });
+		// Configuración de ScrollTrigger
+		ScrollTrigger.config({
+			autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load',
+			ignoreMobileResize: true,
+		});
 
-      // Animación de carga inicial
-      gsap.fromTo(
-         'body',
-         { opacity: 0 },
-         {
-            opacity: 1,
-            duration: 0.8,
-            ease: 'power2.out',
-         }
-      );
+		// Animación de carga inicial
+		gsap.fromTo(
+			'body',
+			{ opacity: 0 },
+			{
+				opacity: 1,
+				duration: 0.8,
+				ease: 'power2.out',
+			},
+		);
 
-      // Refresh ScrollTrigger después de que todo esté cargado
-      const timer = setTimeout(() => {
-         refreshScrollTrigger();
-      }, 100);
+		// Refresh ScrollTrigger después de que todo esté cargado
+		const timer = setTimeout(() => {
+			refreshScrollTrigger();
+		}, 100);
 
-      // Cleanup
-      return () => {
-         clearTimeout(timer);
-         for (const trigger of ScrollTrigger.getAll()) {
-            trigger.kill();
-         }
-      };
-   }, []);
+		// Cleanup
+		return () => {
+			clearTimeout(timer);
+			for (const trigger of ScrollTrigger.getAll()) {
+				trigger.kill();
+			}
+		};
+	}, []);
 
-   return (
-      <>
-         <NavBar />
-         <main>
-            <HeroSection />
+	return (
+		<>
+			<NavBar />
+			<main>
+				<HeroSection />
 
-            <Spliter />
+				<Spliter />
 
-            <ProductShowcase />
+				<ProductShowcase />
 
-            <Spliter />
+				<Spliter />
 
-            <History />
+				<History />
 
-            <Spliter />
+				<Spliter />
 
-            <VisionMision />
+				<VisionMision />
 
-            <Spliter />
+				<Spliter />
 
-            <CallToAction />
-         </main>
-         <Footer />
-      </>
-   );
+				<CallToAction />
+			</main>
+			<Footer />
+		</>
+	);
 }
 
 export default App;
