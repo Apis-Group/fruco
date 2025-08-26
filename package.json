@@ -9,8 +9,8 @@
       "build": "astro check && astro build",
       "preview": "astro preview",
       "astro": "astro",
-      "lint": "eslint . && echo '✅ No ESLint errors found! Code looks good.'",
-      "format": "prettier --write ."
+      "lint": "biome lint --write ./src",
+      "format": "biome format --write ./src"
    },
    "dependencies": {
       "@astrojs/check": "^0.9.4",
@@ -22,12 +22,9 @@
       "tailwindcss": "^4.1.12"
    },
    "devDependencies": {
-      "@eslint/js": "^9.34.0",
-      "eslint": "^9.34.0",
+      "@biomejs/biome": "2.2.2",
       "globals": "^16.3.0",
-      "prettier": "3.6.2",
       "terser": "^5.43.1",
-      "typescript": "~5.9.2",
-      "typescript-eslint": "^8.40.0"
+      "typescript": "~5.9.2"
    }
 }
