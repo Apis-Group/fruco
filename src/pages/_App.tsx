@@ -53,7 +53,9 @@ function App() {
       // Cleanup
       return () => {
          clearTimeout(timer);
-         ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+         for (const trigger of ScrollTrigger.getAll()) {
+            trigger.kill();
+         }
       };
    }, []);
 

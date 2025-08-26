@@ -3,7 +3,7 @@ import { useState, useRef } from 'preact/hooks';
 export default function NavBar() {
    const [, setHoveredIndex] = useState<number | null>(null);
    const [hoverStyle, setHoverStyle] = useState({});
-   const navRef = useRef<HTMLDivElement>(null);
+   const navRef = useRef<HTMLFieldSetElement>(null);
 
    const navItems = [
       { label: 'Inicio', target: 'inicio' },
@@ -35,7 +35,7 @@ export default function NavBar() {
 
    return (
       <nav className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 hidden md:block">
-         <div
+         <fieldset
             ref={navRef}
             className="relative flex bg-white/10 backdrop-blur-md rounded-full border border-white/20"
             onMouseLeave={handleMouseLeave}
@@ -48,6 +48,7 @@ export default function NavBar() {
 
             {navItems.map((item, index) => (
                <button
+                  type="button"
                   key={item.target}
                   onClick={() =>
                      document
@@ -59,8 +60,7 @@ export default function NavBar() {
                >
                   {item.label}
                </button>
-            ))}
-         </div>
+            ))}         </fieldset>
       </nav>
    );
 }

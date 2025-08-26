@@ -31,7 +31,7 @@ export const useGSAP = () => {
       return () => {
          // Limpiar animaciones GSAP
          animations.forEach(animation => {
-            if (animation && animation.kill) {
+            if (animation?.kill) {
                animation.kill();
             }
          });
@@ -69,7 +69,7 @@ export const useFadeIn = (
       if (elementRef.current) {
          const animation = fadeInOnScroll(elementRef.current, options as ScrollTrigger.Vars);
          return () => {
-            if (animation && animation.kill) {
+            if (animation?.kill) {
                animation.kill();
             }
          };

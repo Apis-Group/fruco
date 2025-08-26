@@ -63,12 +63,6 @@ export const useLazyImage = (options: UseLazyImageOptions = {}): UseLazyImageRet
 
                   // Dejar de observar una vez que se ha cargado
                   observer.unobserve(img);
-
-                  // Cleanup
-                  return () => {
-                     img.removeEventListener('load', handleLoad);
-                     img.removeEventListener('error', handleError);
-                  };
                }
             });
          },

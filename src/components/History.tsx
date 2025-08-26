@@ -59,7 +59,7 @@ const History = ({
          });
 
          numberElements.forEach((element, index) => {
-            const target = parseInt(element.getAttribute('data-target') || '0');
+            const target = parseInt(element.getAttribute('data-target') || '0', 10);
 
             tl.to(
                element,
@@ -149,9 +149,9 @@ const History = ({
                      className="space-y-6"
                      style={{ willChange: 'transform, opacity' }}
                   >
-                     {highlights.map((highlight, index) => (
+                     {highlights.map((highlight, _index) => (
                         <div
-                           key={index}
+                           key={`highlight-${highlight.slice(0, 20).replace(/\s+/g, '-').toLowerCase()}`}
                            className="flex items-center space-x-4 group cursor-pointer"
                         >
                            {/* Icono decorativo */}

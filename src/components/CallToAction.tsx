@@ -70,10 +70,10 @@ const CallToAction = ({
       // Cleanup function
       return () => {
          animations.forEach(animation => {
-            if (animation && animation.scrollTrigger) {
+            if (animation?.scrollTrigger) {
                animation.scrollTrigger.kill();
             }
-            if (animation && animation.kill) {
+            if (animation?.kill) {
                animation.kill();
             }
          });
@@ -121,7 +121,9 @@ const CallToAction = ({
                            fill="none"
                            stroke="currentColor"
                            viewBox="0 0 24 24"
+                           aria-label="Icono de email"
                         >
+                           <title>Email</title>
                            <path
                               strokeLinecap="round"
                               strokeLinejoin="round"
@@ -144,7 +146,9 @@ const CallToAction = ({
                            fill="none"
                            stroke="currentColor"
                            viewBox="0 0 24 24"
+                           aria-label="Icono de teléfono"
                         >
+                           <title>Teléfono</title>
                            <path
                               strokeLinecap="round"
                               strokeLinejoin="round"
@@ -167,7 +171,9 @@ const CallToAction = ({
                            fill="none"
                            stroke="currentColor"
                            viewBox="0 0 24 24"
+                           aria-label="Icono de ubicación"
                         >
+                           <title>Ubicación</title>
                            <path
                               strokeLinecap="round"
                               strokeLinejoin="round"

@@ -160,7 +160,7 @@ export const heroEntrance = (elements: {
 
 // Función para animación de productos en grid
 export const productGridAnimation = (container: string | Element) => {
-   let products;
+   let products: Element[];
 
    if (typeof container === 'string') {
       products = gsap.utils.toArray(`${container} .product-item`);
@@ -226,7 +226,9 @@ export const productHoverEffect = (element: string | Element) => {
 
 // Función para limpiar todas las animaciones ScrollTrigger
 export const cleanupScrollTriggers = () => {
-   ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+   for (const trigger of ScrollTrigger.getAll()) {
+      trigger.kill();
+   }
 };
 
 // Función para refrescar ScrollTrigger (útil después de cambios en el DOM)
