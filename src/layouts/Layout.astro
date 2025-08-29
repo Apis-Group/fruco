@@ -1,5 +1,6 @@
 ---
 import Analytics from '@vercel/analytics/astro';
+import  SpeedInsights  from "@vercel/speed-insights/astro";
 const { title } = Astro.props;
 const description =
 	'Descubre Fruco, la auténtica salsa de tomate española con más de 60 años de tradición. Ingredientes naturales, sabor casero y calidad premium desde 1959.';
@@ -79,6 +80,7 @@ const description =
    </head>
    <body>
       <Analytics />
+      <SpeedInsights />
       <slot />
    </body>
 </html>
