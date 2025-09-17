@@ -372,7 +372,7 @@ const ProductShowcase = ({
 	const [showDetails, setShowDetails] = useState(false);
 
 	// Animaciones
-	useFadeIn(titleRef, { scrollTrigger: { start: 'top 85%' } });
+	useFadeIn(titleRef);
 	useProductGrid(gridRef);
 
 	// Funciones para manejar la selección de productos
