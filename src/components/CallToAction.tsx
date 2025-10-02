@@ -244,7 +244,7 @@ const CallToAction = ({
             <div ref={map1Ref} style={{ willChange: "opacity" }}>
               <div className="rounded-lg overflow-hidden shadow-2xl">
                 <GoogleMaps
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6208.530237654223!2d-6.3857546!3d38.9179174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1427121bd2a0d7%3A0x6650603617384c14!2sAPIS%20FRUCO!5e1!3m2!1ses!2ses!4v1759388986011!5m2!1ses!2ses"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6208.530237654223!2d-6.3857546!3d38.9179174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1427121bd2a0d7%3A0x6650603617384c14!2sAPIS%20FRUCO!5e2!3m2!1ses!2ses!4v1759388986011!5m2!1ses!2ses"
                   height="400px"
                 />
               </div>
@@ -257,7 +257,7 @@ const CallToAction = ({
             <div ref={map2Ref} style={{ willChange: "opacity" }}>
               <div className="rounded-lg overflow-hidden shadow-2xl">
                 <GoogleMaps
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3104.399405376706!2d-6.599812623249521!3d38.91484757172036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1690ec8ce03ae5%3A0xd67aca27bbab419b!2sApis%20Fruco!5e1!3m2!1ses!2ses!4v1759389029022!5m2!1ses!2ses"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3104.399405376706!2d-6.599812623249521!3d38.91484757172036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1690ec8ce03ae5%3A0xd67aca27bbab419b!2sApis%20Fruco!5e2!3m2!1ses!2ses!4v1759389029022!5m2!1ses!2ses"
                   height="400px"
                 />
               </div>
