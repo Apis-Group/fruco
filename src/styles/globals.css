@@ -100,3 +100,44 @@ img {
 		transform: rotate(360deg);
 	}
 }
+
+/* Animaciones del modal */
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes slideUpScale {
+	0% {
+		opacity: 0;
+		transform: translateY(40px) scale(0.95);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+@keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes slideDownScale {
+	0% {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(40px) scale(0.95);
+	}
+}
