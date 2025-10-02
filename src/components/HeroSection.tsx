@@ -1,5 +1,5 @@
 import { gsap } from "gsap";
-import { useEffect, useRef } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 
 interface HeroSectionProps {
   logoSrc?: string;
@@ -12,16 +12,22 @@ const HeroSection = ({
   subtitle = "Tradición y sabor desde 1959",
 }: HeroSectionProps) => {
   const logoRef = useRef<HTMLImageElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const subtitleRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLElement>(null);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
+  const [subtitleChars, setSubtitleChars] = useState<string[]>([]);
+
+  // Dividir el subtítulo en caracteres al montar
+  useEffect(() => {
+    setSubtitleChars(subtitle.split(""));
+  }, [subtitle]);
 
   // Usar el hook de animación de entrada del hero
   useEffect(() => {
     // Delay para permitir que la imagen se renderice primero
     const timer = setTimeout(() => {
       if (logoRef.current && subtitleRef.current) {
-        // Animar logo, título y subtítulo con fade-in
+        // Animar logo
         gsap.fromTo(
           logoRef.current,
           { opacity: 0, transform: "translate3d(0, 20px, 0)" },
@@ -33,22 +39,33 @@ const HeroSection = ({
             delay: 0.1,
           },
         );
+
+        // Animar cada letra del subtítulo con efecto de escritura a mano
+        const chars = subtitleRef.current.querySelectorAll(".char");
         gsap.fromTo(
-          subtitleRef.current,
-          { opacity: 0, transform: "translate3d(0, 20px, 0)" },
+          chars,
+          {
+            opacity: 0,
+            scale: 0.5,
+            rotateZ: -10,
+            y: 20,
+          },
           {
             opacity: 1,
-            transform: "translate3d(0, 0, 0)",
-            duration: 0.6,
-            ease: "power2.out",
-            delay: 0.6,
+            scale: 1,
+            rotateZ: 0,
+            y: 0,
+            duration: 0.15,
+            ease: "back.out(2)",
+            stagger: 0.03, // Efecto de escritura letra por letra
+            delay: 0.9,
           },
         );
       }
     }, 100); // Pequeño delay para permitir el renderizado del logo
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [subtitleChars]);
 
   // Animación del scroll indicator
   useEffect(() => {
@@ -127,14 +144,25 @@ const HeroSection = ({
         {/* Subtítulo */}
         <h1
           ref={subtitleRef}
-          className="text-xl md:text-2xl lg:text-3xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light font-body"
+          className="text-2xl md:text-4xl lg:text-5xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light"
           style={{
+            fontFamily: "'Caveat', cursive",
             willChange: "transform, opacity",
-            opacity: 0,
-            transform: "translateY(20px) translateZ(0)",
           }}
         >
-          {subtitle}
+          {subtitleChars.map((char, index) => (
+            <span
+              key={index}
+              className="char inline-block"
+              style={{
+                opacity: 0,
+                display: char === " " ? "inline" : "inline-block",
+                whiteSpace: char === " " ? "pre" : "normal",
+              }}
+            >
+              {char}
+            </span>
+          ))}
         </h1>
       </div>
 
