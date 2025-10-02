@@ -145,7 +145,7 @@ const Contact = ({
   return (
     <section
       ref={containerRef}
-      className="section-container relative overflow-hidden"
+      className="section-container relative overflow-hidden pt-12 md:pt-20"
       id="contacto"
     >
       <div className="max-w-4xl mx-auto px-4 text-center">
