@@ -1,6 +1,7 @@
 ---
 import Analytics from '@vercel/analytics/astro';
-import  SpeedInsights  from "@vercel/speed-insights/astro";
+import SpeedInsights from '@vercel/speed-insights/astro';
+
 const { title } = Astro.props;
 const description =
 	'Descubre Fruco, la auténtica salsa de tomate española con más de 60 años de tradición. Ingredientes naturales, sabor casero y calidad premium desde 1959.';
@@ -8,83 +9,82 @@ const description =
 
 <!doctype html>
 <html lang="es">
-   <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>{title}</title>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{title}</title>
 
-      <meta name="description" content={description} />
-      <meta
-         name="keywords"
-         content="fruco, salsa tomate, salsa, tomate, tradicional, salsa española, tomate natural, tradición 1959, salsa casera, ingredientes naturales, tomate premium, salsa artesanal, cocina española"
-      />
-      <meta name="author" content="Jon Imanol Ruiz Hermoso" />
-      <meta name="robots" content="index, follow" />
+		<meta name="description" content={description} />
+		<meta
+			name="keywords"
+			content="fruco, salsa tomate, salsa, tomate, tradicional, salsa española, tomate natural, tradición 1959, salsa casera, ingredientes naturales, tomate premium, salsa artesanal, cocina española"
+		/>
+		<meta name="author" content="Jon Imanol Ruiz Hermoso" />
+		<meta name="robots" content="index, follow" />
 
-      <!-- FAVICONS -->
-      <link rel="icon" href="/favicon/favicon.ico" />
-      <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+		<!-- FAVICONS -->
+		<link rel="icon" href="/favicon/favicon.ico" />
+		<link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
 
-      <link rel="manifest" href="/favicon/site.webmanifest" />
-      <meta name="theme-color" content="#2d5016" />
-      <meta name="msapplication-TileColor" content="#2d5016" />
+		<link rel="manifest" href="/favicon/site.webmanifest" />
+		<meta name="theme-color" content="#2d5016" />
+		<meta name="msapplication-TileColor" content="#2d5016" />
 
-      <!-- Preload LCP image -->
-      <link
-         rel="preload"
-         href="/logo_fruco.avif"
-         as="image"
-         fetchpriority="high"
-         imagesizes="(max-width: 768px) 320px, (max-width: 1024px) 384px, 448px"
-      />
+		<!-- Preload LCP image -->
+		<link
+			rel="preload"
+			href="/logo_fruco.avif"
+			as="image"
+			fetchpriority="high"
+			imagesizes="(max-width: 768px) 320px, (max-width: 1024px) 384px, 448px"
+		/>
 
-      <!-- Optimized Google Fonts Loading -->
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<!-- Optimized Google Fonts Loading -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-      <!-- Preload only critical font weights -->
-      <link
-         rel="preload"
-         href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap"
-         as="style"
-         onload="this.onload=null;this.rel='stylesheet'"
-      />
-      <noscript
-         ><link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap"
-         /></noscript
-      >
+		<!-- Preload only critical font weights -->
+		<link
+			rel="preload"
+			href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap"
+			as="style"
+			onload="this.onload=null;this.rel='stylesheet'"
+		/>
+		<noscript
+			><link
+				rel="stylesheet"
+				href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap"
+			/></noscript
+		>
 
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content="/logo_fruco.avif" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content="/logo_fruco.avif" />
 
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content="/logo_fruco.avif" />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://fruco.vercel.app/" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content="/logo_fruco.avif" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://fruco.vercel.app/" />
 
-      <script type="application/ld+json" is:inline>
-         {
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "Fruco",
-            "url": "https://fruco.vercel.app/",
-            "logo": "https://fruco.vercel.app/logo_fruco.avif"
-         }
-      </script>
-      
-   </head>
-   <body>
-      <Analytics />
-      <SpeedInsights />
-      <slot />
-   </body>
+		<script type="application/ld+json" is:inline>
+			{
+				"@context": "https://schema.org",
+				"@type": "Organization",
+				"name": "Fruco",
+				"url": "https://fruco.vercel.app/",
+				"logo": "https://fruco.vercel.app/logo_fruco.avif"
+			}
+		</script>
+	</head>
+	<body>
+		<Analytics />
+		<SpeedInsights />
+		<slot />
+	</body>
 </html>
 
 <style is:global>
-   @import '@/styles/globals.css';
+	@import '@/styles/globals.css';
 </style>
