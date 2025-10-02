@@ -333,7 +333,7 @@ const ProductCard = memo(
                   ${product.imageSrc.replace("/products/", "/products/optimized/large/")} 800w
                `}
             alt={product.name}
-            className={`w-full h-full object-cover object-center transition-all duration-700 p-4 group-hover:scale-105 ${
+            className={`w-full h-full object-cover object-center transition-all duration-700 p-6 group-hover:scale-105 ${
               isLoaded ? "opacity-100" : "opacity-0"
             }`}
             style={{
