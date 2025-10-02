@@ -1,6 +1,7 @@
 import { gsap } from "gsap";
 import { useEffect, useRef } from "preact/hooks";
 import { useSlideUp } from "@/hooks/useGSAP";
+import GoogleMaps from "./GoogleMaps";
 
 interface CallToActionProps {
   title?: string;
@@ -25,11 +26,17 @@ const CallToAction = ({
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
+  const mapsTitleRef = useRef<HTMLHeadingElement>(null);
+  const map1Ref = useRef<HTMLDivElement>(null);
+  const map2Ref = useRef<HTMLDivElement>(null);
 
   // Configurar animaciones después del montaje
   useEffect(() => {
     const titleElement = titleRef.current;
     const subtitleElement = subtitleRef.current;
+    const mapsTitleElement = mapsTitleRef.current;
+    const map1Element = map1Ref.current;
+    const map2Element = map2Ref.current;
     const animations: gsap.core.Tween[] = [];
 
     if (titleElement) {
@@ -65,6 +72,59 @@ const CallToAction = ({
         },
       });
       animations.push(subtitleAnimation);
+    }
+
+    // Animación para el título "Encuéntranos"
+    if (mapsTitleElement) {
+      gsap.set(mapsTitleElement, { opacity: 0, y: 30 });
+      const mapsTitleAnimation = gsap.to(mapsTitleElement, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mapsTitleElement,
+          start: "top 80%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+      animations.push(mapsTitleAnimation);
+    }
+
+    // Animación para el primer mapa
+    if (map1Element) {
+      gsap.set(map1Element, { opacity: 0 });
+      const map1Animation = gsap.to(map1Element, {
+        opacity: 1,
+        duration: 1.2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: map1Element,
+          start: "top 80%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+      animations.push(map1Animation);
+    }
+
+    // Animación para el segundo mapa
+    if (map2Element) {
+      gsap.set(map2Element, { opacity: 0 });
+      const map2Animation = gsap.to(map2Element, {
+        opacity: 1,
+        duration: 1.2,
+        ease: "power2.out",
+        delay: 0.3,
+        scrollTrigger: {
+          trigger: map2Element,
+          start: "top 80%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+      animations.push(map2Animation);
     }
 
     // Cleanup function
@@ -110,11 +170,14 @@ const CallToAction = ({
         {/* Información de contacto */}
         <div
           ref={contactRef}
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto"
           style={{ willChange: "transform, opacity" }}
         >
           {contactInfo.email && (
-            <div className="group cursor-pointer">
+            <a
+              href={`mailto:${contactInfo.email}`}
+              className="group cursor-pointer block"
+            >
               <div className="w-12 h-12 mx-auto mb-4 bg-fruco-gold rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <svg
                   className="w-6 h-6 text-white"
@@ -135,11 +198,14 @@ const CallToAction = ({
               <p className="text-gray-300 group-hover:text-white transition-colors duration-300">
                 {contactInfo.email}
               </p>
-            </div>
+            </a>
           )}
 
           {contactInfo.phone && (
-            <div className="group cursor-pointer">
+            <a
+              href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
+              className="group cursor-pointer block"
+            >
               <div className="w-12 h-12 mx-auto mb-4 bg-fruco-gold rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <svg
                   className="w-6 h-6 text-white"
@@ -160,39 +226,46 @@ const CallToAction = ({
               <p className="text-gray-300 group-hover:text-white transition-colors duration-300">
                 {contactInfo.phone}
               </p>
-            </div>
+            </a>
           )}
+        </div>
 
-          {contactInfo.address && (
-            <div className="group cursor-pointer">
-              <div className="w-12 h-12 mx-auto mb-4 bg-fruco-gold rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-6 h-6 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-label="Icono de ubicación"
-                >
-                  <title>Ubicación</title>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
+        {/* Mapas de ubicación */}
+        <div className="mt-16 space-y-8">
+          <h3
+            ref={mapsTitleRef}
+            className="text-2xl md:text-3xl font-bold text-white mb-8"
+            style={{ willChange: "transform, opacity" }}
+          >
+            Encuéntranos
+          </h3>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Primer mapa - Mérida */}
+            <div ref={map1Ref} style={{ willChange: "opacity" }}>
+              <div className="rounded-lg overflow-hidden shadow-2xl">
+                <GoogleMaps
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6208.530237654223!2d-6.3857546!3d38.9179174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1427121bd2a0d7%3A0x6650603617384c14!2sAPIS%20FRUCO!5e1!3m2!1ses!2ses!4v1759388986011!5m2!1ses!2ses"
+                  height="400px"
+                />
               </div>
-              <p className="text-gray-300 group-hover:text-white transition-colors duration-300">
-                {contactInfo.address}
-              </p>
+              <h4 className="text-xl md:text-2xl font-semibold text-white mt-4">
+                Mérida
+              </h4>
             </div>
-          )}
+
+            {/* Segundo mapa - Montijo */}
+            <div ref={map2Ref} style={{ willChange: "opacity" }}>
+              <div className="rounded-lg overflow-hidden shadow-2xl">
+                <GoogleMaps
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3104.399405376706!2d-6.599812623249521!3d38.91484757172036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1690ec8ce03ae5%3A0xd67aca27bbab419b!2sApis%20Fruco!5e1!3m2!1ses!2ses!4v1759389029022!5m2!1ses!2ses"
+                  height="400px"
+                />
+              </div>
+              <h4 className="text-xl md:text-2xl font-semibold text-white mt-4">
+                Montijo
+              </h4>
+            </div>
+          </div>
         </div>
       </div>
     </section>
