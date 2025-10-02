@@ -3,7 +3,7 @@ import { useEffect, useRef } from "preact/hooks";
 import { useSlideUp } from "@/hooks/useGSAP";
 import GoogleMaps from "./GoogleMaps";
 
-interface CallToActionProps {
+interface ContactProps {
   title?: string;
   subtitle?: string;
   contactInfo?: {
@@ -13,7 +13,7 @@ interface CallToActionProps {
   };
 }
 
-const CallToAction = ({
+const Contact = ({
   title = "¿Listo para descubrir el auténtico sabor?",
   subtitle = "Únete a la familia Fruco y experimenta la tradición en cada bocado. Contáctanos para conocer más sobre nuestros productos y dónde encontrarlos.",
   contactInfo = {
@@ -21,7 +21,7 @@ const CallToAction = ({
     phone: "660 85 80 90",
     address: "Mérida, España",
   },
-}: CallToActionProps) => {
+}: ContactProps) => {
   const containerRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
@@ -272,4 +272,4 @@ const CallToAction = ({
   );
 };
 
-export default CallToAction;
+export default Contact;

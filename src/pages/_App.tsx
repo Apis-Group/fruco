@@ -1,7 +1,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect } from "preact/hooks";
-import CallToAction from "@/components/CallToAction";
+import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import History from "@/components/History";
@@ -78,7 +78,7 @@ function App() {
 
         <Spliter />
 
-        <CallToAction />
+        <Contact />
       </main>
       <Footer />
     </>
