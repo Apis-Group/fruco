@@ -142,6 +142,10 @@ export const es: Translations = {
       "Elaboración artesanal con cariño y dedicación",
       "Compromiso con la autenticidad y lo honesto",
     ],
+    stats: {
+      years: "Años de Tradición",
+      natural: "Natural",
+    },
   },
   vision: {
     title: "Visión y Misión",

@@ -126,7 +126,7 @@ const History = ({ content, highlights }: HistoryProps) => {
                   +
                 </div>
                 <p className="text-gray-400 text-sm uppercase tracking-wider">
-                  Años de Tradición
+                  {t.history.stats.years}
                 </p>
               </div>
               <div className="text-center">
@@ -137,7 +137,7 @@ const History = ({ content, highlights }: HistoryProps) => {
                   %
                 </div>
                 <p className="text-gray-400 text-sm uppercase tracking-wider">
-                  Natural
+                  {t.history.stats.natural}
                 </p>
               </div>
             </div>

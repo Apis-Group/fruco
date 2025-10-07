@@ -58,6 +58,10 @@ export interface Translations {
     title: string;
     content: string;
     highlights: string[];
+    stats: {
+      years: string;
+      natural: string;
+    };
   };
   vision: {
     title: string;

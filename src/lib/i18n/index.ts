@@ -1,5 +1,5 @@
-import { es } from "./es";
 import { en } from "./en";
+import { es } from "./es";
 import { fr } from "./fr";
 import { pt } from "./pt";
 import type { Language, Translations } from "./types";
