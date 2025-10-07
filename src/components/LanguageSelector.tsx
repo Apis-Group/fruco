@@ -5,6 +5,7 @@ import type { Language } from "@/lib/i18n";
 const languages: { code: Language; name: string; flagSrc: string }[] = [
   { code: "es", name: "Español", flagSrc: "/flags/es.svg" },
   { code: "en", name: "English", flagSrc: "/flags/us.svg" },
+  { code: "fr", name: "Français", flagSrc: "/flags/fr.svg" },
 ];
 
 export default function LanguageSelector() {
