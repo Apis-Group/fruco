@@ -1,6 +1,7 @@
 import { gsap } from "gsap";
 import { useEffect, useRef } from "preact/hooks";
 import { useSlideUp } from "@/hooks/useGSAP";
+import { useTranslations } from "@/hooks/useI18n";
 import GoogleMaps from "./GoogleMaps";
 
 interface ContactProps {
@@ -13,15 +14,11 @@ interface ContactProps {
   };
 }
 
-const Contact = ({
-  title = "¿Listo para descubrir el auténtico sabor?",
-  subtitle = "Únete a la familia Fruco y experimenta la tradición en cada bocado. Contáctanos para conocer más sobre nuestros productos y dónde encontrarlos.",
-  contactInfo = {
-    email: "info@fruco.es",
-    phone: "660 85 80 90",
-    address: "Mérida, España",
-  },
-}: ContactProps) => {
+const Contact = ({ title, subtitle, contactInfo }: ContactProps) => {
+  const t = useTranslations();
+  const finalTitle = title || t.contact.title;
+  const finalSubtitle = subtitle || t.contact.subtitle;
+  const finalContactInfo = contactInfo || t.contact.contactInfo;
   const containerRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
@@ -155,7 +152,7 @@ const Contact = ({
           className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
           style={{ willChange: "transform, opacity" }}
         >
-          {title}
+          {finalTitle}
         </h2>
 
         {/* Subtítulo */}
@@ -164,7 +161,7 @@ const Contact = ({
           className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
           style={{ willChange: "transform, opacity" }}
         >
-          {subtitle}
+          {finalSubtitle}
         </p>
 
         {/* Información de contacto */}
@@ -173,9 +170,9 @@ const Contact = ({
           className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto"
           style={{ willChange: "transform, opacity" }}
         >
-          {contactInfo.email && (
+          {finalContactInfo.email && (
             <a
-              href={`mailto:${contactInfo.email}`}
+              href={`mailto:${finalContactInfo.email}`}
               className="group cursor-pointer block"
             >
               <div className="w-12 h-12 mx-auto mb-4 bg-fruco-gold rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -196,14 +193,14 @@ const Contact = ({
                 </svg>
               </div>
               <p className="text-gray-300 group-hover:text-white transition-colors duration-300">
-                {contactInfo.email}
+                {finalContactInfo.email}
               </p>
             </a>
           )}
 
-          {contactInfo.phone && (
+          {finalContactInfo.phone && (
             <a
-              href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
+              href={`tel:${finalContactInfo.phone.replace(/\s/g, "")}`}
               className="group cursor-pointer block"
             >
               <div className="w-12 h-12 mx-auto mb-4 bg-fruco-gold rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -224,7 +221,7 @@ const Contact = ({
                 </svg>
               </div>
               <p className="text-gray-300 group-hover:text-white transition-colors duration-300">
-                {contactInfo.phone}
+                {finalContactInfo.phone}
               </p>
             </a>
           )}
@@ -237,7 +234,7 @@ const Contact = ({
             className="text-2xl md:text-3xl font-bold text-white mb-8"
             style={{ willChange: "transform, opacity" }}
           >
-            Encuéntranos
+            {t.products.findUs}
           </h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Primer mapa - Mérida */}

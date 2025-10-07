@@ -1,21 +1,20 @@
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "preact/hooks";
+import { useTranslations } from "@/hooks/useI18n";
 
 interface HeroSectionProps {
   logoSrc?: string;
   title?: string;
-  subtitle?: string;
 }
 
-const HeroSection = ({
-  logoSrc = "/logo_fruco.avif",
-  subtitle = "Tradición y sabor desde 1959",
-}: HeroSectionProps) => {
+const HeroSection = ({ logoSrc = "/logo_fruco.avif" }: HeroSectionProps) => {
   const logoRef = useRef<HTMLImageElement>(null);
   const subtitleRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLElement>(null);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
   const [subtitleChars, setSubtitleChars] = useState<string[]>([]);
+  const t = useTranslations();
+  const subtitle = t.hero.subtitle;
 
   // Dividir el subtítulo en caracteres al montar
   useEffect(() => {
@@ -169,7 +168,7 @@ const HeroSection = ({
       {/* Indicador de scroll */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-2 z-20">
         <span className="text-white/60 text-xs font-light tracking-widest uppercase">
-          Desliza
+          {t.hero.scrollIndicator}
         </span>
         <div className="w-[4px] h-8 bg-gradient-to-b from-white/60 to-transparent relative overflow-hidden">
           <div

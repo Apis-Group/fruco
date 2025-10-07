@@ -2,15 +2,39 @@ import { useRef, useState } from "preact/hooks";
 import { memo } from "preact/compat";
 import { useProductGrid, useFadeIn } from "@/hooks/useGSAP";
 import { useLazyImage } from "@/hooks/useLazyImage";
-import { type Product, products as defaultProducts } from "@/lib/Products";
-
-interface ProductShowcaseProps {
-  products?: Product[];
-}
+import { Product } from "../lib/Products";
+import { useTranslations } from "../hooks/useI18n";
+import { useTranslatedProducts } from "../hooks/useTranslatedProducts";
 
 // Componente para mostrar detalles del producto
 const ProductDetails = memo(
-  ({ product, onClose }: { product: Product; onClose: () => void }) => {
+  ({
+    product,
+    onClose,
+    t,
+  }: {
+    product: Product;
+    onClose: () => void;
+    t: {
+      products: {
+        nutritionalInfo: {
+          title: string;
+          per100g: string;
+          nutrient: string;
+          amount: string;
+          energyValue: string;
+          proteins: string;
+          carbs: string;
+          fats: string;
+          orderText: string;
+        };
+        ingredients: {
+          title: string;
+        };
+        close: string;
+      };
+    };
+  }) => {
     const handleBackdropClick = (e: MouseEvent) => {
       if (e.target === e.currentTarget) {
         onClose();
@@ -58,7 +82,7 @@ const ProductDetails = memo(
                 viewBox="0 0 24 24"
                 aria-label="Cerrar"
               >
-                <title>Cerrar</title>
+                <title>{t.products.close}</title>
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -106,11 +130,11 @@ const ProductDetails = memo(
               {product.nutritionalInfo && (
                 <div className="mb-4">
                   <h3 className="text-lg font-bold text-fruco-red mb-3 border-b border-fruco-red/30 pb-2">
-                    Información Nutricional
+                    {t.products.nutritionalInfo.title}
                   </h3>
-                  <div className="mb-2">
-                    <span className="text-xs text-gray-600 uppercase tracking-wider">
-                      Por 100g de producto
+                  <div className="text-xs text-gray-600 mb-3 bg-gray-50 rounded-lg p-2">
+                    <span className="italic">
+                      {t.products.nutritionalInfo.per100g}
                     </span>
                   </div>
 
@@ -120,17 +144,17 @@ const ProductDetails = memo(
                       <thead>
                         <tr className="bg-gradient-to-r from-gray-100 to-gray-50">
                           <th className="text-left p-2 text-fruco-red font-semibold text-sm">
-                            Nutriente
+                            {t.products.nutritionalInfo.nutrient}
                           </th>
                           <th className="text-right p-2 text-fruco-red font-semibold text-sm">
-                            Cantidad
+                            {t.products.nutritionalInfo.amount}
                           </th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
                           <td className="p-2 text-gray-700 text-sm">
-                            Valor energético
+                            {t.products.nutritionalInfo.energyValue}
                           </td>
                           <td className="p-2 text-right text-gray-900 font-semibold text-sm">
                             {product.nutritionalInfo.calories}
@@ -138,7 +162,7 @@ const ProductDetails = memo(
                         </tr>
                         <tr className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
                           <td className="p-2 text-gray-700 text-sm">
-                            Proteínas
+                            {t.products.nutritionalInfo.proteins}
                           </td>
                           <td className="p-2 text-right text-gray-900 font-semibold text-sm">
                             {product.nutritionalInfo.protein}
@@ -146,14 +170,16 @@ const ProductDetails = memo(
                         </tr>
                         <tr className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
                           <td className="p-2 text-gray-700 text-sm">
-                            Hidratos de carbono
+                            {t.products.nutritionalInfo.carbs}
                           </td>
                           <td className="p-2 text-right text-gray-900 font-semibold text-sm">
                             {product.nutritionalInfo.carbs}
                           </td>
                         </tr>
                         <tr className="hover:bg-gray-50 transition-colors">
-                          <td className="p-2 text-gray-700 text-sm">Grasas</td>
+                          <td className="p-2 text-gray-700 text-sm">
+                            {t.products.nutritionalInfo.fats}
+                          </td>
                           <td className="p-2 text-right text-gray-900 font-semibold text-sm">
                             {product.nutritionalInfo.fat}
                           </td>
@@ -168,11 +194,11 @@ const ProductDetails = memo(
               {product.ingredients && (
                 <div>
                   <h3 className="text-lg font-bold text-fruco-red mb-3 border-b border-fruco-red/30 pb-2">
-                    Ingredientes
+                    {t.products.ingredients.title}
                   </h3>
                   <div className="mb-2">
                     <span className="text-xs text-gray-600 uppercase tracking-wider">
-                      En orden de mayor a menor cantidad
+                      {t.products.nutritionalInfo.orderText}
                     </span>
                   </div>
                   <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-3 border border-gray-200">
@@ -191,74 +217,78 @@ const ProductDetails = memo(
 );
 
 // Componente de tarjeta informativa
-const InfoCard = memo(() => {
-  return (
-    <div className="relative bg-gradient-to-br from-fruco-red via-fruco-red/90 to-fruco-red/80 rounded-3xl overflow-hidden border-2 border-fruco-red/50 w-full max-w-sm text-left h-full flex flex-col shadow-xl shadow-fruco-red/20">
-      {/* Efecto de brillo */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent" />
+const InfoCard = memo(
+  ({
+    infoCard,
+  }: {
+    infoCard: { title: string; subtitle: string; quality: string };
+  }) => {
+    return (
+      <div className="relative bg-gradient-to-br from-fruco-red via-fruco-red/90 to-fruco-red/80 rounded-3xl overflow-hidden border-2 border-fruco-red/50 w-full max-w-sm text-left h-full flex flex-col shadow-xl shadow-fruco-red/20">
+        {/* Efecto de brillo */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent" />
 
-      {/* Patrón decorativo de fondo */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-40 h-40 bg-white rounded-full blur-3xl" />
-      </div>
-
-      {/* Contenido */}
-      <div className="relative p-6 text-center flex-grow flex flex-col justify-center items-center z-10">
-        {/* Icono o logo */}
-        <div className="mb-4">
-          <svg
-            className="w-16 h-16 text-white/90"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            aria-label="Icono de libro"
-          >
-            <title>Libro</title>
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={1.5}
-              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-            />
-          </svg>
+        {/* Patrón decorativo de fondo */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-40 h-40 bg-white rounded-full blur-3xl" />
         </div>
 
-        <h3 className="text-2xl font-bold mb-4 text-white leading-tight">
-          ¿Sabías que...?
-        </h3>
-
-        <p className="text-white/90 text-sm leading-relaxed mb-4">
-          Todos nuestros productos están elaborados con tomates seleccionados y
-          siguiendo recetas tradicionales que garantizan el mejor sabor en cada
-          bocado.
-        </p>
-
-        <div className="mt-auto pt-4">
-          <div className="inline-flex items-center space-x-2 text-white/80 text-xs font-medium">
+        {/* Contenido */}
+        <div className="relative p-6 text-center flex-grow flex flex-col justify-center items-center z-10">
+          {/* Icono o logo */}
+          <div className="mb-4">
             <svg
-              className="w-4 h-4"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              aria-label="Icono de verificación"
+              className="w-16 h-16 text-white/90"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-label="Icono de libro"
             >
-              <title>Verificación</title>
+              <title>Libro</title>
               <path
-                fillRule="evenodd"
-                d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                clipRule="evenodd"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
               />
             </svg>
-            <span>Calidad garantizada</span>
+          </div>
+
+          <h3 className="text-2xl font-bold mb-4 text-white leading-tight">
+            {infoCard.title}
+          </h3>
+
+          <p className="text-white/90 text-sm leading-relaxed mb-4">
+            {infoCard.subtitle}
+          </p>
+
+          <div className="mt-auto pt-4">
+            <div className="inline-flex items-center space-x-2 text-white/80 text-xs font-medium">
+              <svg
+                className="w-4 h-4"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                aria-label="Icono de verificación"
+              >
+                <title>Verificación</title>
+                <path
+                  fillRule="evenodd"
+                  d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span>{infoCard.quality}</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Línea decorativa inferior */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/40 to-transparent" />
-    </div>
-  );
-});
+        {/* Línea decorativa inferior */}
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+      </div>
+    );
+  },
+);
 
 const ProductCard = memo(
   ({
@@ -266,11 +296,13 @@ const ProductCard = memo(
     onClick,
     isSelected,
     isHidden,
+    seeDetailsText,
   }: {
     product: Product;
     onClick: (product: Product) => void;
     isSelected: boolean;
     isHidden: boolean;
+    seeDetailsText: string;
   }) => {
     const cardRef = useRef<HTMLButtonElement>(null);
 
@@ -381,7 +413,7 @@ const ProductCard = memo(
           {/* Indicador de interacción */}
           <div className="mt-4 flex items-center justify-center space-x-2 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
             <span className="text-xs text-fruco-red font-medium tracking-wider uppercase">
-              Ver detalles
+              {seeDetailsText}
             </span>
             <svg
               className="w-4 h-4 text-fruco-red transform group-hover:translate-x-1 transition-transform duration-300"
@@ -408,9 +440,9 @@ const ProductCard = memo(
   },
 );
 
-const ProductShowcase = ({
-  products = defaultProducts,
-}: ProductShowcaseProps) => {
+const ProductShowcase = () => {
+  const t = useTranslations();
+  const translatedProducts = useTranslatedProducts();
   const containerRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
@@ -446,8 +478,8 @@ const ProductShowcase = ({
             className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white"
             style={{ willChange: "transform, opacity" }}
           >
-            Nuestros
-            <span className="block text-white">Productos</span>
+            {t.products.titlePrefix}
+            <span className="block text-white">{t.products.title}</span>
           </h2>
           <div className="w-24 h-1 bg-fruco-gold mx-auto rounded-full" />
         </div>
@@ -457,7 +489,7 @@ const ProductShowcase = ({
           ref={gridRef}
           className="grid grid-cols-2 lg:grid-cols-5 gap-6 items-stretch"
         >
-          {products.map((product) => (
+          {translatedProducts.map((product) => (
             <div key={product.id}>
               <ProductCard
                 product={product}
@@ -466,14 +498,15 @@ const ProductShowcase = ({
                 isHidden={
                   selectedProduct !== null && selectedProduct.id !== product.id
                 }
+                seeDetailsText={t.products.seeDetails}
               />
             </div>
           ))}
 
           {/* Tarjeta informativa cuando hay número impar de productos */}
-          {products.length % 2 !== 0 && (
+          {translatedProducts.length % 2 !== 0 && (
             <div className="lg:hidden">
-              <InfoCard />
+              <InfoCard infoCard={t.products.infoCard} />
             </div>
           )}
         </div>
@@ -481,9 +514,7 @@ const ProductShowcase = ({
         {/* Texto adicional */}
         <div className="text-center mt-16">
           <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
-            Cada producto Fruco es elaborado con los más altos estándares de
-            calidad, utilizando ingredientes seleccionados para ofrecerte una
-            experiencia gastronómica excepcional.
+            {t.products.qualityText}
           </p>
         </div>
       </div>
@@ -493,6 +524,7 @@ const ProductShowcase = ({
         <ProductDetails
           product={selectedProduct}
           onClose={handleCloseDetails}
+          t={t}
         />
       )}
     </section>

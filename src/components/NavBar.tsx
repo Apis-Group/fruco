@@ -1,16 +1,18 @@
 import { useRef, useState } from "preact/hooks";
+import { useTranslations } from "@/hooks/useI18n";
 
 export default function NavBar() {
   const [, setHoveredIndex] = useState<number | null>(null);
   const [hoverStyle, setHoverStyle] = useState({});
   const navRef = useRef<HTMLFieldSetElement>(null);
+  const t = useTranslations();
 
   const navItems = [
-    { label: "Inicio", target: "inicio" },
-    { label: "Productos", target: "productos" },
-    { label: "Historia", target: "historia" },
-    { label: "Visión y Misión", target: "vision-mision" },
-    { label: "Contacto", target: "contacto" },
+    { label: t.navigation.home, target: "inicio" },
+    { label: t.navigation.products, target: "productos" },
+    { label: t.navigation.history, target: "historia" },
+    { label: t.navigation.visionMission, target: "vision-mision" },
+    { label: t.navigation.contact, target: "contacto" },
   ];
 
   const handleMouseEnter = (index: number, event: MouseEvent) => {

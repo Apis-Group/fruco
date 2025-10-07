@@ -5,12 +5,14 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import History from "@/components/History";
+import LanguageSelector from "@/components/LanguageSelector";
 // Componentes
 import NavBar from "@/components/NavBar";
 import ProductShowcase from "@/components/ProductShowcase";
 import Spliter from "@/components/Spliter";
 import VisionMision from "@/components/VisionAndMision";
 import { useSmoothScroll } from "@/hooks/useGSAP";
+import { I18nProvider } from "@/hooks/useI18n";
 import { refreshScrollTrigger } from "@/utils/animations";
 
 // Registrar plugins de GSAP
@@ -59,7 +61,8 @@ function App() {
   }, []);
 
   return (
-    <>
+    <I18nProvider>
+      <LanguageSelector />
       <NavBar />
       <main>
         <HeroSection />
@@ -81,7 +84,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
-    </>
+    </I18nProvider>
   );
 }
 

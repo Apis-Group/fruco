@@ -2,6 +2,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "preact/hooks";
 import { useFadeIn, useParallax, useSlideUp } from "@/hooks/useGSAP";
+import { useTranslations } from "@/hooks/useI18n";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,17 +11,10 @@ interface HistoryProps {
   highlights?: string[];
 }
 
-const defaultHighlights = [
-  "Más de 65 años de tradición desde 1959",
-  "Tomates cultivados por nuestros propios agricultores",
-  "Elaboración artesanal con cariño y dedicación",
-  "Compromiso con la autenticidad y lo honesto",
-];
-
-const History = ({
-  content = "Fruco nació en 1959 con una misión sencilla: llevar a cada hogar productos llenos de sabor y confianza. Comenzamos elaborando zumos que conquistaron generaciones, y hoy seguimos honrando esa historia con una gama de salsas de tomate creadas con el mismo cariño y dedicación de siempre.",
-  highlights = defaultHighlights,
-}: HistoryProps) => {
+const History = ({ content, highlights }: HistoryProps) => {
+  const t = useTranslations();
+  const finalContent = content || t.history.content;
+  const finalHighlights = highlights || t.history.highlights;
   const containerRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const contentRef = useRef<HTMLParagraphElement>(null);
@@ -107,9 +101,9 @@ const History = ({
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight"
               style={{ willChange: "transform, opacity" }}
             >
-              Nuestra
+              {t.history.title.split(" ").slice(0, -1).join(" ")}
               <span className="block bg-fruco-gold bg-clip-text text-transparent">
-                Historia
+                {t.history.title.split(" ").slice(-1)[0]}
               </span>
             </h2>
 
@@ -119,7 +113,7 @@ const History = ({
               className="text-lg md:text-xl text-gray-300 leading-relaxed font-light"
               style={{ willChange: "transform, opacity" }}
             >
-              {content}
+              {finalContent}
             </p>
 
             {/* Estadísticas */}
@@ -157,7 +151,7 @@ const History = ({
               className="space-y-6"
               style={{ willChange: "transform, opacity" }}
             >
-              {highlights.map((highlight) => (
+              {finalHighlights.map((highlight) => (
                 <div
                   key={`highlight-${highlight.slice(0, 20).replace(/\s+/g, "-").toLowerCase()}`}
                   className="flex items-center space-x-4 group cursor-pointer"
