@@ -1,102 +1,143 @@
 @import "tailwindcss";
 
 @theme {
-	--color-fruco-green: oklch(33% 0.13 128.57);
-	--color-fruco-red: oklch(45% 0.29 27.23);
-	--color-fruco-black: oklch(0% 0 0);
-	--color-fruco-gold: oklch(52% 0.08 83.24);
+  --color-fruco-green: oklch(33% 0.13 128.57);
+  --color-fruco-red: oklch(45% 0.29 27.23);
+  --color-fruco-black: oklch(0% 0 0);
+  --color-fruco-gold: oklch(52% 0.08 83.24);
 
-	--font-heading: "Noto Serif Georgian", system-ui, sans-serif;
-	--font-body: "Open Sans", system-ui, sans-serif;
+  --font-heading: "Noto Serif Georgian", system-ui, sans-serif;
+  --font-body: "Open Sans", system-ui, sans-serif;
 
-	--animate-fade-in: fadeIn 1s ease-in-out;
-	--animate-slide-up: slideUp 0.8s ease-out;
+  --animate-fade-in: fadeIn 1s ease-in-out;
+  --animate-slide-up: slideUp 0.8s ease-out;
 
-	@keyframes fadeIn {
-		0% {
-			opacity: 0;
-		}
-		100% {
-			opacity: 1;
-		}
-	}
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 
-	@keyframes slideUp {
-		0% {
-			transform: translateY(20px);
-			opacity: 0;
-		}
-		100% {
-			transform: translateY(0);
-			opacity: 1;
-		}
-	}
+  @keyframes slideUp {
+    0% {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 }
 
 @utility section-container {
-	@apply min-h-screen flex items-center justify-center px-4;
+  @apply min-h-screen flex items-center justify-center px-4;
 }
 
 @utility font-heading {
-	font-family: var(--font-heading);
+  font-family: var(--font-heading);
 }
 
 @utility font-body {
-	font-family: var(--font-body);
+  font-family: var(--font-body);
 }
 
 @layer base {
-	html {
-		scroll-behavior: smooth;
-	}
+  html {
+    scroll-behavior: smooth;
+  }
 
-	body {
-		@apply bg-fruco-black text-white;
-		font-family: var(--font-body);
-		overflow-x: hidden;
-	}
+  body {
+    @apply bg-fruco-black text-white;
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		font-family: var(--font-heading);
-		font-weight: 600;
-	}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+  }
 }
 /* Estilos críticos para el hero */
 .section-container {
-	min-height: 80vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 /* Prevenir layout shift */
 img {
-	max-width: 100%;
-	height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 /* Spinner de carga */
 .loading-spinner {
-	width: 40px;
-	height: 40px;
-	border: 3px solid oklch(45% 0.29 27.23 / 0.1);
-	border-top: 3px solid oklch(52% 0.08 83.24);
-	border-radius: 50%;
-	animation: spin 1s linear infinite;
-	margin: 20px auto;
+  width: 40px;
+  height: 40px;
+  border: 3px solid oklch(45% 0.29 27.23 / 0.1);
+  border-top: 3px solid oklch(52% 0.08 83.24);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
 }
 
 @keyframes spin {
-	0% {
-		transform: rotate(0deg);
-	}
-	100% {
-		transform: rotate(360deg);
-	}
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animaciones del modal */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUpScale {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes slideDownScale {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
 }

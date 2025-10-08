@@ -1,28 +1,38 @@
 {
-   "name": "fruco",
-   "private": true,
-   "version": "0.2.0",
-   "type": "module",
-   "scripts": {
-      "dev": "astro dev",
-      "build": "astro check && astro build",
-      "lint": "biome lint --write ./src",
-      "format": "biome format --write ./src"
-   },
-   "dependencies": {
-      "@astrojs/check": "^0.9.4",
-      "@astrojs/preact": "^4.1.0",
-      "@tailwindcss/vite": "^4.1.12",
-      "@vercel/analytics": "^1.5.0",
-      "@vercel/speed-insights": "^1.2.0",
-      "astro": "^5.13.5",
-      "gsap": "^3.13.0",
-      "preact": "^10.27.1",
-      "tailwindcss": "^4.1.12"
-   },
-   "devDependencies": {
-      "@biomejs/biome": "2.2.2",
-      "terser": "^5.44.0",
-      "typescript": "~5.9.2"
-   }
+  "name": "fruco",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "lint": "eslint . --fix",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@astrojs/check": "0.9.4",
+    "@astrojs/preact": "4.1.1",
+    "@tailwindcss/vite": "4.1.14",
+    "@vercel/analytics": "1.5.0",
+    "@vercel/speed-insights": "1.2.0",
+    "astro": "5.14.1",
+    "gsap": "3.13.0",
+    "preact": "10.27.2",
+    "tailwindcss": "4.1.14"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.36.0",
+    "eslint": "^9.36.0",
+    "eslint-plugin-astro": "^1.3.1",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-unused-imports": "^4.2.0",
+    "globals": "^16.4.0",
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "terser": "5.44.0",
+    "typescript": "5.9.3",
+    "typescript-eslint": "^8.45.0"
+  }
 }

@@ -1,89 +1,91 @@
-import { useEffect } from 'preact/hooks';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useSmoothScroll } from '@/hooks/useGSAP';
-import { refreshScrollTrigger } from '@/utils/animations';
-
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect } from "preact/hooks";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
+import HeroSection from "@/components/HeroSection";
+import History from "@/components/History";
+import LanguageSelector from "@/components/LanguageSelector";
 // Componentes
-import NavBar from '@/components/NavBar';
-import Spliter from '@/components/Spliter';
-import HeroSection from '@/components/HeroSection';
-import ProductShowcase from '@/components/ProductShowcase';
-import History from '@/components/History';
-import VisionMision from '@/components/VisionAndMision';
-import CallToAction from '@/components/CallToAction';
-import Footer from '@/components/Footer';
+import NavBar from "@/components/NavBar";
+import ProductShowcase from "@/components/ProductShowcase";
+import Spliter from "@/components/Spliter";
+import VisionMision from "@/components/VisionAndMision";
+import { useSmoothScroll } from "@/hooks/useGSAP";
+import { I18nProvider } from "@/hooks/useI18n";
+import { refreshScrollTrigger } from "@/utils/animations";
 
 // Registrar plugins de GSAP
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
-	// Hook para scroll suave
-	useSmoothScroll();
+  // Hook para scroll suave
+  useSmoothScroll();
 
-	useEffect(() => {
-		// Configuración inicial de GSAP
-		gsap.config({
-			force3D: true,
-			nullTargetWarn: false,
-		});
+  useEffect(() => {
+    // Configuración inicial de GSAP
+    gsap.config({
+      force3D: true,
+      nullTargetWarn: false,
+    });
 
-		// Configuración de ScrollTrigger
-		ScrollTrigger.config({
-			autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load',
-			ignoreMobileResize: true,
-		});
+    // Configuración de ScrollTrigger
+    ScrollTrigger.config({
+      autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
+      ignoreMobileResize: true,
+    });
 
-		// Animación de carga inicial
-		gsap.fromTo(
-			'body',
-			{ opacity: 0 },
-			{
-				opacity: 1,
-				duration: 0.8,
-				ease: 'power2.out',
-			},
-		);
+    // Animación de carga inicial
+    gsap.fromTo(
+      "body",
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 0.8,
+        ease: "power2.out",
+      },
+    );
 
-		// Refresh ScrollTrigger después de que todo esté cargado
-		const timer = setTimeout(() => {
-			refreshScrollTrigger();
-		}, 100);
+    // Refresh ScrollTrigger después de que todo esté cargado
+    const timer = setTimeout(() => {
+      refreshScrollTrigger();
+    }, 100);
 
-		// Cleanup
-		return () => {
-			clearTimeout(timer);
-			for (const trigger of ScrollTrigger.getAll()) {
-				trigger.kill();
-			}
-		};
-	}, []);
+    // Cleanup
+    return () => {
+      clearTimeout(timer);
+      for (const trigger of ScrollTrigger.getAll()) {
+        trigger.kill();
+      }
+    };
+  }, []);
 
-	return (
-		<>
-			<NavBar />
-			<main>
-				<HeroSection />
+  return (
+    <I18nProvider>
+      <LanguageSelector />
+      <NavBar />
+      <main>
+        <HeroSection />
 
-				<Spliter />
+        <Spliter />
 
-				<ProductShowcase />
+        <ProductShowcase />
 
-				<Spliter />
+        <Spliter />
 
-				<History />
+        <History />
 
-				<Spliter />
+        <Spliter />
 
-				<VisionMision />
+        <VisionMision />
 
-				<Spliter />
+        <Spliter />
 
-				<CallToAction />
-			</main>
-			<Footer />
-		</>
-	);
+        <Contact />
+      </main>
+      <Footer />
+    </I18nProvider>
+  );
 }
 
 export default App;
