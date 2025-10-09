@@ -25,7 +25,7 @@ export const es: Translations = {
     infoCard: {
       title: "¿Sabías que...?",
       subtitle:
-        "siguiendo recetas tradicionales que garantizan el mejor sabor en cada bocado.",
+        "El tomate cocinado multiplica sus beneficios, el calor libera el licopeno, un potente antioxidante que favorece a tu cuerpo",
       quality: "Calidad garantizada",
     },
     nutritionalInfo: {

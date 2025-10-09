@@ -25,7 +25,7 @@ export const fr: Translations = {
     infoCard: {
       title: "Le saviez-vous ?",
       subtitle:
-        "en suivant des recettes traditionnelles qui garantissent la meilleure saveur à chaque bouchée.",
+        "La tomate cuite multiplie ses bienfaits, la chaleur libère le lycopène, un puissant antioxydant qui favorise votre corps",
       quality: "Qualité garantie",
     },
     nutritionalInfo: {

@@ -24,7 +24,7 @@ export const en: Translations = {
     infoCard: {
       title: "Did you know...?",
       subtitle:
-        "following traditional recipes that guarantee the best flavor in every bite.",
+        "Cooked tomato multiplies its benefits, heat releases lycopene, a powerful antioxidant that benefits your body",
       quality: "Quality guaranteed",
     },
     nutritionalInfo: {

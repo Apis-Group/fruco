@@ -5,7 +5,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import History from "@/components/History";
-import LanguageSelector from "@/components/LanguageSelector";
+// import LanguageSelector from "@/components/LanguageSelector";
 // Componentes
 import NavBar from "@/components/NavBar";
 import ProductShowcase from "@/components/ProductShowcase";
@@ -62,7 +62,8 @@ function App() {
 
   return (
     <I18nProvider>
-      <LanguageSelector />
+      {/* <LanguageSelector /> */}
+
       <NavBar />
       <main>
         <HeroSection />

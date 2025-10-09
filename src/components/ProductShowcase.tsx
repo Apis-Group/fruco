@@ -58,7 +58,7 @@ const ProductDetails = memo(
         }}
       >
         <div
-          className="bg-white rounded-3xl max-w-6xl w-full max-h-[90vh] overflow-hidden border border-gray-200 shadow-2xl cursor-default"
+          className="bg-white rounded-3xl max-w-6xl w-full max-h-[90vh] overflow-y-auto border border-gray-200 shadow-2xl cursor-default"
           onClick={(e) => e.stopPropagation()}
           onKeyDown={(e) => e.stopPropagation()}
           role="document"
@@ -68,7 +68,7 @@ const ProductDetails = memo(
           }}
         >
           {/* Header con botón cerrar */}
-          <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center">
+          <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center z-10">
             <h2 className="text-2xl font-bold text-gray-900">{product.name}</h2>
             <button
               type="button"
@@ -116,7 +116,7 @@ const ProductDetails = memo(
             </div>
 
             {/* Información del producto */}
-            <div className="lg:w-1/2 p-4 overflow-y-auto bg-white">
+            <div className="lg:w-1/2 p-4 lg:overflow-y-auto bg-white">
               {/* Descripción detallada */}
               {product.detailedDescription && (
                 <div className="mb-4">

@@ -177,24 +177,13 @@ const History = ({ content, highlights }: HistoryProps) => {
             >
               {/* Círculos decorativos */}
               <div className="relative w-64 h-64 mx-auto">
-                <div
-                  className="absolute inset-0 border-2 border-white/20 rounded-full animate-spin"
-                  style={{ animationDuration: "20s" }}
-                />
-                <div
-                  className="absolute inset-4 border-2 border-white/20 rounded-full animate-spin"
-                  style={{
-                    animationDuration: "15s",
-                    animationDirection: "reverse",
-                  }}
-                />
-                <div
-                  className="absolute inset-8 border-2 border-white/10 rounded-full animate-spin"
-                  style={{ animationDuration: "25s" }}
-                />
                 {/* Centro */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-white to-fruco-gold rounded-full opacity-80 animate-pulse" />
+                <div className="flex">
+                  <img
+                    src="/tomato_100_spain.svg"
+                    alt="Sello de calidad, tomate 100% español"
+                    class={"w-52 h-52 mx-auto"}
+                  />
                 </div>
               </div>
             </div>
