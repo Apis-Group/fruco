@@ -25,7 +25,7 @@ export const fr: Translations = {
     infoCard: {
       title: "Le saviez-vous ?",
       subtitle:
-        "en suivant des recettes traditionnelles qui garantissent la meilleure saveur à chaque bouchée.",
+        "La sauce tomate peut prendre soin de votre cœur, la tomate cuite contient du lycopène, un antioxydant naturel associé à la santé cardiovasculaire",
       quality: "Qualité garantie",
     },
     nutritionalInfo: {

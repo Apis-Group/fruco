@@ -24,7 +24,7 @@ export const en: Translations = {
     infoCard: {
       title: "Did you know...?",
       subtitle:
-        "following traditional recipes that guarantee the best flavor in every bite.",
+        "Tomato sauce can take care of your heart, cooked tomato contains lycopene, a natural antioxidant associated with cardiovascular health",
       quality: "Quality guaranteed",
     },
     nutritionalInfo: {
