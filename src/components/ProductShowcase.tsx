@@ -139,7 +139,7 @@ const ProductDetails = memo(
                   </div>
 
                   {/* Tabla nutricional */}
-                  <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl overflow-hidden border border-gray-200">
+                  <div className="bg-linear-to-br from-gray-50 to-gray-100 rounded-xl overflow-hidden border border-gray-200">
                     <table className="w-full">
                       <thead>
                         <tr className="bg-gradient-to-r from-gray-100 to-gray-50">
@@ -201,7 +201,7 @@ const ProductDetails = memo(
                       {t.products.nutritionalInfo.orderText}
                     </span>
                   </div>
-                  <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-3 border border-gray-200">
+                  <div className="bg-linear-to-br from-gray-50 to-gray-100 rounded-xl p-3 border border-gray-200">
                     <p className="text-gray-700 leading-relaxed text-sm">
                       {product.ingredients.join(", ")}.
                     </p>
@@ -224,9 +224,9 @@ const InfoCard = memo(
     infoCard: { title: string; subtitle: string; quality: string };
   }) => {
     return (
-      <div className="relative bg-gradient-to-br from-fruco-red via-fruco-red/90 to-fruco-red/80 rounded-3xl overflow-hidden border-2 border-fruco-red/50 w-full max-w-sm text-left h-full flex flex-col shadow-xl shadow-fruco-red/20">
+      <div className="relative bg-linear-to-br from-fruco-red via-fruco-red/90 to-fruco-red/80 rounded-3xl overflow-hidden border-2 border-fruco-red/50 w-full max-w-sm text-left h-full flex flex-col shadow-xl shadow-fruco-red/20">
         {/* Efecto de brillo */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-br from-white/10 via-transparent to-transparent" />
 
         {/* Patrón decorativo de fondo */}
         <div className="absolute inset-0 opacity-10">
@@ -344,13 +344,13 @@ const ProductCard = memo(
         }}
       >
         {/* Efecto de brillo sutil */}
-        <div className="absolute inset-0 bg-gradient-to-br from-fruco-gold/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        <div className="absolute inset-0 bg-linear-to-br from-fruco-gold/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
         {/* Borde dorado sutil */}
-        <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-fruco-red/10 via-transparent to-fruco-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-fruco-red/10 via-transparent to-fruco-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
         {/* Imagen del producto */}
-        <div className="relative overflow-hidden aspect-square bg-gradient-to-br from-gray-50 to-gray-100 flex-shrink-0">
+        <div className="relative overflow-hidden aspect-square bg-linear-to-br from-gray-50 to-gray-100 flex-shrink-0">
           {/* Overlay decorativo */}
           <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent z-10" />
 

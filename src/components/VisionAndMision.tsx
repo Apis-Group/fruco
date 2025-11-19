@@ -130,7 +130,7 @@ function VisionMision() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-20 px-6 bg-gradient-to-b from-fruco-black via-fruco-black/95 to-fruco-black"
+      className="relative py-20 px-6 bg-linear-to-b from-fruco-black via-fruco-black/95 to-fruco-black"
       id="vision-mision"
     >
       <div className="max-w-4xl mx-auto text-center">

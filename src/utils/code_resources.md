@@ -3,7 +3,7 @@
 ```tsx
 <div className="absolute inset-0 overflow-hidden pointer-events-none">
   {/* Gradiente base */}
-  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-fruco-black/20" />
+  <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-fruco-black/20" />
   {/* Luces de fondo verde y roja con movimiento imperceptible */}
   <div
     className="absolute top-1/4 left-1/4 w-96 h-96 bg-fruco-green/10 rounded-full blur-3xl"
@@ -41,7 +41,7 @@
 ```tsx
 {/* Elementos decorativos sutiles */}
          <div
-            className="absolute top-20 right-20 w-1 h-16 bg-gradient-to-b from-fruco-green/30 to-transparent animate-pulse"
+            className="absolute top-20 right-20 w-1 h-16 bg-linear-to-b from-fruco-green/30 to-transparent animate-pulse"
             style={{ animationDelay: '1s' }}
          />
          <div
