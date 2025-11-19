@@ -2,7 +2,6 @@ import { gsap } from "gsap";
 import { useEffect, useRef } from "preact/hooks";
 import { useSlideUp } from "@/hooks/useGSAP";
 import { useTranslations } from "@/hooks/useI18n";
-import GoogleMaps from "./GoogleMaps";
 
 interface ContactProps {
   title?: string;
@@ -24,8 +23,8 @@ const Contact = ({ title, subtitle, contactInfo }: ContactProps) => {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
   const mapsTitleRef = useRef<HTMLHeadingElement>(null);
-  const map1Ref = useRef<HTMLDivElement>(null);
-  const map2Ref = useRef<HTMLDivElement>(null);
+  const map1Ref = useRef<HTMLAnchorElement>(null);
+  const map2Ref = useRef<HTMLAnchorElement>(null);
 
   // Configurar animaciones después del montaje
   useEffect(() => {
@@ -227,7 +226,7 @@ const Contact = ({ title, subtitle, contactInfo }: ContactProps) => {
           )}
         </div>
 
-        {/* Mapas de ubicación */}
+        {/* Ubicaciones */}
         <div className="mt-16 space-y-8">
           <h3
             ref={mapsTitleRef}
@@ -236,32 +235,86 @@ const Contact = ({ title, subtitle, contactInfo }: ContactProps) => {
           >
             {t.products.findUs}
           </h3>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Primer mapa - Mérida */}
-            <div ref={map1Ref} style={{ willChange: "opacity" }}>
-              <div className="rounded-lg overflow-hidden shadow-2xl">
-                <GoogleMaps
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6208.530237654223!2d-6.3857546!3d38.9179174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1427121bd2a0d7%3A0x6650603617384c14!2sAPIS%20FRUCO!5e2!3m2!1ses!2ses!4v1759388986011!5m2!1ses!2ses"
-                  height="400px"
-                />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            {/* Primera ubicación - Mérida */}
+            <a
+              ref={map1Ref}
+              href="https://www.google.com/maps/place/APIS+FRUCO/@38.9179174,-6.3857546,17z/data=!3m1!4b1!4m6!3m5!1s0xd1427121bd2a0d7:0x6650603617384c14!8m2!3d38.9179174!4d-6.3831797!16s%2Fg%2F1tfc5z9k"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block p-8 bg-linear-to-br from-fruco-gold/10 to-transparent border-2 border-fruco-gold/30 rounded-xl hover:border-fruco-gold hover:shadow-2xl hover:shadow-fruco-gold/20 transition-all duration-300"
+              style={{ willChange: "opacity" }}
+            >
+              <div className="w-20 h-20 mx-auto mb-6 bg-fruco-gold rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <svg
+                  className="w-10 h-10 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-label="Icono de ubicación"
+                >
+                  <title>Ubicación</title>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
               </div>
-              <h4 className="text-xl md:text-2xl font-semibold text-white mt-4">
+              <h4 className="text-2xl md:text-3xl font-semibold text-white mb-2 group-hover:text-fruco-gold transition-colors duration-300">
                 Mérida
               </h4>
-            </div>
+              <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">
+                Click para ver en Google Maps
+              </p>
+            </a>
 
-            {/* Segundo mapa - Montijo */}
-            <div ref={map2Ref} style={{ willChange: "opacity" }}>
-              <div className="rounded-lg overflow-hidden shadow-2xl">
-                <GoogleMaps
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3104.399405376706!2d-6.599812623249521!3d38.91484757172036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1690ec8ce03ae5%3A0xd67aca27bbab419b!2sApis%20Fruco!5e2!3m2!1ses!2ses!4v1759389029022!5m2!1ses!2ses"
-                  height="400px"
-                />
+            {/* Segunda ubicación - Montijo */}
+            <a
+              ref={map2Ref}
+              href="https://www.google.com/maps/place/Apis+Fruco/@38.9148476,-6.5998126,17z/data=!3m1!4b1!4m6!3m5!1s0xd1690ec8ce03ae5:0xd67aca27bbab419b!8m2!3d38.9148476!4d-6.5972377!16s%2Fg%2F1tqy_b7_"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block p-8 bg-linear-to-br from-fruco-gold/10 to-transparent border-2 border-fruco-gold/30 rounded-xl hover:border-fruco-gold hover:shadow-2xl hover:shadow-fruco-gold/20 transition-all duration-300"
+              style={{ willChange: "opacity" }}
+            >
+              <div className="w-20 h-20 mx-auto mb-6 bg-fruco-gold rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <svg
+                  className="w-10 h-10 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-label="Icono de ubicación"
+                >
+                  <title>Ubicación</title>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
               </div>
-              <h4 className="text-xl md:text-2xl font-semibold text-white mt-4">
+              <h4 className="text-2xl md:text-3xl font-semibold text-white mb-2 group-hover:text-fruco-gold transition-colors duration-300">
                 Montijo
               </h4>
-            </div>
+              <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">
+                Click para ver en Google Maps
+              </p>
+            </a>
           </div>
         </div>
       </div>
