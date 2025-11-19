@@ -69,7 +69,7 @@ const HeroSection = ({ logoSrc = "/logo_fruco.avif" }: HeroSectionProps) => {
   return (
     <section
       ref={containerRef}
-      className="relative overflow-hidden flex items-center justify-center py-30"
+      className="relative overflow-hidden flex items-center justify-center pt-30 pb-10"
       id="inicio"
     >
       {/* Contenido principal */}
