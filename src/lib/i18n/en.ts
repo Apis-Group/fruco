@@ -176,9 +176,15 @@ export const en: Translations = {
     },
     locations: {
       title: "Find Us",
-      clickToView: "Click to view on Google Maps",
-      merida: "Mérida",
-      montijo: "Montijo",
+      merida: {
+        name: "Mérida",
+        address:
+          "Carretera Sevilla, 0 S N Pc 1-2 ( Pol Ind El Prado ), 06800 Mérida, Badajoz",
+      },
+      montijo: {
+        name: "Montijo",
+        address: "Ctra. Estación, sn, 06480 Montijo, Badajoz",
+      },
     },
   },
   footer: {

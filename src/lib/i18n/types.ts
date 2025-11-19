@@ -86,9 +86,14 @@ export interface Translations {
     };
     locations: {
       title: string;
-      clickToView: string;
-      merida: string;
-      montijo: string;
+      merida: {
+        name: string;
+        address: string;
+      };
+      montijo: {
+        name: string;
+        address: string;
+      };
     };
   };
   footer: {
