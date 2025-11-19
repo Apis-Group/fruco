@@ -111,7 +111,7 @@ app.use((req, res, next) => {
     // Deja que Express maneje el error 404 para archivos
     return next();
   }
-  
+
   // Para cualquier otra ruta (sin extensión),
   // asumimos que es una ruta SPA y servimos index.html
   // Ejemplo: /productos, /contacto, /historia
@@ -130,31 +130,37 @@ app.listen(PORT, () => {
 ### Características Clave del Servidor
 
 #### 1. **Middleware de Archivos Estáticos**
+
 ```javascript
 app.use(express.static(path.join(__dirname, "dist")));
 ```
+
 - Sirve automáticamente todos los archivos de `/dist`
 - Configura headers de cache apropiados
 - Maneja compresión gzip si está disponible
 - Soporta rangos para streaming de video/audio
 
 #### 2. **Fallback para SPA**
+
 ```javascript
 app.use((req, res, next) => {
   if (req.path.includes(".")) return next();
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 ```
+
 - **¿Por qué es necesario?**: En una SPA, todas las rutas deben apuntar a `index.html`
-- **Funcionamiento**: 
+- **Funcionamiento**:
   - Si la URL contiene un punto → Es un archivo, intenta servirlo
   - Si no contiene punto → Es una ruta, sirve `index.html`
 - **Resultado**: El router client-side (Astro) maneja la navegación
 
 #### 3. **Puerto Configurable**
+
 ```javascript
 const PORT = process.env.PORT || 3000;
 ```
+
 - Lee puerto desde variable de entorno
 - Permite a Lucushost asignar puerto dinámicamente
 - Fallback a 3000 para desarrollo local
@@ -474,7 +480,7 @@ pm2 start ecosystem.config.js
 
 ```javascript
 // Agregar al inicio de server.js
-import compression from 'compression';
+import compression from "compression";
 
 app.use(compression());
 ```
@@ -483,17 +489,19 @@ app.use(compression());
 
 ```javascript
 // Agregar después de express.static
-app.use(express.static(path.join(__dirname, "dist"), {
-  maxAge: '1y',  // Cache por 1 año
-  etag: true,
-  lastModified: true,
-  setHeaders: (res, path) => {
-    if (path.endsWith('.html')) {
-      // HTML no cachear
-      res.setHeader('Cache-Control', 'no-cache');
-    }
-  }
-}));
+app.use(
+  express.static(path.join(__dirname, "dist"), {
+    maxAge: "1y", // Cache por 1 año
+    etag: true,
+    lastModified: true,
+    setHeaders: (res, path) => {
+      if (path.endsWith(".html")) {
+        // HTML no cachear
+        res.setHeader("Cache-Control", "no-cache");
+      }
+    },
+  }),
+);
 ```
 
 ---
@@ -505,6 +513,7 @@ app.use(express.static(path.join(__dirname, "dist"), {
 **Causa**: No se instalaron las dependencias
 
 **Solución**:
+
 ```bash
 pnpm install --prod
 ```
@@ -514,6 +523,7 @@ pnpm install --prod
 **Causa**: El puerto está ocupado
 
 **Solución**:
+
 ```bash
 # Ver qué proceso usa el puerto
 lsof -i :3000
@@ -530,6 +540,7 @@ PORT=3001 node server.js
 **Causa**: No se ejecutó el build o la carpeta dist no existe
 
 **Solución**:
+
 ```bash
 # Localmente
 pnpm build
@@ -542,6 +553,7 @@ pnpm build
 **Causa**: El fallback SPA no funciona correctamente
 
 **Solución**:
+
 ```javascript
 // Verificar que el middleware está DESPUÉS de express.static
 app.use(express.static(...));  // Primero esto
@@ -556,6 +568,7 @@ app.use((req, res, next) => { // Luego esto
 **Causa**: Rutas incorrectas o permisos
 
 **Solución**:
+
 ```bash
 # Verificar permisos
 chmod -R 755 dist/

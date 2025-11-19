@@ -21,16 +21,16 @@
 
 ```typescript
 interface I18nContextType {
-  language: Language;           // Idioma actual ('es' | 'en' | 'fr' | 'pt')
-  setLanguage: (lang: Language) => void;  // Función para cambiar idioma
-  t: Translations;              // Objeto con todas las traducciones
+  language: Language; // Idioma actual ('es' | 'en' | 'fr' | 'pt')
+  setLanguage: (lang: Language) => void; // Función para cambiar idioma
+  t: Translations; // Objeto con todas las traducciones
 }
 
 // Hook principal
-function useI18n(): I18nContextType
+function useI18n(): I18nContextType;
 
 // Hook simplificado (solo traducciones)
-function useTranslations(): Translations
+function useTranslations(): Translations;
 ```
 
 #### Implementación Interna
@@ -90,14 +90,14 @@ export function useTranslations(): Translations {
 // Ejemplo 1: Solo traducciones
 function MyComponent() {
   const t = useTranslations();
-  
+
   return <h1>{t.common.company}</h1>;
 }
 
 // Ejemplo 2: Con control de idioma
 function LanguageSelector() {
   const { language, setLanguage } = useI18n();
-  
+
   return (
     <select value={language} onChange={(e) => setLanguage(e.target.value)}>
       <option value="es">Español</option>
@@ -109,15 +109,15 @@ function LanguageSelector() {
 // Ejemplo 3: Acceso completo
 function ComplexComponent() {
   const { language, setLanguage, t } = useI18n();
-  
+
   useEffect(() => {
-    console.log('Idioma actual:', language);
+    console.log("Idioma actual:", language);
   }, [language]);
-  
+
   return (
     <div>
       <h1>{t.hero.subtitle}</h1>
-      <button onClick={() => setLanguage('en')}>English</button>
+      <button onClick={() => setLanguage("en")}>English</button>
     </div>
   );
 }
@@ -171,7 +171,7 @@ interface UseGSAPReturn {
   refreshScrollTrigger: () => void;
 }
 
-function useGSAP(): UseGSAPReturn
+function useGSAP(): UseGSAPReturn;
 ```
 
 #### Implementación
@@ -231,9 +231,9 @@ function AnimatedComponent() {
     const animation = gsap.fromTo(
       ".element",
       { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: 1 }
+      { opacity: 1, y: 0, duration: 1 },
     );
-    
+
     addAnimation(animation);
 
     // Refresh ScrollTrigger después de cambios en el DOM
@@ -255,7 +255,7 @@ function AnimatedComponent() {
 #### API
 
 ```typescript
-function useSmoothScroll(): void
+function useSmoothScroll(): void;
 ```
 
 #### Implementación
@@ -268,11 +268,11 @@ export const useSmoothScroll = () => {
     // Configurar scroll suave para enlaces internos
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLAnchorElement;
-      
-      if (target.tagName === 'A' && target.hash) {
+
+      if (target.tagName === "A" && target.hash) {
         e.preventDefault();
         const element = document.querySelector(target.hash);
-        
+
         if (element) {
           gsap.to(window, {
             duration: 1,
@@ -286,10 +286,10 @@ export const useSmoothScroll = () => {
       }
     };
 
-    document.addEventListener('click', handleAnchorClick);
+    document.addEventListener("click", handleAnchorClick);
 
     return () => {
-      document.removeEventListener('click', handleAnchorClick);
+      document.removeEventListener("click", handleAnchorClick);
     };
   }, []);
 };
@@ -323,8 +323,8 @@ interface UseLazyImageReturn {
 
 function useLazyImage(
   ref: RefObject<HTMLImageElement>,
-  src: string
-): UseLazyImageReturn
+  src: string,
+): UseLazyImageReturn;
 ```
 
 #### Implementación
@@ -333,10 +333,7 @@ function useLazyImage(
 import { useEffect, useState } from "preact/hooks";
 import type { RefObject } from "preact";
 
-export function useLazyImage(
-  ref: RefObject<HTMLImageElement>,
-  src: string
-) {
+export function useLazyImage(ref: RefObject<HTMLImageElement>, src: string) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
 
@@ -366,7 +363,7 @@ export function useLazyImage(
       {
         rootMargin: "50px", // Cargar 50px antes de ser visible
         threshold: 0.01,
-      }
+      },
     );
 
     observer.observe(imgElement);
@@ -395,7 +392,7 @@ function ProductCard({ product }) {
         ref={imgRef}
         data-src={product.image}
         alt={product.name}
-        className={`transition-opacity ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+        className={`transition-opacity ${isLoaded ? "opacity-100" : "opacity-0"}`}
       />
       {!isLoaded && <Skeleton />}
       {error && <ErrorPlaceholder />}
@@ -415,7 +412,7 @@ function ProductCard({ product }) {
 #### API
 
 ```typescript
-function useTranslatedProducts(): Product[]
+function useTranslatedProducts(): Product[];
 ```
 
 #### Implementación
@@ -511,7 +508,7 @@ export const animationConfig = {
  */
 export const fadeInOnScroll = (
   element: string | Element,
-  options?: ScrollTrigger.Vars
+  options?: ScrollTrigger.Vars,
 ) => {
   return gsap.fromTo(
     element,
@@ -531,7 +528,7 @@ export const fadeInOnScroll = (
         toggleActions: "play none none none",
         ...options,
       },
-    }
+    },
   );
 };
 ```
@@ -544,7 +541,7 @@ export const fadeInOnScroll = (
  */
 export const slideUpOnScroll = (
   element: string | Element,
-  options?: ScrollTrigger.Vars
+  options?: ScrollTrigger.Vars,
 ) => {
   return gsap.fromTo(
     element,
@@ -563,7 +560,7 @@ export const slideUpOnScroll = (
         toggleActions: "play none none none",
         ...options,
       },
-    }
+    },
   );
 };
 ```
@@ -576,7 +573,7 @@ export const slideUpOnScroll = (
  */
 export const parallaxEffect = (
   element: string | Element,
-  speed: number = 0.5
+  speed: number = 0.5,
 ) => {
   return gsap.to(element, {
     y: () => window.innerHeight * speed,
@@ -611,7 +608,7 @@ export const heroEntrance = (element: string | Element) => {
       y: 0,
       duration: animationConfig.heroEntrance.duration,
       ease: animationConfig.heroEntrance.ease,
-    }
+    },
   );
 };
 ```
@@ -624,7 +621,7 @@ export const heroEntrance = (element: string | Element) => {
  */
 export const productGridAnimation = (
   gridSelector: string,
-  itemSelector: string = ".product-card"
+  itemSelector: string = ".product-card",
 ) => {
   return gsap.fromTo(
     `${gridSelector} ${itemSelector}`,
@@ -645,7 +642,7 @@ export const productGridAnimation = (
         start: "top 80%",
         toggleActions: "play none none none",
       },
-    }
+    },
   );
 };
 ```
@@ -702,7 +699,9 @@ export const cleanupScrollTriggers = () => {
 /**
  * Mata animación específica
  */
-export const killAnimation = (animation: gsap.core.Tween | gsap.core.Timeline) => {
+export const killAnimation = (
+  animation: gsap.core.Tween | gsap.core.Timeline,
+) => {
   if (animation && typeof animation.kill === "function") {
     animation.kill();
   }
@@ -810,7 +809,7 @@ useEffect(() => {
 // ✅ BIEN - Cleanup adecuado
 useEffect(() => {
   const animation = gsap.to(".element", { x: 100 });
-  
+
   return () => {
     animation.kill();
   };
@@ -845,11 +844,11 @@ const products = useMemo(() => {
 ```tsx
 useEffect(() => {
   // Después de que imágenes carguen
-  const images = document.querySelectorAll('img');
+  const images = document.querySelectorAll("img");
   let loadedCount = 0;
 
   images.forEach((img) => {
-    img.addEventListener('load', () => {
+    img.addEventListener("load", () => {
       loadedCount++;
       if (loadedCount === images.length) {
         ScrollTrigger.refresh();
@@ -863,7 +862,7 @@ useEffect(() => {
 
 ```tsx
 // ✅ Carga diferida de componentes pesados
-const HeavyComponent = lazy(() => import('./HeavyComponent'));
+const HeavyComponent = lazy(() => import("./HeavyComponent"));
 
 function App() {
   return (

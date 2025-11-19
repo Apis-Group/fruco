@@ -44,19 +44,21 @@ I18nProvider (Contexto de Internacionalización)
 
 ## Componentes Principales
 
-### 1. **_App.tsx** - Componente Raíz
+### 1. **\_App.tsx** - Componente Raíz
 
 **Ubicación**: `src/pages/_App.tsx`
 
 **Propósito**: Punto de entrada principal de la aplicación Preact. Orquesta todos los componentes y maneja la configuración global de GSAP.
 
 **Características**:
+
 - ✅ Inicializa GSAP y ScrollTrigger
 - ✅ Configura scroll suave
 - ✅ Provee contexto i18n
 - ✅ Animación de fade-in inicial
 
 **Código**:
+
 ```tsx
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -88,7 +90,7 @@ function App() {
     gsap.fromTo(
       "body",
       { opacity: 0 },
-      { opacity: 1, duration: 0.8, ease: "power2.out" }
+      { opacity: 1, duration: 0.8, ease: "power2.out" },
     );
 
     // Refresh después de carga
@@ -96,7 +98,7 @@ function App() {
 
     return () => {
       clearTimeout(timer);
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
 
@@ -104,9 +106,7 @@ function App() {
     <I18nProvider>
       <LanguageSelector />
       <NavBar />
-      <main>
-        {/* Secciones */}
-      </main>
+      <main>{/* Secciones */}</main>
       <Footer />
     </I18nProvider>
   );
@@ -118,6 +118,7 @@ function App() {
 **Estado**: Ninguno (stateless)
 
 **Hooks usados**:
+
 - `useSmoothScroll()`: Habilita scroll suave en la página
 - `useEffect()`: Configuración inicial y cleanup
 
@@ -130,6 +131,7 @@ function App() {
 **Propósito**: Navegación sticky con efecto de hover animado y scroll suave a secciones.
 
 **Características**:
+
 - ✅ Posición fija en la parte superior
 - ✅ Efecto glassmorphism (fondo blur)
 - ✅ Hover indicator animado que se desliza
@@ -137,6 +139,7 @@ function App() {
 - ✅ Responsive: oculta en móvil
 
 **Estructura**:
+
 ```tsx
 export default function NavBar() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -177,10 +180,16 @@ export default function NavBar() {
 
   return (
     <nav className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 hidden md:block">
-      <fieldset ref={navRef} className="relative flex bg-white/10 backdrop-blur-md rounded-full">
+      <fieldset
+        ref={navRef}
+        className="relative flex bg-white/10 backdrop-blur-md rounded-full"
+      >
         {/* Hover indicator animado */}
-        <div className="absolute ... transition-all duration-300" style={hoverStyle} />
-        
+        <div
+          className="absolute ... transition-all duration-300"
+          style={hoverStyle}
+        />
+
         {navItems.map((item, index) => (
           <button
             key={index}
@@ -200,10 +209,12 @@ export default function NavBar() {
 **Props**: Ninguna
 
 **Estado**:
+
 - `hoveredIndex`: Índice del botón con hover actual
 - `hoverStyle`: Estilos dinámicos para el indicador de hover
 
 **Estilos Clave**:
+
 ```css
 /* Glassmorphism */
 bg-white/10 backdrop-blur-md
@@ -224,29 +235,31 @@ border border-white/20
 **Propósito**: Selector flotante para cambiar el idioma de la interfaz.
 
 **Características**:
+
 - ✅ Posición fija (bottom-right)
 - ✅ Banderas SVG para cada idioma
 - ✅ Transición suave entre idiomas
 - ✅ Persiste selección en localStorage (opcional)
 
 **Estructura**:
+
 ```tsx
 export default function LanguageSelector() {
   const { language, setLanguage } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
 
   const languages = [
-    { code: 'es', flag: '/flags/es.svg', name: 'Español' },
-    { code: 'en', flag: '/flags/us.svg', name: 'English' },
-    { code: 'fr', flag: '/flags/fr.svg', name: 'Français' },
-    { code: 'pt', flag: '/flags/pt.svg', name: 'Português' },
+    { code: "es", flag: "/flags/es.svg", name: "Español" },
+    { code: "en", flag: "/flags/us.svg", name: "English" },
+    { code: "fr", flag: "/flags/fr.svg", name: "Français" },
+    { code: "pt", flag: "/flags/pt.svg", name: "Português" },
   ];
 
   const handleLanguageChange = (code: Language) => {
     setLanguage(code);
     setIsOpen(false);
     // Opcional: guardar en localStorage
-    localStorage.setItem('language', code);
+    localStorage.setItem("language", code);
   };
 
   return (
@@ -260,12 +273,12 @@ export default function LanguageSelector() {
 
       {isOpen && (
         <div className="absolute bottom-16 right-0 bg-white/10 backdrop-blur-md rounded-lg">
-          {languages.map(lang => (
+          {languages.map((lang) => (
             <button
               key={lang.code}
               onClick={() => handleLanguageChange(lang.code)}
               className={`flex items-center gap-2 px-4 py-2 ${
-                language === lang.code ? 'bg-white/20' : ''
+                language === lang.code ? "bg-white/20" : ""
               }`}
             >
               <img src={lang.flag} alt={lang.name} className="w-6 h-6" />
@@ -282,6 +295,7 @@ export default function LanguageSelector() {
 **Props**: Ninguna
 
 **Estado**:
+
 - `isOpen`: Controla visibilidad del menú desplegable
 
 ---
@@ -293,12 +307,14 @@ export default function LanguageSelector() {
 **Propósito**: Primera sección con logo animado y call-to-action.
 
 **Características**:
+
 - ✅ Logo con animación de entrada (scale + fade)
 - ✅ Texto animado con stagger
 - ✅ Parallax sutil en scroll
 - ✅ Imagen optimizada con srcset responsivo
 
 **Animaciones**:
+
 ```tsx
 useEffect(() => {
   const tl = gsap.timeline();
@@ -307,7 +323,7 @@ useEffect(() => {
   tl.fromTo(
     ".hero-logo",
     { opacity: 0, scale: 0.8, y: 100 },
-    { opacity: 1, scale: 1, y: 0, duration: 1.2, ease: "power3.out" }
+    { opacity: 1, scale: 1, y: 0, duration: 1.2, ease: "power3.out" },
   );
 
   // Texto con stagger
@@ -315,7 +331,7 @@ useEffect(() => {
     ".hero-text",
     { opacity: 0, y: 30 },
     { opacity: 1, y: 0, duration: 0.8, stagger: 0.2 },
-    "-=0.6"
+    "-=0.6",
   );
 
   // Parallax en scroll
@@ -333,6 +349,7 @@ useEffect(() => {
 ```
 
 **Imagen Responsiva**:
+
 ```tsx
 <img
   src="/logo_fruco.avif"
@@ -357,6 +374,7 @@ useEffect(() => {
 **Propósito**: Grid animado de productos con información detallada.
 
 **Características**:
+
 - ✅ Grid responsivo (1/2/3 columnas)
 - ✅ Animación stagger en scroll
 - ✅ Hover effects con scale
@@ -364,6 +382,7 @@ useEffect(() => {
 - ✅ Imágenes lazy-loading con srcset
 
 **Estructura**:
+
 ```tsx
 export default function ProductShowcase() {
   const t = useTranslations();
@@ -384,7 +403,7 @@ export default function ProductShowcase() {
           trigger: ".products-grid",
           start: "top 80%",
         },
-      }
+      },
     );
   }, []);
 
@@ -412,6 +431,7 @@ export default function ProductShowcase() {
 ```
 
 **ProductCard Sub-Componente**:
+
 ```tsx
 function ProductCard({ product, onClick }) {
   const imgRef = useRef(null);
@@ -435,7 +455,7 @@ function ProductCard({ product, onClick }) {
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           alt={product.name}
           loading="lazy"
-          className={`w-full h-full object-cover ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+          className={`w-full h-full object-cover ${isLoaded ? "opacity-100" : "opacity-0"}`}
         />
         {!isLoaded && <Skeleton />}
       </div>
@@ -458,12 +478,14 @@ function ProductCard({ product, onClick }) {
 **Propósito**: Línea de tiempo interactiva con hitos de la empresa.
 
 **Características**:
+
 - ✅ Timeline vertical responsiva
 - ✅ Animación secuencial de elementos
 - ✅ Imágenes decorativas con parallax
 - ✅ Efecto de desenfoque en elementos fuera de vista
 
 **Animaciones**:
+
 ```tsx
 useEffect(() => {
   // Timeline items aparecen uno por uno
@@ -479,7 +501,7 @@ useEffect(() => {
         trigger: ".timeline",
         start: "top 70%",
       },
-    }
+    },
   );
 
   // Línea de timeline se dibuja progresivamente
@@ -494,7 +516,7 @@ useEffect(() => {
         trigger: ".timeline",
         start: "top 70%",
       },
-    }
+    },
   );
 }, []);
 ```
@@ -508,12 +530,14 @@ useEffect(() => {
 **Propósito**: Muestra visión, misión y valores de la empresa.
 
 **Características**:
+
 - ✅ Cards con glassmorphism
 - ✅ Iconos animados
 - ✅ Fade-in en scroll
 - ✅ Layout responsivo
 
 **Estructura**:
+
 ```tsx
 export default function VisionAndMision() {
   const t = useTranslations();
@@ -564,33 +588,37 @@ export default function VisionAndMision() {
 **Propósito**: Formulario de contacto con validación y Google Maps.
 
 **Características**:
+
 - ✅ Validación de campos
 - ✅ Integración con backend (opcional)
 - ✅ Estados de envío (loading, success, error)
 - ✅ Google Maps embebido
 
 **Estructura**:
+
 ```tsx
 export default function Contact() {
   const t = useTranslations();
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
+    name: "",
+    email: "",
+    message: "",
   });
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
 
   const handleSubmit = async (e: Event) => {
     e.preventDefault();
-    setStatus('loading');
+    setStatus("loading");
 
     try {
       // Aquí iría la lógica de envío
       // await sendContactForm(formData);
-      setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
-      setStatus('error');
+      setStatus("error");
     }
   };
 
@@ -608,16 +636,18 @@ export default function Contact() {
             className="w-full px-4 py-3 bg-white/10 rounded-lg"
           />
           {/* Más campos... */}
-          
+
           <button
             type="submit"
-            disabled={status === 'loading'}
+            disabled={status === "loading"}
             className="w-full bg-fruco-red text-white py-3 rounded-lg"
           >
-            {status === 'loading' ? t.contact.form.sending : t.contact.form.send}
+            {status === "loading"
+              ? t.contact.form.sending
+              : t.contact.form.send}
           </button>
 
-          {status === 'success' && (
+          {status === "success" && (
             <p className="text-green-500">{t.contact.form.success}</p>
           )}
         </form>
@@ -639,11 +669,13 @@ export default function Contact() {
 **Propósito**: Muestra ubicación de la empresa en Google Maps.
 
 **Características**:
+
 - ✅ Lazy loading del iframe
 - ✅ Responsive
 - ✅ Placeholder mientras carga
 
 **Código**:
+
 ```tsx
 export default function GoogleMaps() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -655,7 +687,7 @@ export default function GoogleMaps() {
           <p>Cargando mapa...</p>
         </div>
       )}
-      
+
       <iframe
         src="https://www.google.com/maps/embed?pb=..."
         width="100%"
@@ -680,6 +712,7 @@ export default function GoogleMaps() {
 **Propósito**: Footer con información legal y enlaces.
 
 **Estructura**:
+
 ```tsx
 export default function Footer() {
   const t = useTranslations();
@@ -699,8 +732,12 @@ export default function Footer() {
           <div>
             <h4 className="font-bold mb-4">{t.footer.quickLinks}</h4>
             <ul className="space-y-2">
-              <li><a href="#inicio">{t.navigation.home}</a></li>
-              <li><a href="#productos">{t.navigation.products}</a></li>
+              <li>
+                <a href="#inicio">{t.navigation.home}</a>
+              </li>
+              <li>
+                <a href="#productos">{t.navigation.products}</a>
+              </li>
               {/* Más enlaces... */}
             </ul>
           </div>
@@ -734,6 +771,7 @@ export default function Footer() {
 **Propósito**: Separador visual decorativo entre secciones.
 
 **Código**:
+
 ```tsx
 export default function Spliter() {
   return (
@@ -753,6 +791,7 @@ export default function Spliter() {
 **Propósito**: Layout principal con SEO, meta tags y configuración global.
 
 **Características**:
+
 - ✅ Meta tags optimizados para SEO
 - ✅ Open Graph y Twitter Cards
 - ✅ JSON-LD para Schema.org
@@ -761,6 +800,7 @@ export default function Spliter() {
 - ✅ Analytics y Speed Insights
 
 **Estructura**:
+
 ```astro
 ---
 const { title } = Astro.props;
@@ -786,10 +826,10 @@ const description = "Descripción SEO...";
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    
+
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
-    
+
     <!-- JSON-LD -->
     <script type="application/ld+json">
       {
@@ -829,16 +869,16 @@ Ver documentación completa en [`docs/HOOKS.md`](./HOOKS.md)
 
 ```tsx
 // Componentes: PascalCase
-NavBar.tsx
-ProductShowcase.tsx
+NavBar.tsx;
+ProductShowcase.tsx;
 
 // Hooks: camelCase con prefijo 'use'
-useI18n.tsx
-useLazyImage.ts
+useI18n.tsx;
+useLazyImage.ts;
 
 // Utilidades: camelCase
-animations.ts
-code_resources.md
+animations.ts;
+code_resources.md;
 
 // Constantes: UPPER_SNAKE_CASE
 const MAX_PRODUCTS = 5;
@@ -848,8 +888,8 @@ const MAX_PRODUCTS = 5;
 
 ```tsx
 // 1. Imports
-import { useState, useEffect } from 'preact/hooks';
-import { useTranslations } from '@/hooks/useI18n';
+import { useState, useEffect } from "preact/hooks";
+import { useTranslations } from "@/hooks/useI18n";
 
 // 2. Tipos (si TypeScript)
 interface Props {
@@ -874,11 +914,7 @@ export default function MyComponent({ title, onAction }: Props) {
   };
 
   // 7. Render
-  return (
-    <div className="tailwind-classes">
-      {/* JSX */}
-    </div>
-  );
+  return <div className="tailwind-classes">{/* JSX */}</div>;
 }
 ```
 

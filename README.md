@@ -58,48 +58,56 @@
 ## 🛠 Stack Tecnológico
 
 ### **Framework Principal**
+
 - **Astro 5.14.1**: Framework moderno para sitios estáticos de alto rendimiento
   - Utiliza arquitectura "Islands" para JavaScript mínimo
   - Build optimizado con generación estática (SSG)
   - Integración seamless con frameworks de UI
 
 ### **Librería de UI**
+
 - **Preact 10.27.2**: Alternativa ligera a React (3KB)
   - Compatible con React API mediante `compat` mode
   - Usado para componentes interactivos
   - Renderizado eficiente con Virtual DOM
 
 ### **Estilos**
+
 - **Tailwind CSS 4.1.14**: Framework CSS utility-first
   - Configuración personalizada con tokens de diseño
   - Plugin Vite para desarrollo rápido
   - Sistema de temas personalizado
 
 ### **Animaciones**
+
 - **GSAP 3.13.0**: Librería profesional de animaciones
   - ScrollTrigger para animaciones basadas en scroll
   - Timeline para secuencias complejas
   - Optimizado para 60fps
 
 ### **Servidor de Producción**
+
 - **Express 5.1.0**: Framework web minimalista para Node.js
   - Sirve archivos estáticos desde `/dist`
   - Maneja rutas SPA con fallback a `index.html`
   - Configurado para deployment en hosting compartido
 
 ### **Herramientas de Desarrollo**
+
 - **TypeScript 5.9.3**: Tipado estático para JavaScript
 - **ESLint 9.36.0**: Linter con configuración avanzada
 - **Prettier 3.6.2**: Formateador de código automático
 - **pnpm**: Gestor de paquetes rápido y eficiente
 
 ### **Build y Optimización**
+
 - **Vite**: Bundler ultra-rápido con HMR
 - **Terser 5.44.0**: Minificación avanzada de JavaScript
 - **Tree-shaking**: Eliminación de código no usado
 - **Code-splitting**: Separación inteligente de chunks
 
 ### **Analytics y Monitoreo**
+
 - **@vercel/analytics**: Seguimiento de visitas y eventos
 - **@vercel/speed-insights**: Métricas de rendimiento real
 
@@ -307,18 +315,14 @@ Fruco utiliza la arquitectura **Islands** de Astro, que permite:
 
 ```tsx
 // Estructura típica de un componente
-import { useState } from 'preact/hooks';
-import { useTranslations } from '@/hooks/useI18n';
+import { useState } from "preact/hooks";
+import { useTranslations } from "@/hooks/useI18n";
 
 export default function MyComponent() {
   const [state, setState] = useState(initialValue);
   const t = useTranslations();
-  
-  return (
-    <div className="tailwind-classes">
-      {t.section.title}
-    </div>
-  );
+
+  return <div className="tailwind-classes">{t.section.title}</div>;
 }
 ```
 
@@ -348,6 +352,7 @@ const { language, setLanguage, t } = useI18n();
 ### Arquitectura i18n
 
 El sistema de traducciones está diseñado para ser:
+
 - ✅ **Type-safe**: Totalmente tipado con TypeScript
 - ✅ **Escalable**: Fácil agregar nuevos idiomas
 - ✅ **Performante**: Sin overhead en runtime
@@ -355,12 +360,12 @@ El sistema de traducciones está diseñado para ser:
 
 ### Idiomas Soportados
 
-| Idioma    | Código | Archivo      | Estado |
-|-----------|--------|--------------|--------|
-| Español   | `es`   | `es.ts`      | ✅ Completo |
-| English   | `en`   | `en.ts`      | ✅ Completo |
-| Français  | `fr`   | `fr.ts`      | ✅ Completo |
-| Português | `pt`   | `pt.ts`      | ✅ Completo |
+| Idioma    | Código | Archivo | Estado      |
+| --------- | ------ | ------- | ----------- |
+| Español   | `es`   | `es.ts` | ✅ Completo |
+| English   | `en`   | `en.ts` | ✅ Completo |
+| Français  | `fr`   | `fr.ts` | ✅ Completo |
+| Português | `pt`   | `pt.ts` | ✅ Completo |
 
 ### Flujo de Traducciones
 
@@ -396,18 +401,21 @@ Este proyecto está altamente optimizado para lograr puntuaciones excelentes en 
 #### Técnicas Implementadas
 
 ##### Build Optimization
+
 - **Terser Minification**: JavaScript comprimido con eliminación de console.logs
 - **Tree Shaking**: Eliminación de código no usado
 - **Code Splitting**: Chunks separados para GSAP y Preact
 - **CSS Inlining**: Estilos críticos inline para render rápido
 
 ##### Asset Optimization
+
 - **AVIF Format**: Imágenes 50% más pequeñas que JPEG
 - **Responsive Images**: srcset con 3 tamaños (small/medium/large)
 - **Lazy Loading**: Intersection Observer para imágenes fuera de viewport
 - **Preload Crítico**: Logo hero precargado para mejorar LCP
 
 ##### Bundle Sizes
+
 ```
 JavaScript Total:  145.8 KB (42.3 KB gzipped)
   ├─ Main Bundle:   60.2 KB
@@ -446,6 +454,7 @@ El proyecto utiliza **Express.js** como servidor de producción para servir los 
 El archivo `server.js` es el corazón del deployment:
 
 **Características**:
+
 - ✅ Sirve archivos estáticos desde `/dist`
 - ✅ Maneja rutas SPA con fallback a `index.html`
 - ✅ Puerto configurable via `process.env.PORT`
@@ -453,6 +462,7 @@ El archivo `server.js` es el corazón del deployment:
 - ✅ Logging de requests
 
 **Código simplificado**:
+
 ```javascript
 import express from "express";
 import path from "path";
@@ -477,13 +487,16 @@ app.listen(PORT, () => {
 ### Pasos de Despliegue
 
 #### 1. Build Local
+
 ```bash
 pnpm build
 # Genera carpeta /dist con archivos optimizados
 ```
 
 #### 2. Subir al Servidor
+
 **Archivos necesarios**:
+
 ```
 ✅ dist/              # Build completo
 ✅ server.js          # Servidor Express
@@ -492,6 +505,7 @@ pnpm build
 ```
 
 **No subir**:
+
 ```
 ❌ node_modules/     # Se instalan en servidor
 ❌ src/              # Código fuente (ya compilado)
@@ -499,6 +513,7 @@ pnpm build
 ```
 
 #### 3. Instalación en Servidor
+
 ```bash
 # SSH al servidor
 ssh usuario@tudominio.com
@@ -518,7 +533,9 @@ pm2 save
 ```
 
 #### 4. Configuración de Proxy
+
 **Apache (.htaccess)**:
+
 ```apache
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -537,7 +554,9 @@ Ver guía completa de despliegue en [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md)
 El proyecto incluye **más de 170 páginas** de documentación profesional en la carpeta `docs/`:
 
 #### 🎯 [INDEX.md](docs/INDEX.md) - **Índice Maestro**
+
 **Tu punto de partida para toda la documentación**
+
 - Navegación por rol (Frontend, DevOps, Arquitecto, etc.)
 - Búsqueda por tema
 - Rutas de aprendizaje (Beginner/Intermediate/Advanced)
@@ -547,23 +566,25 @@ El proyecto incluye **más de 170 páginas** de documentación profesional en la
 
 ### 📋 Guías Técnicas Detalladas
 
-| Documento | Páginas | Descripción | Para Quién |
-|-----------|---------|-------------|------------|
-| **[DEPLOYMENT.md](docs/DEPLOYMENT.md)** | ~25 | Guía completa de despliegue en Lucushost | DevOps, SysAdmin |
-| **[COMPONENTS.md](docs/COMPONENTS.md)** | ~30 | Documentación exhaustiva de componentes | Frontend Devs |
-| **[HOOKS.md](docs/HOOKS.md)** | ~20 | Hooks personalizados y utilidades | Desarrolladores |
-| **[PERFORMANCE.md](docs/PERFORMANCE.md)** | ~25 | Optimizaciones y Core Web Vitals | Performance Engineers |
-| **[ARCHITECTURE.md](docs/ARCHITECTURE.md)** | ~35 | Arquitectura técnica completa | Tech Leads, Arquitectos |
-| **[i18n.md](docs/i18n.md)** | ~15 | Sistema de internacionalización | Traductores, Content |
-| **[QUICK-REFERENCE.md](docs/QUICK-REFERENCE.md)** | ~10 | Guía rápida de referencia | Todos |
-| **[EXECUTIVE-SUMMARY.md](docs/EXECUTIVE-SUMMARY.md)** | ~10 | Resumen ejecutivo (no técnico) | Stakeholders, Management |
+| Documento                                             | Páginas | Descripción                              | Para Quién               |
+| ----------------------------------------------------- | ------- | ---------------------------------------- | ------------------------ |
+| **[DEPLOYMENT.md](docs/DEPLOYMENT.md)**               | ~25     | Guía completa de despliegue en Lucushost | DevOps, SysAdmin         |
+| **[COMPONENTS.md](docs/COMPONENTS.md)**               | ~30     | Documentación exhaustiva de componentes  | Frontend Devs            |
+| **[HOOKS.md](docs/HOOKS.md)**                         | ~20     | Hooks personalizados y utilidades        | Desarrolladores          |
+| **[PERFORMANCE.md](docs/PERFORMANCE.md)**             | ~25     | Optimizaciones y Core Web Vitals         | Performance Engineers    |
+| **[ARCHITECTURE.md](docs/ARCHITECTURE.md)**           | ~35     | Arquitectura técnica completa            | Tech Leads, Arquitectos  |
+| **[i18n.md](docs/i18n.md)**                           | ~15     | Sistema de internacionalización          | Traductores, Content     |
+| **[QUICK-REFERENCE.md](docs/QUICK-REFERENCE.md)**     | ~10     | Guía rápida de referencia                | Todos                    |
+| **[EXECUTIVE-SUMMARY.md](docs/EXECUTIVE-SUMMARY.md)** | ~10     | Resumen ejecutivo (no técnico)           | Stakeholders, Management |
 
 ---
 
 ### 🎓 Contenido Destacado por Documento
 
 #### 🚀 [DEPLOYMENT.md](docs/DEPLOYMENT.md)
+
 **Despliegue en Producción**
+
 ```
 ✅ Arquitectura de deployment explicada
 ✅ server.js línea por línea
@@ -576,7 +597,9 @@ El proyecto incluye **más de 170 páginas** de documentación profesional en la
 ```
 
 #### 🧩 [COMPONENTS.md](docs/COMPONENTS.md)
+
 **11 Componentes Documentados**
+
 ```
 1. _App.tsx         - Componente raíz
 2. NavBar.tsx       - Navegación sticky
@@ -592,7 +615,9 @@ El proyecto incluye **más de 170 páginas** de documentación profesional en la
 ```
 
 #### 🎣 [HOOKS.md](docs/HOOKS.md)
+
 **5 Hooks Personalizados**
+
 ```
 ✅ useI18n()               - Sistema i18n
 ✅ useGSAP()               - Animaciones
@@ -605,7 +630,9 @@ El proyecto incluye **más de 170 páginas** de documentación profesional en la
 ```
 
 #### ⚡ [PERFORMANCE.md](docs/PERFORMANCE.md)
+
 **Optimizaciones Avanzadas**
+
 ```
 ✅ Core Web Vitals (LCP, FID, CLS)
 ✅ Build optimization con Terser
@@ -619,7 +646,9 @@ El proyecto incluye **más de 170 páginas** de documentación profesional en la
 ```
 
 #### 🏛️ [ARCHITECTURE.md](docs/ARCHITECTURE.md)
+
 **Arquitectura Completa**
+
 ```
 ✅ Diagramas de arquitectura
 ✅ Stack tecnológico detallado
@@ -632,7 +661,9 @@ El proyecto incluye **más de 170 páginas** de documentación profesional en la
 ```
 
 #### 🌍 [i18n.md](docs/i18n.md)
+
 **Sistema de Traducciones**
+
 ```
 ✅ Proceso paso a paso
 ✅ Reglas obligatorias
@@ -644,7 +675,9 @@ El proyecto incluye **más de 170 páginas** de documentación profesional en la
 ```
 
 #### 📖 [QUICK-REFERENCE.md](docs/QUICK-REFERENCE.md)
+
 **Referencia Rápida**
+
 ```
 ✅ Comandos quick start
 ✅ Ubicaciones de archivos clave
@@ -656,7 +689,9 @@ El proyecto incluye **más de 170 páginas** de documentación profesional en la
 ```
 
 #### 📊 [EXECUTIVE-SUMMARY.md](docs/EXECUTIVE-SUMMARY.md)
+
 **Resumen para Stakeholders**
+
 ```
 ✅ Métricas de éxito
 ✅ Valor de negocio
@@ -685,6 +720,7 @@ Tiempo Total Lectura: ~3-4 horas
 ### 🎯 Empezar Según tu Rol
 
 #### 👨‍💻 Desarrollador Frontend
+
 ```
 1. README.md              (15 min)
 2. QUICK-REFERENCE.md    (20 min)
@@ -693,6 +729,7 @@ Tiempo Total Lectura: ~3-4 horas
 ```
 
 #### 🏗️ Arquitecto / Tech Lead
+
 ```
 1. README.md              (15 min)
 2. ARCHITECTURE.md       (35 min)
@@ -701,6 +738,7 @@ Tiempo Total Lectura: ~3-4 horas
 ```
 
 #### 🚀 DevOps / SysAdmin
+
 ```
 1. README.md              (15 min)
 2. DEPLOYMENT.md         (25 min)
@@ -708,6 +746,7 @@ Tiempo Total Lectura: ~3-4 horas
 ```
 
 #### 💼 Stakeholder / Manager
+
 ```
 1. EXECUTIVE-SUMMARY.md  (10 min)
 2. README.md             (10 min)
@@ -780,12 +819,14 @@ pnpm start
 ### Convenciones de Código
 
 #### Naming
+
 - **Componentes**: PascalCase (`NavBar.tsx`, `HeroSection.tsx`)
 - **Hooks**: camelCase con prefijo `use` (`useI18n.tsx`, `useGSAP.ts`)
 - **Utilidades**: camelCase (`animations.ts`, `helpers.ts`)
 - **Constantes**: UPPER_SNAKE_CASE (`MAX_ITEMS`, `DEFAULT_LANG`)
 
 #### Imports
+
 ```typescript
 // 1. Externos
 import { gsap } from "gsap";
@@ -800,6 +841,7 @@ import Component from "./Component";
 ```
 
 #### Componentes
+
 ```tsx
 // Estructura estándar
 export default function MyComponent({ prop1, prop2 }: Props) {
@@ -818,11 +860,7 @@ export default function MyComponent({ prop1, prop2 }: Props) {
   };
 
   // 4. Render
-  return (
-    <div className="...">
-      {/* JSX */}
-    </div>
-  );
+  return <div className="...">{/* JSX */}</div>;
 }
 ```
 
@@ -845,6 +883,7 @@ git pull origin main
 ```
 
 #### Convenciones de Commit
+
 - `feat:` Nueva funcionalidad
 - `fix:` Corrección de bug
 - `docs:` Cambios en documentación
@@ -867,6 +906,7 @@ Usa [GitHub Issues](https://github.com/zkjon/fruco/issues) con la siguiente info
 Descripción clara y concisa
 
 **Pasos para reproducir**
+
 1. Ir a '...'
 2. Hacer click en '...'
 3. Ver error
@@ -878,6 +918,7 @@ Lo que debería pasar
 Si aplica
 
 **Entorno**
+
 - OS: [ej. Windows 11]
 - Navegador: [ej. Chrome 120]
 - Versión del proyecto: [ej. 0.2.0]
@@ -929,6 +970,7 @@ Este proyecto está bajo la licencia MIT. Ver archivo [LICENSE](LICENSE) para m�
 ## 👨‍💻 Autor
 
 **Jon Imanol Ruiz Hermoso**
+
 - GitHub: [@zkjon](https://github.com/zkjon)
 - Email: jon.ruiz@example.com
 
@@ -960,6 +1002,7 @@ Lighthouse Score:     98/100
 ## 🗺️ Roadmap
 
 ### v0.3.0 (Próximamente)
+
 - [ ] PWA support con Service Worker
 - [ ] Modo offline
 - [ ] Más productos (10+)
@@ -967,6 +1010,7 @@ Lighthouse Score:     98/100
 - [ ] Recetas con productos Fruco
 
 ### v0.4.0 (Futuro)
+
 - [ ] Tienda online integrada
 - [ ] Sistema de usuarios
 - [ ] Newsletter subscription

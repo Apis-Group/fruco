@@ -20,23 +20,24 @@ pnpm start        # Servidor local → http://localhost:3000
 
 ## 📂 Ubicaciones Clave
 
-| Necesitas | Archivo/Carpeta |
-|-----------|-----------------|
-| Agregar componente | `src/components/NuevoComponente.tsx` |
-| Modificar estilos | `src/styles/globals.css` |
-| Agregar idioma | `src/lib/i18n/nuevo.ts` |
-| Agregar producto | `src/lib/Products.tsx` |
-| Configurar build | `astro.config.mjs` |
-| Configurar servidor | `server.js` |
-| Agregar animación | `src/utils/animations.ts` |
+| Necesitas           | Archivo/Carpeta                      |
+| ------------------- | ------------------------------------ |
+| Agregar componente  | `src/components/NuevoComponente.tsx` |
+| Modificar estilos   | `src/styles/globals.css`             |
+| Agregar idioma      | `src/lib/i18n/nuevo.ts`              |
+| Agregar producto    | `src/lib/Products.tsx`               |
+| Configurar build    | `astro.config.mjs`                   |
+| Configurar servidor | `server.js`                          |
+| Agregar animación   | `src/utils/animations.ts`            |
 
 ---
 
 ## 🎨 Componentes Rápidos
 
 ### Usar Traducciones
+
 ```tsx
-import { useTranslations } from '@/hooks/useI18n';
+import { useTranslations } from "@/hooks/useI18n";
 
 function MyComponent() {
   const t = useTranslations();
@@ -45,62 +46,67 @@ function MyComponent() {
 ```
 
 ### Cambiar Idioma
+
 ```tsx
-import { useI18n } from '@/hooks/useI18n';
+import { useI18n } from "@/hooks/useI18n";
 
 function LanguageButton() {
   const { setLanguage } = useI18n();
-  return <button onClick={() => setLanguage('en')}>English</button>;
+  return <button onClick={() => setLanguage("en")}>English</button>;
 }
 ```
 
 ### Lazy Loading de Imagen
+
 ```tsx
-import { useRef } from 'preact/hooks';
-import { useLazyImage } from '@/hooks/useLazyImage';
+import { useRef } from "preact/hooks";
+import { useLazyImage } from "@/hooks/useLazyImage";
 
 function Image({ src, alt }) {
   const imgRef = useRef(null);
   const { isLoaded } = useLazyImage(imgRef, src);
-  
+
   return (
     <img
       ref={imgRef}
       data-src={src}
       alt={alt}
-      className={isLoaded ? 'loaded' : 'loading'}
+      className={isLoaded ? "loaded" : "loading"}
     />
   );
 }
 ```
 
 ### Animación Simple
+
 ```tsx
-import { useEffect } from 'preact/hooks';
-import { gsap } from 'gsap';
+import { useEffect } from "preact/hooks";
+import { gsap } from "gsap";
 
 function AnimatedBox() {
   useEffect(() => {
-    gsap.fromTo('.box', 
+    gsap.fromTo(
+      ".box",
       { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: 1 }
+      { opacity: 1, y: 0, duration: 1 },
     );
   }, []);
-  
+
   return <div className="box">Animado!</div>;
 }
 ```
 
 ### Animación con ScrollTrigger
+
 ```tsx
-import { useEffect } from 'preact/hooks';
-import { fadeInOnScroll } from '@/utils/animations';
+import { useEffect } from "preact/hooks";
+import { fadeInOnScroll } from "@/utils/animations";
 
 function ScrollAnimated() {
   useEffect(() => {
-    fadeInOnScroll('.element');
+    fadeInOnScroll(".element");
   }, []);
-  
+
   return <div className="element">Aparece en scroll</div>;
 }
 ```
@@ -110,6 +116,7 @@ function ScrollAnimated() {
 ## 🎨 Clases Tailwind Útiles
 
 ### Layout
+
 ```css
 /* Contenedor de sección */
 .section-container
@@ -128,6 +135,7 @@ px-4 md:px-8 lg:px-16
 ```
 
 ### Colores del Tema
+
 ```css
 /* Colores Fruco */
 bg-fruco-green      /* Verde principal */
@@ -140,6 +148,7 @@ border-fruco-red
 ```
 
 ### Animaciones CSS
+
 ```css
 /* Fade in */
 animate-[fadeIn_1s_ease-in-out]
@@ -177,46 +186,54 @@ pnpm format           # Prettier
 ## 🌍 Agregar Nuevo Idioma
 
 ### 1. Crear archivo de traducciones
+
 ```typescript
 // src/lib/i18n/de.ts
 export const de: Translations = {
   common: {
     company: "Fruco",
     tagline: "Authentische Tomatensauce",
-    since: "Seit 1959"
+    since: "Seit 1959",
   },
   // ... resto de traducciones
 };
 ```
 
 ### 2. Agregar al index
+
 ```typescript
 // src/lib/i18n/index.ts
 import { de } from "./de";
 
 export const translations = {
-  es, en, fr, pt,
-  de  // ← Nuevo idioma
+  es,
+  en,
+  fr,
+  pt,
+  de, // ← Nuevo idioma
 };
 ```
 
 ### 3. Actualizar tipo
+
 ```typescript
 // src/lib/i18n/types.ts
 export type Language = "es" | "en" | "fr" | "pt" | "de";
 ```
 
 ### 4. Agregar bandera
+
 ```
 public/flags/de.svg
 ```
 
 ### 5. Agregar al selector
+
 ```tsx
 // src/components/LanguageSelector.tsx
 const languages = [
   // ...existentes
-  { code: 'de', flag: '/flags/de.svg', name: 'Deutsch' },
+  { code: "de", flag: "/flags/de.svg", name: "Deutsch" },
 ];
 ```
 
@@ -225,6 +242,7 @@ const languages = [
 ## 🖼️ Agregar Nuevas Imágenes
 
 ### Estructura requerida
+
 ```
 public/products/optimized/
 ├── small/nuevo_producto.avif       # 320px
@@ -233,6 +251,7 @@ public/products/optimized/
 ```
 
 ### Conversión a AVIF
+
 ```bash
 # Con Squoosh CLI
 npx @squoosh/cli --avif auto imagen.jpg
@@ -247,6 +266,7 @@ Get-ChildItem *.jpg | ForEach-Object {
 ```
 
 ### Uso en componente
+
 ```tsx
 <img
   src="/products/optimized/medium/producto.avif"
@@ -266,16 +286,17 @@ Get-ChildItem *.jpg | ForEach-Object {
 ## 📦 Agregar Nuevo Producto
 
 ### 1. Definir en Products.tsx
+
 ```typescript
 // src/lib/Products.tsx
 export const PRODUCTS = [
   // ...existentes
   {
-    id: 'nuevo_producto',
+    id: "nuevo_producto",
     image: {
-      small: '/products/optimized/small/nuevo.avif',
-      medium: '/products/optimized/medium/nuevo.avif',
-      large: '/products/optimized/large/nuevo.avif',
+      small: "/products/optimized/small/nuevo.avif",
+      medium: "/products/optimized/medium/nuevo.avif",
+      large: "/products/optimized/large/nuevo.avif",
     },
     nutritionalInfo: {
       calories: 120,
@@ -288,6 +309,7 @@ export const PRODUCTS = [
 ```
 
 ### 2. Agregar traducciones
+
 ```typescript
 // src/lib/i18n/es.ts
 products: {
@@ -307,6 +329,7 @@ products: {
 ## 🎬 Crear Nueva Animación
 
 ### Animación simple
+
 ```typescript
 // src/utils/animations.ts
 export const myAnimation = (element: string | Element) => {
@@ -318,12 +341,13 @@ export const myAnimation = (element: string | Element) => {
       x: 0,
       duration: 1,
       ease: "power3.out",
-    }
+    },
   );
 };
 ```
 
 ### Con ScrollTrigger
+
 ```typescript
 export const myScrollAnimation = (element: string | Element) => {
   return gsap.fromTo(
@@ -339,21 +363,22 @@ export const myScrollAnimation = (element: string | Element) => {
         end: "bottom 20%",
         toggleActions: "play none none none",
       },
-    }
+    },
   );
 };
 ```
 
 ### Uso en componente
+
 ```tsx
-import { useEffect } from 'preact/hooks';
-import { myAnimation } from '@/utils/animations';
+import { useEffect } from "preact/hooks";
+import { myAnimation } from "@/utils/animations";
 
 function MyComponent() {
   useEffect(() => {
-    myAnimation('.my-element');
+    myAnimation(".my-element");
   }, []);
-  
+
   return <div className="my-element">Contenido</div>;
 }
 ```
@@ -363,26 +388,30 @@ function MyComponent() {
 ## 🐛 Debugging
 
 ### Ver logs de GSAP
+
 ```javascript
 gsap.config({ trialWarn: false });
 ScrollTrigger.config({ logWarnings: true });
 ```
 
 ### Inspeccionar ScrollTriggers
+
 ```javascript
 // En consola del navegador
-ScrollTrigger.getAll()                    // Ver todos
-ScrollTrigger.getById('myTrigger')        // Por ID
-ScrollTrigger.refresh()                   // Recalcular
+ScrollTrigger.getAll(); // Ver todos
+ScrollTrigger.getById("myTrigger"); // Por ID
+ScrollTrigger.refresh(); // Recalcular
 ```
 
 ### Ver bundle analysis
+
 ```bash
 pnpm build
 # Abrir dist/stats.html en navegador
 ```
 
 ### Testing de performance
+
 ```bash
 # Lighthouse
 npx lighthouse http://localhost:3000 --view
@@ -397,6 +426,7 @@ web-vitals http://localhost:3000
 ## 🚀 Deployment Rápido
 
 ### Build y deploy
+
 ```bash
 # 1. Build
 pnpm build
@@ -416,6 +446,7 @@ pm2 save
 ```
 
 ### Actualizar sitio
+
 ```bash
 # Local
 pnpm build
@@ -431,22 +462,23 @@ pm2 restart fruco
 
 ## 🔍 Troubleshooting Rápido
 
-| Problema | Solución |
-|----------|----------|
-| Hot reload no funciona | Reiniciar `pnpm dev` |
-| Build falla | `rm -rf node_modules dist .astro && pnpm install` |
-| Imágenes no cargan | Verificar rutas en `/public` |
-| Animaciones no se ven | Verificar que GSAP esté importado |
-| Traducciones no cambian | Verificar que componente está dentro de `I18nProvider` |
-| Port 3000 ocupado | `PORT=3001 pnpm start` |
-| ScrollTrigger no funciona | Llamar `ScrollTrigger.refresh()` |
-| TypeScript errors | `pnpm astro check` |
+| Problema                  | Solución                                               |
+| ------------------------- | ------------------------------------------------------ |
+| Hot reload no funciona    | Reiniciar `pnpm dev`                                   |
+| Build falla               | `rm -rf node_modules dist .astro && pnpm install`      |
+| Imágenes no cargan        | Verificar rutas en `/public`                           |
+| Animaciones no se ven     | Verificar que GSAP esté importado                      |
+| Traducciones no cambian   | Verificar que componente está dentro de `I18nProvider` |
+| Port 3000 ocupado         | `PORT=3001 pnpm start`                                 |
+| ScrollTrigger no funciona | Llamar `ScrollTrigger.refresh()`                       |
+| TypeScript errors         | `pnpm astro check`                                     |
 
 ---
 
 ## 📚 Recursos Externos
 
 ### Documentación Oficial
+
 - **Astro**: https://docs.astro.build
 - **Preact**: https://preactjs.com/guide/v10/getting-started
 - **Tailwind**: https://tailwindcss.com/docs
@@ -454,12 +486,14 @@ pm2 restart fruco
 - **ScrollTrigger**: https://greensock.com/docs/v3/Plugins/ScrollTrigger
 
 ### Herramientas
+
 - **AVIF Converter**: https://squoosh.app
 - **Lighthouse**: Chrome DevTools → Lighthouse tab
 - **WebPageTest**: https://www.webpagetest.org
 - **Bundle Analyzer**: Incluido en build
 
 ### Cheatsheets
+
 - **Tailwind**: https://nerdcave.com/tailwind-cheat-sheet
 - **GSAP**: https://ihatetomatoes.net/wp-content/uploads/2016/07/GreenSock-Cheatsheet-4.pdf
 - **Git**: https://education.github.com/git-cheat-sheet-education.pdf
@@ -469,6 +503,7 @@ pm2 restart fruco
 ## 💡 Tips y Tricks
 
 ### Performance
+
 ```typescript
 // Usar useMemo para cálculos costosos
 const expensiveValue = useMemo(() => {
@@ -482,22 +517,24 @@ const handleClick = useCallback(() => {
 ```
 
 ### Animaciones
+
 ```typescript
 // Matar animaciones al desmontar
 useEffect(() => {
-  const anim = gsap.to('.el', { x: 100 });
+  const anim = gsap.to(".el", { x: 100 });
   return () => anim.kill();
 }, []);
 
 // Batch animations para mejor performance
-gsap.set(['.el1', '.el2', '.el3'], { opacity: 0 });
+gsap.set([".el1", ".el2", ".el3"], { opacity: 0 });
 ```
 
 ### Debugging
+
 ```typescript
 // Log de re-renders
 useEffect(() => {
-  console.log('Component rendered');
+  console.log("Component rendered");
 });
 
 // Performance measurement
@@ -511,12 +548,14 @@ console.log(`Took ${performance.now() - start}ms`);
 ## 🎓 Aprender Más
 
 ### Tutoriales Recomendados
+
 1. **Astro**: "Build faster websites" - docs.astro.build
 2. **GSAP**: GreenSock Learning Center - greensock.com/learning
 3. **Tailwind**: "Utility-First CSS" - tailwindcss.com/docs
 4. **Performance**: web.dev/learn-web-vitals
 
 ### Proyectos Similar para Inspiración
+
 - https://github.com/withastro/astro
 - https://github.com/saadeghi/daisyui
 - https://github.com/pacocoursey/next-themes
@@ -525,4 +564,4 @@ console.log(`Took ${performance.now() - start}ms`);
 
 **Última actualización**: Octubre 2025
 
-*¿Necesitas más ayuda? Consulta la documentación completa en `/docs`*
+_¿Necesitas más ayuda? Consulta la documentación completa en `/docs`_

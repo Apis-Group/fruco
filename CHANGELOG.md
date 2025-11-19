@@ -12,6 +12,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ### 📚 Added - Documentación Completa
 
 #### Nuevos Documentos
+
 - **README.md**: Documentación principal actualizada con toda la información del proyecto
 - **docs/DEPLOYMENT.md**: Guía exhaustiva de despliegue en Lucushost
 - **docs/COMPONENTS.md**: Documentación detallada de todos los componentes
@@ -23,6 +24,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - **CHANGELOG.md**: Este archivo
 
 #### Contenido Documentado
+
 - ✅ Stack tecnológico completo explicado
 - ✅ Estructura de archivos detallada
 - ✅ 11 componentes documentados con ejemplos
@@ -40,6 +42,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ### 🎯 Improved
 
 #### README.md
+
 - Badges informativos agregados
 - Tabla de contenidos expandida
 - Sección de performance agregada
@@ -50,6 +53,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Guía de contribución mejorada
 
 #### Organización
+
 - Carpeta `/docs` estructurada
 - Sistema de navegación entre documentos
 - Índice maestro creado
@@ -64,6 +68,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 #### ✨ Features
 
 ##### Frontend
+
 - 🏗️ **Astro 5.14.1**: Framework principal con Islands Architecture
 - ⚛️ **Preact 10.27.2**: Librería de UI ligera (3KB)
 - 🎨 **Tailwind CSS 4.1.14**: Sistema de estilos utility-first
@@ -71,12 +76,14 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - 🌍 **Sistema i18n**: 4 idiomas (ES, EN, FR, PT)
 
 ##### Backend
+
 - 🚀 **Express 5.1.0**: Servidor de producción
 - 📦 **Static Site Generation**: Build optimizado
 - 🔄 **SPA Routing**: Fallback a index.html
 
 ##### Components (11 componentes)
-1. **_App.tsx**: Componente raíz con GSAP setup
+
+1. **\_App.tsx**: Componente raíz con GSAP setup
 2. **NavBar.tsx**: Navegación sticky con glassmorphism
 3. **LanguageSelector.tsx**: Selector de idioma flotante
 4. **HeroSection.tsx**: Hero con animaciones de entrada
@@ -89,6 +96,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 11. **Spliter.tsx**: Separador decorativo
 
 ##### Custom Hooks (5 hooks)
+
 1. **useI18n()**: Contexto de internacionalización
 2. **useGSAP()**: Gestión de animaciones
 3. **useLazyImage()**: Lazy loading de imágenes
@@ -96,6 +104,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 5. **useSmoothScroll()**: Scroll suave
 
 ##### Optimizations
+
 - ⚡ **Performance Score**: 98/100 (Lighthouse)
 - 🎯 **LCP**: 1.8s
 - 📦 **Bundle Size**: 145KB (42KB gzipped)
@@ -106,6 +115,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - 💾 **Lazy Loading**: Imágenes y componentes
 
 ##### SEO
+
 - 📱 **Meta Tags**: Open Graph y Twitter Cards
 - 🔍 **Schema.org**: JSON-LD para organizaciones
 - 🤖 **robots.txt**: Configurado
@@ -113,6 +123,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - 📊 **Analytics**: Vercel Analytics integrado
 
 ##### Infrastructure
+
 - 🏠 **Lucushost Ready**: Configurado para hosting compartido
 - 🔄 **PM2 Compatible**: Process management
 - 🔐 **SSL Ready**: Configuración HTTPS
@@ -121,6 +132,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 #### 📦 Dependencies
 
 ##### Production
+
 ```json
 {
   "@astrojs/check": "0.9.4",
@@ -137,6 +149,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ```
 
 ##### Development
+
 ```json
 {
   "@eslint/js": "9.36.0",
@@ -151,19 +164,23 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 #### 🌍 i18n - Idiomas
 
 ##### Español (Base)
+
 - Traducciones completas
 - Idioma por defecto
 - Base para otras traducciones
 
 ##### English
+
 - Traducción completa desde español
 - Terminología técnica adaptada
 
 ##### Français
+
 - Traducción completa desde español
 - Expresiones idiomáticas localizadas
 
 ##### Português
+
 - Traducción completa desde español
 - Variante europea
 
@@ -197,16 +214,19 @@ fruco/
 #### 🎨 Design System
 
 ##### Colores
+
 - `fruco-green`: #2d5016 (Verde principal)
 - `fruco-red`: #c8381c (Rojo acento)
 - `fruco-black`: #000000 (Fondo)
 - `fruco-gold`: #8b7355 (Dorado)
 
 ##### Typography
+
 - Headings: "Noto Serif Georgian"
 - Body: "Open Sans"
 
 ##### Spacing
+
 - Secciones: min-h-screen
 - Padding: px-4 md:px-8 lg:px-16
 - Gap: gap-4 md:gap-8 lg:gap-12
@@ -214,12 +234,14 @@ fruco/
 #### 🔧 Build Configuration
 
 ##### Vite
+
 - Minify: Terser
 - Tree-shake: Aggressive
 - Code-split: Manual chunks
 - Optimize deps: gsap
 
 ##### Astro
+
 - Build: Static (SSG)
 - Integrations: Preact (compat mode)
 - CSS: Inline critical
@@ -228,6 +250,7 @@ fruco/
 #### 🚀 Deployment
 
 ##### Lucushost
+
 - Node.js hosting
 - Express server
 - PM2 process manager
@@ -235,6 +258,7 @@ fruco/
 - SSL via Let's Encrypt
 
 ##### Vercel (Alternative)
+
 - Auto-deploy from Git
 - Edge Network CDN
 - Analytics enabled
@@ -247,6 +271,7 @@ fruco/
 ### 🔮 Planned for v0.3.0
 
 #### Features
+
 - [ ] PWA support con Service Worker
 - [ ] Modo offline con cache
 - [ ] Newsletter subscription
@@ -254,6 +279,7 @@ fruco/
 - [ ] Más productos (expandir a 10+)
 
 #### Improvements
+
 - [ ] Sitemap automático generado
 - [ ] RSS feed para blog
 - [ ] Mejoras de accesibilidad (A11y)
@@ -261,6 +287,7 @@ fruco/
 - [ ] Print styles optimizados
 
 #### Technical
+
 - [ ] Unit tests con Vitest
 - [ ] E2E tests con Playwright
 - [ ] CI/CD pipeline
@@ -270,6 +297,7 @@ fruco/
 ### 🚀 Ideas for v0.4.0
 
 #### Features
+
 - [ ] Tienda online integrada
 - [ ] Sistema de usuarios/auth
 - [ ] Recetas con productos Fruco
@@ -277,6 +305,7 @@ fruco/
 - [ ] Búsqueda full-text
 
 #### Technical
+
 - [ ] Migrar a Astro DB
 - [ ] API REST para productos
 - [ ] CMS integration (Sanity/Contentful)

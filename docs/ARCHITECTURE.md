@@ -66,6 +66,7 @@
 ### Modelo de Rendering
 
 **Hybrid Rendering Strategy**:
+
 - **SSG (Static Site Generation)**: Contenido estático pre-renderizado
 - **Client-Side Hydration**: JavaScript ejecuta solo donde es necesario
 - **Islands Architecture**: Componentes interactivos aislados
@@ -77,9 +78,11 @@
 ### Frontend Framework
 
 #### Astro 5.14.1
+
 **Rol**: Framework principal, generación estática
 
 **Características clave**:
+
 - ✅ Zero JavaScript by default
 - ✅ Islands Architecture
 - ✅ File-based routing
@@ -87,12 +90,14 @@
 - ✅ Multiple framework support
 
 **Ventajas**:
+
 - Performance excepcional (98/100 Lighthouse)
 - SEO-friendly (HTML puro)
 - Tiempo de build rápido
 - Bundle size mínimo
 
 **Uso en el proyecto**:
+
 ```astro
 ---
 // src/pages/index.astro
@@ -107,6 +112,7 @@ import App from '@/pages/_App';
 ```
 
 #### Preact 10.27.2
+
 **Rol**: Librería de UI para componentes interactivos
 
 **¿Por qué Preact y no React?**
@@ -118,17 +124,19 @@ import App from '@/pages/_App';
 | Ecosistema | Enorme | Compatible con React |
 
 **Configuración**:
+
 ```javascript
 // astro.config.mjs
 export default defineConfig({
-  integrations: [preact({ compat: true })],  // compat = alias de react
+  integrations: [preact({ compat: true })], // compat = alias de react
 });
 ```
 
 **Uso**:
+
 ```tsx
 // Componente Preact
-import { useState } from 'preact/hooks';
+import { useState } from "preact/hooks";
 
 export default function Counter() {
   const [count, setCount] = useState(0);
@@ -139,9 +147,11 @@ export default function Counter() {
 ### Styling
 
 #### Tailwind CSS 4.1.14
+
 **Rol**: Framework CSS utility-first
 
 **Configuración personalizada**:
+
 ```css
 /* src/styles/globals.css */
 @theme {
@@ -153,6 +163,7 @@ export default function Counter() {
 ```
 
 **Pipeline de procesamiento**:
+
 ```
 Tailwind CSS (authoring)
     ↓
@@ -166,9 +177,11 @@ CSS minified (~28KB → ~6KB gzipped)
 ### Animaciones
 
 #### GSAP 3.13.0 + ScrollTrigger
+
 **Rol**: Librería profesional de animaciones
 
 **Arquitectura de animaciones**:
+
 ```
 Usuario hace scroll
     ↓
@@ -184,24 +197,27 @@ GPU-accelerated transform/opacity
 ```
 
 **Optimizaciones aplicadas**:
+
 ```typescript
 gsap.config({
-  force3D: true,        // Forzar aceleración GPU
-  nullTargetWarn: false // Silenciar warnings
+  force3D: true, // Forzar aceleración GPU
+  nullTargetWarn: false, // Silenciar warnings
 });
 
 ScrollTrigger.config({
   autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
-  ignoreMobileResize: true  // Mejor performance en móvil
+  ignoreMobileResize: true, // Mejor performance en móvil
 });
 ```
 
 ### Backend (Producción)
 
 #### Express 5.1.0
+
 **Rol**: Servidor HTTP para producción
 
 **Arquitectura del servidor**:
+
 ```javascript
 ┌──────────────────────────────────────┐
 │       Express Application            │
@@ -217,6 +233,7 @@ ScrollTrigger.config({
 ```
 
 **Flujo de request**:
+
 ```
 1. Request llega: GET /productos
        ↓
@@ -240,6 +257,7 @@ ScrollTrigger.config({
 **Responsabilidad**: Renderizado visual, interacción del usuario
 
 **Componentes**:
+
 ```
 Presentational Components
 ├── NavBar              → Navegación
@@ -252,11 +270,13 @@ Presentational Components
 ```
 
 **Características**:
+
 - Componentes "tontos" (stateless)
 - Solo reciben props
 - No contienen lógica de negocio
 
 **Ejemplo**:
+
 ```tsx
 // Componente presentacional puro
 export default function ProductCard({ product, onClick }) {
@@ -275,6 +295,7 @@ export default function ProductCard({ product, onClick }) {
 **Responsabilidad**: Estado, lógica de negocio, side effects
 
 **Hooks personalizados**:
+
 ```
 Custom Hooks
 ├── useI18n()                → Gestión de idiomas
@@ -285,29 +306,42 @@ Custom Hooks
 ```
 
 **Patrón de separación**:
+
 ```tsx
 // ❌ MAL: Lógica mezclada en componente
 function ProductList() {
   const [products, setProducts] = useState([]);
   const t = useTranslations();
-  
+
   useEffect(() => {
     // Lógica compleja de traducción
-    const translated = PRODUCTS.map(p => ({
+    const translated = PRODUCTS.map((p) => ({
       ...p,
       name: t.products[p.id].name,
       // ...más lógica
     }));
     setProducts(translated);
   }, [t]);
-  
-  return <div>{products.map(p => <ProductCard {...p} />)}</div>;
+
+  return (
+    <div>
+      {products.map((p) => (
+        <ProductCard {...p} />
+      ))}
+    </div>
+  );
 }
 
 // ✅ BIEN: Lógica extraída a hook
 function ProductList() {
   const products = useTranslatedProducts(); // ← Hook maneja lógica
-  return <div>{products.map(p => <ProductCard {...p} />)}</div>;
+  return (
+    <div>
+      {products.map((p) => (
+        <ProductCard {...p} />
+      ))}
+    </div>
+  );
 }
 ```
 
@@ -316,6 +350,7 @@ function ProductList() {
 **Responsabilidad**: Definición de datos, traducciones, constantes
 
 **Estructura**:
+
 ```
 Data Layer
 ├── lib/
@@ -328,6 +363,7 @@ Data Layer
 ```
 
 **Patrón de datos inmutables**:
+
 ```typescript
 // Productos como constante inmutable
 export const PRODUCTS: readonly Product[] = [
@@ -348,6 +384,7 @@ PRODUCTS[0].id = 'nuevo';  // ← Error: Cannot assign to 'id' because it is a r
 **Responsabilidad**: Funciones helper, configuraciones, animaciones
 
 **Módulos**:
+
 ```
 Utils
 ├── animations.ts           → Funciones de animación GSAP
@@ -358,6 +395,7 @@ Utils
 ```
 
 **Principio de organización**:
+
 - Funciones puras (sin side effects)
 - Altamente reutilizables
 - Fácilmente testables
@@ -405,6 +443,7 @@ Utils
 ```
 
 **Implementación del contexto**:
+
 ```typescript
 // Provider
 const I18nContext = createContext<I18nContextType | null>(null);
@@ -540,7 +579,7 @@ export function useI18n() {
 
   <!-- Isla interactiva: Con JS -->
   <App client:load />
-  
+
   <footer>
     <!-- Estático: Sin JS -->
     <p>© 2025</p>
@@ -549,6 +588,7 @@ export function useI18n() {
 ```
 
 **Resultado**:
+
 - Header y footer: Solo HTML (0 KB JS)
 - App: Preact + GSAP (~145 KB JS)
 - Total carga inicial: Mínima
@@ -576,7 +616,7 @@ export function useI18n() {
   <App>
     <Layout>
       <NavBar>
-        <Button />  {/* ← Accede a language vía useI18n() */}
+        <Button /> {/* ← Accede a language vía useI18n() */}
       </NavBar>
     </Layout>
   </App>
@@ -592,12 +632,15 @@ export function useI18n() {
 function Component1() {
   const [products, setProducts] = useState([]);
   const t = useTranslations();
-  
+
   useEffect(() => {
-    const translated = PRODUCTS.map(p => ({ ...p, name: t.products[p.id].name }));
+    const translated = PRODUCTS.map((p) => ({
+      ...p,
+      name: t.products[p.id].name,
+    }));
     setProducts(translated);
   }, [t]);
-  
+
   return <div>{/* render */}</div>;
 }
 
@@ -607,12 +650,12 @@ function Component2() {
 
 // Después: Hook reutilizable
 function Component1() {
-  const products = useTranslatedProducts();  // ← DRY
+  const products = useTranslatedProducts(); // ← DRY
   return <div>{/* render */}</div>;
 }
 
 function Component2() {
-  const products = useTranslatedProducts();  // ← Misma lógica
+  const products = useTranslatedProducts(); // ← Misma lógica
   return <div>{/* render */}</div>;
 }
 ```
@@ -690,19 +733,21 @@ function Component2() {
 ### Optimizaciones del Build
 
 #### Tree Shaking
+
 ```javascript
 // Código fuente
-import { gsap, TweenLite, Power2 } from 'gsap';
-gsap.to('.el', { x: 100 });
+import { gsap, TweenLite, Power2 } from "gsap";
+gsap.to(".el", { x: 100 });
 // TweenLite y Power2 no usados
 
 // Después de tree-shake
-import { gsap } from 'gsap';
-gsap.to('.el', { x: 100 });
+import { gsap } from "gsap";
+gsap.to(".el", { x: 100 });
 // ← Solo gsap incluido en bundle
 ```
 
 #### Code Splitting
+
 ```javascript
 // Build result
 dist/_astro/
@@ -717,6 +762,7 @@ dist/_astro/
 ```
 
 #### Minificación con Terser
+
 ```javascript
 // Antes de minificar (legible)
 function calculateTotal(items) {
@@ -728,7 +774,11 @@ function calculateTotal(items) {
 }
 
 // Después de minificar (optimizado)
-function c(i){let t=0;for(const e of i)t+=e.price*e.quantity;return t}
+function c(i) {
+  let t = 0;
+  for (const e of i) t += e.price * e.quantity;
+  return t;
+}
 ```
 
 ---
@@ -737,21 +787,22 @@ function c(i){let t=0;for(const e of i)t+=e.price*e.quantity;return t}
 
 ### ¿Por qué Astro en lugar de Next.js?
 
-| Factor | Next.js | Astro | Ganador |
-|--------|---------|-------|---------|
-| Performance | Buena | Excelente | ✅ Astro |
-| Bundle size | ~80KB | ~3KB | ✅ Astro |
-| SSG | ✅ | ✅ | Empate |
-| SSR | ✅ | ✅ | Empate |
-| React ecosystem | ✅ | Limitado | Next.js |
-| Multi-framework | No | ✅ | ✅ Astro |
-| Learning curve | Media | Baja | ✅ Astro |
+| Factor          | Next.js | Astro     | Ganador  |
+| --------------- | ------- | --------- | -------- |
+| Performance     | Buena   | Excelente | ✅ Astro |
+| Bundle size     | ~80KB   | ~3KB      | ✅ Astro |
+| SSG             | ✅      | ✅        | Empate   |
+| SSR             | ✅      | ✅        | Empate   |
+| React ecosystem | ✅      | Limitado  | Next.js  |
+| Multi-framework | No      | ✅        | ✅ Astro |
+| Learning curve  | Media   | Baja      | ✅ Astro |
 
 **Decisión**: Astro para sitio corporativo estático con performance crítica
 
 ### ¿Por qué Preact en lugar de React?
 
 **Análisis**:
+
 - Bundle size: 3KB vs 40KB (92% reducción)
 - API: 99% compatible
 - Performance: Equivalente
@@ -761,24 +812,26 @@ function c(i){let t=0;for(const e of i)t+=e.price*e.quantity;return t}
 
 ### ¿Por qué GSAP en lugar de CSS animations?
 
-| Feature | CSS Animations | GSAP |
-|---------|----------------|------|
-| Performance | Buena | Excelente |
-| Compatibilidad | ✅ | ✅ |
-| Secuencias complejas | Difícil | Fácil |
-| ScrollTrigger | Manual | Built-in |
-| Control programático | Limitado | Completo |
+| Feature              | CSS Animations | GSAP      |
+| -------------------- | -------------- | --------- |
+| Performance          | Buena          | Excelente |
+| Compatibilidad       | ✅             | ✅        |
+| Secuencias complejas | Difícil        | Fácil     |
+| ScrollTrigger        | Manual         | Built-in  |
+| Control programático | Limitado       | Completo  |
 
 **Decisión**: GSAP para animaciones complejas y control total
 
 ### ¿Por qué Express en lugar de servir directamente?
 
 **Alternativas consideradas**:
+
 1. Apache/Nginx directo
 2. Vercel serverless
 3. **Express custom server** ← Elegido
 
 **Razones**:
+
 - ✅ Control total de routing SPA
 - ✅ Compatible con Lucushost (hosting compartido)
 - ✅ Fácil de configurar y mantener

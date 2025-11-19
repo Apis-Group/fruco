@@ -16,15 +16,15 @@
 
 ### Métricas Objetivo
 
-| Métrica | Objetivo | Actual | Estado |
-|---------|----------|--------|--------|
-| **LCP** (Largest Contentful Paint) | < 2.5s | ~1.8s | ✅ Excelente |
-| **FID** (First Input Delay) | < 100ms | ~50ms | ✅ Excelente |
-| **CLS** (Cumulative Layout Shift) | < 0.1 | ~0.05 | ✅ Excelente |
-| **FCP** (First Contentful Paint) | < 1.8s | ~1.2s | ✅ Excelente |
-| **TTI** (Time to Interactive) | < 3.8s | ~2.5s | ✅ Excelente |
-| **Bundle Size** (JS) | < 200KB | ~145KB | ✅ Óptimo |
-| **Bundle Size** (CSS) | < 50KB | ~28KB | ✅ Óptimo |
+| Métrica                            | Objetivo | Actual | Estado       |
+| ---------------------------------- | -------- | ------ | ------------ |
+| **LCP** (Largest Contentful Paint) | < 2.5s   | ~1.8s  | ✅ Excelente |
+| **FID** (First Input Delay)        | < 100ms  | ~50ms  | ✅ Excelente |
+| **CLS** (Cumulative Layout Shift)  | < 0.1    | ~0.05  | ✅ Excelente |
+| **FCP** (First Contentful Paint)   | < 1.8s   | ~1.2s  | ✅ Excelente |
+| **TTI** (Time to Interactive)      | < 3.8s   | ~2.5s  | ✅ Excelente |
+| **Bundle Size** (JS)               | < 200KB  | ~145KB | ✅ Óptimo    |
+| **Bundle Size** (CSS)              | < 50KB   | ~28KB  | ✅ Óptimo    |
 
 ### Estrategias Implementadas
 
@@ -55,34 +55,35 @@ export default defineConfig({
       minify: "terser",
       terserOptions: {
         compress: {
-          drop_console: true,        // Elimina console.log
-          drop_debugger: true,        // Elimina debugger
-          pure_funcs: [               // Elimina funciones específicas
+          drop_console: true, // Elimina console.log
+          drop_debugger: true, // Elimina debugger
+          pure_funcs: [
+            // Elimina funciones específicas
             "console.log",
             "console.info",
             "console.debug",
             "console.warn",
           ],
-          dead_code: true,            // Elimina código muerto
-          unused: true,               // Elimina variables no usadas
+          dead_code: true, // Elimina código muerto
+          unused: true, // Elimina variables no usadas
         },
         mangle: {
-          toplevel: true,             // Minifica nombres de nivel superior
+          toplevel: true, // Minifica nombres de nivel superior
         },
       },
-      
+
       // Code Splitting Manual
       rollupOptions: {
         output: {
           manualChunks: {
             // GSAP en chunk separado (cache estable)
             gsap: ["gsap", "gsap/ScrollTrigger"],
-            
+
             // Preact vendor chunk
             "preact-vendor": ["preact", "preact/hooks"],
           },
         },
-        
+
         // Tree-shaking agresivo
         treeshake: {
           preset: "recommended",
@@ -90,10 +91,10 @@ export default defineConfig({
         },
       },
     },
-    
+
     // Optimización de dependencias
     optimizeDeps: {
-      include: ["gsap"],              // Pre-bundle para dev rápido
+      include: ["gsap"], // Pre-bundle para dev rápido
     },
   },
 });
@@ -144,11 +145,13 @@ pnpm build
 ### Formato AVIF
 
 **¿Por qué AVIF?**
+
 - 50% más pequeño que JPEG
 - 20% más pequeño que WebP
 - Soporte creciente en navegadores modernos
 
 **Conversión de imágenes**:
+
 ```bash
 # Convertir JPG/PNG a AVIF
 npx @squoosh/cli --avif '{"effort":4,"quality":75}' images/*.jpg
@@ -162,6 +165,7 @@ done
 ### Imágenes Responsivas
 
 **Estructura de archivos**:
+
 ```
 public/products/optimized/
 ├── small/                # 320px  - móviles
@@ -173,6 +177,7 @@ public/products/optimized/
 ```
 
 **Implementación**:
+
 ```tsx
 <img
   src="/products/optimized/medium/producto.avif"
@@ -189,6 +194,7 @@ public/products/optimized/
 ```
 
 **Explicación de `sizes`**:
+
 - `(max-width: 768px) 100vw`: En móvil, imagen ocupa 100% del viewport
 - `(max-width: 1024px) 50vw`: En tablet, imagen ocupa 50% del viewport
 - `33vw`: En desktop, imagen ocupa 33% del viewport (grid de 3 columnas)
@@ -196,6 +202,7 @@ public/products/optimized/
 ### Lazy Loading Inteligente
 
 **Implementación con Intersection Observer**:
+
 ```typescript
 // hooks/useLazyImage.ts
 export function useLazyImage(ref: RefObject<HTMLImageElement>, src: string) {
@@ -208,20 +215,20 @@ export function useLazyImage(ref: RefObject<HTMLImageElement>, src: string) {
           if (entry.isIntersecting) {
             const img = entry.target as HTMLImageElement;
             const dataSrc = img.getAttribute("data-src");
-            
+
             if (dataSrc) {
               img.src = dataSrc;
               img.onload = () => setIsLoaded(true);
             }
-            
+
             observer.unobserve(img);
           }
         });
       },
       {
-        rootMargin: "50px",   // Carga 50px antes de ser visible
+        rootMargin: "50px", // Carga 50px antes de ser visible
         threshold: 0.01,
-      }
+      },
     );
 
     if (ref.current) {
@@ -242,6 +249,7 @@ export function useLazyImage(ref: RefObject<HTMLImageElement>, src: string) {
 ### Preload de Imagen LCP
 
 **Layout.astro**:
+
 ```astro
 <head>
   <!-- Preload de imagen crítica (LCP) -->
@@ -256,6 +264,7 @@ export function useLazyImage(ref: RefObject<HTMLImageElement>, src: string) {
 ```
 
 **Por qué esto mejora LCP**:
+
 1. Navegador descarga logo inmediatamente
 2. No espera a parsear CSS/JS
 3. Reduce LCP de ~3s a ~1.8s
@@ -269,15 +278,16 @@ export function useLazyImage(ref: RefObject<HTMLImageElement>, src: string) {
 **Objetivo**: Cargar solo el código necesario para cada página.
 
 **Implementación**:
+
 ```javascript
 // Chunks manuales
 manualChunks: {
   // Bibliotecas grandes que cambian poco
   'gsap': ['gsap', 'gsap/ScrollTrigger'],
-  
+
   // Vendor bundle
   'preact-vendor': ['preact', 'preact/hooks'],
-  
+
   // Componentes pesados (opcional)
   'heavy-components': [
     './src/components/GoogleMaps.tsx',
@@ -287,6 +297,7 @@ manualChunks: {
 ```
 
 **Resultado**:
+
 - Chunk inicial: ~60KB (gzipped)
 - Chunks lazy: ~20KB cada uno
 - Total: ~145KB, pero carga progresiva
@@ -294,15 +305,17 @@ manualChunks: {
 ### Inlining de CSS Crítico
 
 **Configuración**:
+
 ```javascript
 export default defineConfig({
   build: {
-    inlineStylesheets: "auto",  // Inline CSS < 10KB automáticamente
+    inlineStylesheets: "auto", // Inline CSS < 10KB automáticamente
   },
 });
 ```
 
 **Resultado**:
+
 ```html
 <!-- CSS crítico inlineado -->
 <style>
@@ -310,19 +323,34 @@ export default defineConfig({
 </style>
 
 <!-- CSS no crítico cargado async -->
-<link rel="stylesheet" href="/_astro/index.abc123.css" media="print" onload="this.media='all'">
+<link
+  rel="stylesheet"
+  href="/_astro/index.abc123.css"
+  media="print"
+  onload="this.media='all'"
+/>
 ```
 
 ### Minificación CSS
 
 **Tailwind + PostCSS**:
+
 ```css
 /* Antes (desarrollo) */
-.bg-white\/10 { background-color: rgba(255, 255, 255, 0.1); }
-.backdrop-blur-md { backdrop-filter: blur(12px); }
+.bg-white\/10 {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+}
 
 /* Después (producción) */
-.a{background-color:rgba(255,255,255,.1)}.b{backdrop-filter:blur(12px)}
+.a {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.b {
+  backdrop-filter: blur(12px);
+}
 ```
 
 **Resultado**: CSS de ~120KB → ~28KB (minificado) → ~6KB (gzipped)
@@ -330,20 +358,22 @@ export default defineConfig({
 ### Tree Shaking de JavaScript
 
 **Ejemplo**:
+
 ```javascript
 // Importación específica (tree-shakeable)
-import { gsap } from "gsap";              // ❌ 68KB
-import { gsap } from "gsap/gsap-core";    // ✅ 25KB
+import { gsap } from "gsap"; // ❌ 68KB
+import { gsap } from "gsap/gsap-core"; // ✅ 25KB
 
 // Módulos ES6
-import { ScrollTrigger } from "gsap/ScrollTrigger";  // ✅ Solo lo que usas
+import { ScrollTrigger } from "gsap/ScrollTrigger"; // ✅ Solo lo que usas
 ```
 
 **Eliminación de código muerto**:
+
 ```javascript
 // Terser elimina esto en producción
-if (process.env.NODE_ENV === 'development') {
-  console.log('Debug info');  // ← Eliminado en build
+if (process.env.NODE_ENV === "development") {
+  console.log("Debug info"); // ← Eliminado en build
 }
 ```
 
@@ -354,20 +384,21 @@ if (process.env.NODE_ENV === 'development') {
 ### Optimizaciones SEO Implementadas
 
 #### 1. **Meta Tags Completos**
+
 ```astro
 <head>
   <!-- Basic SEO -->
   <title>Fruco - Salsa de Tomate Tradicional desde 1959</title>
   <meta name="description" content="Descubre Fruco, la auténtica salsa..." />
   <meta name="keywords" content="fruco, salsa tomate, tradicional..." />
-  
+
   <!-- Open Graph -->
   <meta property="og:title" content="Fruco - Salsa de Tomate" />
   <meta property="og:description" content="..." />
   <meta property="og:image" content="/logo_fruco.avif" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://fruco.vercel.app/" />
-  
+
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Fruco" />
@@ -377,25 +408,27 @@ if (process.env.NODE_ENV === 'development') {
 ```
 
 #### 2. **Schema.org JSON-LD**
+
 ```html
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Fruco",
-  "url": "https://fruco.vercel.app/",
-  "logo": "https://fruco.vercel.app/logo_fruco.avif",
-  "description": "Salsa de tomate tradicional española desde 1959",
-  "foundingDate": "1959",
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "ES"
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Fruco",
+    "url": "https://fruco.vercel.app/",
+    "logo": "https://fruco.vercel.app/logo_fruco.avif",
+    "description": "Salsa de tomate tradicional española desde 1959",
+    "foundingDate": "1959",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "ES"
+    }
   }
-}
 </script>
 ```
 
 #### 3. **robots.txt**
+
 ```
 User-agent: *
 Allow: /
@@ -404,6 +437,7 @@ Sitemap: https://fruco.vercel.app/sitemap.xml
 ```
 
 #### 4. **Canonical URLs**
+
 ```html
 <link rel="canonical" href="https://fruco.vercel.app/" />
 ```
@@ -413,6 +447,7 @@ Sitemap: https://fruco.vercel.app/sitemap.xml
 #### LCP (Largest Contentful Paint) - 1.8s ✅
 
 **Optimizaciones aplicadas**:
+
 1. ✅ Preload de imagen hero
 2. ✅ Formato AVIF (50% más pequeño)
 3. ✅ `fetchpriority="high"` en imagen LCP
@@ -440,6 +475,7 @@ Sitemap: https://fruco.vercel.app/sitemap.xml
 #### FID (First Input Delay) - 50ms ✅
 
 **Optimizaciones aplicadas**:
+
 1. ✅ Preact (ligero, 3KB)
 2. ✅ JavaScript mínimo en main thread
 3. ✅ Eventos delegados
@@ -447,12 +483,13 @@ Sitemap: https://fruco.vercel.app/sitemap.xml
 
 ```typescript
 // Event listeners optimizados
-window.addEventListener('scroll', handleScroll, { passive: true });
+window.addEventListener("scroll", handleScroll, { passive: true });
 ```
 
 #### CLS (Cumulative Layout Shift) - 0.05 ✅
 
 **Optimizaciones aplicadas**:
+
 1. ✅ Dimensiones explícitas en imágenes
 2. ✅ Aspect ratio containers
 3. ✅ Font loading optimizado
@@ -481,58 +518,67 @@ window.addEventListener('scroll', handleScroll, { passive: true });
 ### Headers de Cache
 
 **Configuración en server.js**:
+
 ```javascript
-app.use(express.static(path.join(__dirname, "dist"), {
-  maxAge: '1y',          // Cache por 1 año
-  etag: true,            // ETag para validación
-  lastModified: true,    // Last-Modified header
-  setHeaders: (res, filePath) => {
-    // HTML: no cache (siempre actualizado)
-    if (filePath.endsWith('.html')) {
-      res.setHeader('Cache-Control', 'no-cache');
-    }
-    
-    // Assets con hash: cache largo
-    if (/\.[a-f0-9]{8}\.(js|css)$/.test(filePath)) {
-      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-    }
-    
-    // Imágenes: cache moderado
-    if (/\.(avif|webp|jpg|png|svg)$/.test(filePath)) {
-      res.setHeader('Cache-Control', 'public, max-age=2592000'); // 30 días
-    }
-  }
-}));
+app.use(
+  express.static(path.join(__dirname, "dist"), {
+    maxAge: "1y", // Cache por 1 año
+    etag: true, // ETag para validación
+    lastModified: true, // Last-Modified header
+    setHeaders: (res, filePath) => {
+      // HTML: no cache (siempre actualizado)
+      if (filePath.endsWith(".html")) {
+        res.setHeader("Cache-Control", "no-cache");
+      }
+
+      // Assets con hash: cache largo
+      if (/\.[a-f0-9]{8}\.(js|css)$/.test(filePath)) {
+        res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+      }
+
+      // Imágenes: cache moderado
+      if (/\.(avif|webp|jpg|png|svg)$/.test(filePath)) {
+        res.setHeader("Cache-Control", "public, max-age=2592000"); // 30 días
+      }
+    },
+  }),
+);
 ```
 
 ### Compresión Gzip/Brotli
 
 **Instalación**:
+
 ```bash
 pnpm add compression
 ```
 
 **Configuración**:
-```javascript
-import compression from 'compression';
 
-app.use(compression({
-  level: 6,              // Balance entre compresión y CPU
-  threshold: 1024,       // Solo archivos > 1KB
-  filter: (req, res) => {
-    // Comprimir solo text, css, js, json
-    return /json|text|javascript|css/.test(res.getHeader('Content-Type'));
-  }
-}));
+```javascript
+import compression from "compression";
+
+app.use(
+  compression({
+    level: 6, // Balance entre compresión y CPU
+    threshold: 1024, // Solo archivos > 1KB
+    filter: (req, res) => {
+      // Comprimir solo text, css, js, json
+      return /json|text|javascript|css/.test(res.getHeader("Content-Type"));
+    },
+  }),
+);
 ```
 
 **Resultado**:
+
 - JS: 145KB → 42KB (71% reducción)
 - CSS: 28KB → 6KB (79% reducción)
 
 ### CDN Strategy
 
 **Vercel Edge Network** (automático en deployment):
+
 - ✅ 70+ ubicaciones globales
 - ✅ Cache inteligente
 - ✅ Compresión Brotli automática
@@ -565,6 +611,7 @@ import { SpeedInsights } from '@vercel/speed-insights/astro';
 ```
 
 **Métricas capturadas**:
+
 - LCP, FID, CLS (Core Web Vitals)
 - TTFB (Time to First Byte)
 - FCP (First Contentful Paint)
@@ -575,6 +622,7 @@ import { SpeedInsights } from '@vercel/speed-insights/astro';
 ### Monitoreo en Producción
 
 **Dashboard de Vercel Analytics**:
+
 ```
 Real User Monitoring (RUM):
 - Promedio LCP: 1.8s
