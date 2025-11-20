@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Fruco Logo](public/logo_fruco.avif)
+![Fruco Logo](public/logo_fruco.svg)
 
 **Salsa de Tomate Tradicional desde 1959**
 

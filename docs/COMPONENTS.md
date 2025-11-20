@@ -352,11 +352,11 @@ useEffect(() => {
 
 ```tsx
 <img
-  src="/logo_fruco.avif"
+  src="/logo_fruco.svg"
   srcSet="
-    /logo_fruco.avif 320w,
-    /logo_fruco.avif 640w,
-    /logo_fruco.avif 1024w
+    /logo_fruco.svg 320w,
+    /logo_fruco.svg 640w,
+    /logo_fruco.svg 1024w
   "
   sizes="(max-width: 768px) 320px, (max-width: 1024px) 384px, 448px"
   alt="Fruco Logo"
@@ -724,7 +724,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Logo y descripción */}
           <div>
-            <img src="/logo_fruco.avif" alt="Fruco" className="h-12 mb-4" />
+            <img src="/logo_fruco.svg" alt="Fruco" className="h-12 mb-4" />
             <p className="text-white/70">{t.footer.description}</p>
           </div>
 
@@ -822,7 +822,7 @@ const description = "Descripción SEO...";
     <link rel="icon" href="/favicon/favicon.ico" />
 
     <!-- Preload LCP image -->
-    <link rel="preload" href="/logo_fruco.avif" as="image" />
+    <link rel="preload" href="/logo_fruco.svg" as="image" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

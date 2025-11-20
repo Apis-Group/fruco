@@ -255,7 +255,7 @@ export function useLazyImage(ref: RefObject<HTMLImageElement>, src: string) {
   <!-- Preload de imagen crítica (LCP) -->
   <link
     rel="preload"
-    href="/logo_fruco.avif"
+    href="/logo_fruco.svg"
     as="image"
     fetchpriority="high"
     imagesizes="(max-width: 768px) 320px, (max-width: 1024px) 384px, 448px"
@@ -395,7 +395,7 @@ if (process.env.NODE_ENV === "development") {
   <!-- Open Graph -->
   <meta property="og:title" content="Fruco - Salsa de Tomate" />
   <meta property="og:description" content="..." />
-  <meta property="og:image" content="/logo_fruco.avif" />
+  <meta property="og:image" content="/logo_fruco.svg" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://fruco.vercel.app/" />
 
@@ -403,7 +403,7 @@ if (process.env.NODE_ENV === "development") {
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Fruco" />
   <meta name="twitter:description" content="..." />
-  <meta name="twitter:image" content="/logo_fruco.avif" />
+  <meta name="twitter:image" content="/logo_fruco.svg" />
 </head>
 ```
 
@@ -416,7 +416,7 @@ if (process.env.NODE_ENV === "development") {
     "@type": "Organization",
     "name": "Fruco",
     "url": "https://fruco.vercel.app/",
-    "logo": "https://fruco.vercel.app/logo_fruco.avif",
+    "logo": "https://fruco.vercel.app/logo_fruco.svg",
     "description": "Salsa de tomate tradicional española desde 1959",
     "foundingDate": "1959",
     "address": {
@@ -458,14 +458,14 @@ Sitemap: https://fruco.vercel.app/sitemap.xml
 <!-- Preload LCP -->
 <link
   rel="preload"
-  href="/logo_fruco.avif"
+  href="/logo_fruco.svg"
   as="image"
   fetchpriority="high"
 />
 
 <!-- Imagen con prioridad alta -->
 <img
-  src="/logo_fruco.avif"
+  src="/logo_fruco.svg"
   alt="Fruco"
   fetchpriority="high"
   loading="eager"

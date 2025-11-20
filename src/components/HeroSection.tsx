@@ -119,7 +119,7 @@ const HeroSection = ({
       {/* Logo sticky en la esquina superior izquierda */}
       <div
         ref={stickyLogoRef}
-        className={`fixed top-0 left-4 z-50 w-full bg-black md:bg-transparent transition-opacity duration-300 ${
+        className={`fixed top-0 left-4 z-50 w-full md:w-auto bg-black transition-opacity duration-300 ${
           showStickyLogo
             ? "pointer-events-auto"
             : "opacity-0 pointer-events-none"
