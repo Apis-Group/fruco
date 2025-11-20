@@ -45,6 +45,7 @@ We use Google Analytics 4 (GA4) to collect statistical information about how vis
 **Measurement ID:** G-Z7SJT3Z527
 
 **Data collected:**
+
 - Pages visited
 - Time spent on site
 - Device and browser used

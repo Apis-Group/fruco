@@ -45,6 +45,7 @@ Utilizamos o Google Analytics 4 (GA4) para recolher informações estatísticas 
 **ID de medição:** G-Z7SJT3Z527
 
 **Dados recolhidos:**
+
 - Páginas visitadas
 - Tempo de permanência
 - Dispositivo e navegador utilizado
