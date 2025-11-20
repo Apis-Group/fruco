@@ -171,7 +171,7 @@ export const pt: Translations = {
       "Junte-se à família Fruco e experimente a tradição em cada mordida. Entre em contato conosco para saber mais sobre nossos produtos e onde encontrá-los.",
     contactInfo: {
       email: "info@fruco.es",
-      phone: "660 85 80 90",
+      phone: "+34 660 85 80 90",
       address: "Mérida, Espanha",
     },
     locations: {
@@ -190,7 +190,7 @@ export const pt: Translations = {
   footer: {
     rights: "Todos os direitos reservados.",
     location: "Espanha",
-    phone: "Tel: 660 85 80 90",
+    phone: "Tel: +34 660 85 80 90",
     email: "Email: info@fruco.es",
     tagline:
       "Molho de tomate tradicional desde 1959. Ingredientes naturais e sabor caseiro em cada receita.",

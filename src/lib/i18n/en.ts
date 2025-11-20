@@ -171,7 +171,7 @@ export const en: Translations = {
       "Join the Fruco family and experience tradition in every bite. Contact us to learn more about our products and where to find them.",
     contactInfo: {
       email: "info@fruco.es",
-      phone: "660 85 80 90",
+      phone: "+34 660 85 80 90",
       address: "Mérida, Spain",
     },
     locations: {
@@ -190,7 +190,7 @@ export const en: Translations = {
   footer: {
     rights: "All rights reserved.",
     location: "Spain",
-    phone: "Tel: 660 85 80 90",
+    phone: "Tel: +34 660 85 80 90",
     email: "Email: info@fruco.es",
     tagline:
       "Traditional tomato sauce since 1959. Natural ingredients and homemade flavor in every recipe.",

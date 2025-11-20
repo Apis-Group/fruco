@@ -172,7 +172,7 @@ export const es: Translations = {
       "Únete a la familia Fruco y experimenta la tradición en cada bocado. Contáctanos para conocer más sobre nuestros productos y dónde encontrarlos.",
     contactInfo: {
       email: "info@fruco.es",
-      phone: "660 85 80 90",
+      phone: "+34 660 85 80 90",
       address: "Mérida, España",
     },
     locations: {
@@ -191,7 +191,7 @@ export const es: Translations = {
   footer: {
     rights: "Todos los derechos reservados.",
     location: "España",
-    phone: "Tel: 660 85 80 90",
+    phone: "Tel: +34 660 85 80 90",
     email: "Email: info@fruco.es",
     tagline:
       "Salsa de tomate tradicional desde 1959. Ingredientes naturales y sabor casero en cada receta.",
