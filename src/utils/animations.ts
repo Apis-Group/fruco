@@ -1,10 +1,8 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// Registrar el plugin ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
-// Configuraciones de animación predefinidas
 export const animationConfig = {
   fadeIn: {
     duration: 1,
@@ -23,21 +21,8 @@ export const animationConfig = {
     ease: "none",
     yPercent: -50,
   },
-  scaleOnHover: {
-    duration: 0.3,
-    ease: "power2.out",
-    scale: 1.05,
-  },
-  heroEntrance: {
-    duration: 1.2,
-    ease: "power3.out",
-    opacity: 0,
-    scale: 0.8,
-    y: 100,
-  },
 };
 
-// Función para animación de fade in con ScrollTrigger
 export const fadeInOnScroll = (
   element: string | Element,
   options?: ScrollTrigger.Vars,
@@ -65,7 +50,6 @@ export const fadeInOnScroll = (
   );
 };
 
-// Función para animación de slide up con ScrollTrigger
 export const slideUpOnScroll = (
   element: string | Element,
   delay: number = 0,
@@ -92,7 +76,6 @@ export const slideUpOnScroll = (
   );
 };
 
-// Función para efecto parallax
 export const parallaxEffect = (
   element: string | Element,
   speed: number = 0.5,
@@ -109,7 +92,6 @@ export const parallaxEffect = (
   });
 };
 
-// Función para animación de entrada del hero
 export const heroEntrance = (elements: {
   logo: string | Element;
   title: string | Element;
@@ -117,7 +99,6 @@ export const heroEntrance = (elements: {
 }) => {
   const tl = gsap.timeline();
 
-  // Logo aparece primero
   tl.fromTo(
     elements.logo,
     {
@@ -133,7 +114,6 @@ export const heroEntrance = (elements: {
       ease: "power3.out",
     },
   )
-    // Título aparece después
     .fromTo(
       elements.title,
       {
@@ -148,7 +128,6 @@ export const heroEntrance = (elements: {
       },
       "-=0.6",
     )
-    // Subtítulo aparece al final
     .fromTo(
       elements.subtitle,
       {
@@ -167,7 +146,6 @@ export const heroEntrance = (elements: {
   return tl;
 };
 
-// Función para animación de productos en grid
 export const productGridAnimation = (
   container: string | Element,
   immediate: boolean = false,
@@ -180,17 +158,16 @@ export const productGridAnimation = (
     products = gsap.utils.toArray(container.querySelectorAll(".product-item"));
   }
 
-  const animationConfig = {
+  const config = {
     opacity: 1,
     y: 0,
     scale: 1,
     duration: 0.6,
     ease: "power2.out",
-    stagger: 0.15, // Aumentado de 0.1 a 0.15 para efecto más sutil
+    stagger: 0.15,
   };
 
   if (immediate) {
-    // Animación inmediata sin ScrollTrigger
     return gsap.fromTo(
       products,
       {
@@ -199,8 +176,8 @@ export const productGridAnimation = (
         scale: 0.9,
       },
       {
-        ...animationConfig,
-        delay: 0.5, // Aumentado de 0.3 a 0.5 para dar más tiempo
+        ...config,
+        delay: 0.5,
       },
     );
   }
@@ -213,7 +190,7 @@ export const productGridAnimation = (
       scale: 0.9,
     },
     {
-      ...animationConfig,
+      ...config,
       scrollTrigger: {
         trigger: container,
         start: "top 70%",
@@ -224,47 +201,12 @@ export const productGridAnimation = (
   );
 };
 
-// Función para hover effects en productos
-export const productHoverEffect = (element: string | Element) => {
-  const el =
-    typeof element === "string" ? document.querySelector(element) : element;
-
-  if (!el) return;
-
-  const handleMouseEnter = () => {
-    gsap.to(el, {
-      scale: 1.05,
-      duration: 0.3,
-      ease: "power2.out",
-    });
-  };
-
-  const handleMouseLeave = () => {
-    gsap.to(el, {
-      scale: 1,
-      duration: 0.3,
-      ease: "power2.out",
-    });
-  };
-
-  el.addEventListener("mouseenter", handleMouseEnter);
-  el.addEventListener("mouseleave", handleMouseLeave);
-
-  // Retornar función de cleanup
-  return () => {
-    el.removeEventListener("mouseenter", handleMouseEnter);
-    el.removeEventListener("mouseleave", handleMouseLeave);
-  };
-};
-
-// Función para limpiar todas las animaciones ScrollTrigger
 export const cleanupScrollTriggers = () => {
   for (const trigger of ScrollTrigger.getAll()) {
     trigger.kill();
   }
 };
 
-// Función para refrescar ScrollTrigger (útil después de cambios en el DOM)
 export const refreshScrollTrigger = () => {
   ScrollTrigger.refresh();
 };
