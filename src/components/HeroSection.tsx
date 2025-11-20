@@ -129,7 +129,7 @@ const HeroSection = ({
           <img
             src={topSrc}
             alt="Fruco"
-            className="w-25 md:w-24 lg:w-28 hover:scale-110 transition-transform duration-300"
+            className="w-20 md:w-24 lg:w-28 hover:scale-110 transition-transform duration-300"
             width={400}
             height={334}
           />
