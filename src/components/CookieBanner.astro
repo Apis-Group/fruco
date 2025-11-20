@@ -1,0 +1,144 @@
+---
+interface Props {
+  language?: string;
+}
+
+const { language = "es" } = Astro.props;
+---
+
+<cookie-banner data-language={language}></cookie-banner>
+
+<script>
+  class CookieBanner extends HTMLElement {
+    constructor() {
+      super();
+      this.checkConsent();
+    }
+
+    checkConsent() {
+      const consent = localStorage.getItem("cookie-consent");
+      if (!consent) {
+        setTimeout(() => {
+          this.showBanner();
+        }, 1000);
+      } else if (consent === "accepted") {
+        this.loadGoogleAnalytics();
+      }
+    }
+
+    showBanner() {
+      const language = this.dataset.language || "es";
+      const texts = {
+        es: {
+          title: "Uso de cookies",
+          message:
+            "Utilizamos cookies propias y de terceros (Google Analytics) para analizar el tráfico y mejorar tu experiencia en nuestro sitio web.",
+          accept: "Aceptar cookies",
+          reject: "Rechazar",
+          more: "Más información",
+        },
+        en: {
+          title: "Cookie usage",
+          message:
+            "We use our own and third-party cookies (Google Analytics) to analyze traffic and improve your experience on our website.",
+          accept: "Accept cookies",
+          reject: "Reject",
+          more: "More information",
+        },
+        fr: {
+          title: "Utilisation des cookies",
+          message:
+            "Nous utilisons nos propres cookies et ceux de tiers (Google Analytics) pour analyser le trafic et améliorer votre expérience sur notre site web.",
+          accept: "Accepter les cookies",
+          reject: "Refuser",
+          more: "Plus d'informations",
+        },
+        pt: {
+          title: "Uso de cookies",
+          message:
+            "Utilizamos cookies próprios e de terceiros (Google Analytics) para analisar o tráfego e melhorar sua experiência em nosso site.",
+          accept: "Aceitar cookies",
+          reject: "Rejeitar",
+          more: "Mais informações",
+        },
+      };
+
+      const t = texts[language as keyof typeof texts] || texts.es;
+
+      this.innerHTML = `
+        <div class="fixed bottom-6 right-6 z-50 max-w-md transition-all duration-300 translate-y-4 opacity-0" id="cookie-banner-container">
+          <div class="bg-white border border-gray-300 rounded-lg shadow-xl">
+            <div class="bg-gray-100 px-6 py-3 border-b border-gray-300">
+              <h3 class="text-gray-900 font-semibold text-base">${t.title}</h3>
+            </div>
+            <div class="p-6 space-y-4">
+              <p class="text-gray-600 text-sm leading-relaxed">${t.message}</p>
+              <div class="flex flex-col sm:flex-row gap-2.5">
+                <button id="accept-cookies" class="flex-1 bg-gray-900 hover:bg-gray-800 text-white font-medium py-2.5 px-4 rounded-md transition-colors duration-200">
+                  ${t.accept}
+                </button>
+                <button id="reject-cookies" class="flex-1 bg-white hover:bg-gray-50 text-gray-700 font-medium py-2.5 px-4 rounded-md border border-gray-300 transition-colors duration-200">
+                  ${t.reject}
+                </button>
+              </div>
+              <a href="/legal/${language}/politica-cookies" class="block text-center text-gray-600 hover:text-gray-900 text-sm transition-colors underline">
+                ${t.more}
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+
+      setTimeout(() => {
+        const container = this.querySelector("#cookie-banner-container");
+        if (container) {
+          container.classList.remove("translate-y-4", "opacity-0");
+          container.classList.add("translate-y-0", "opacity-100");
+        }
+      }, 100);
+
+      this.querySelector("#accept-cookies")?.addEventListener("click", () => {
+        localStorage.setItem("cookie-consent", "accepted");
+        this.loadGoogleAnalytics();
+        this.closeBanner();
+      });
+
+      this.querySelector("#reject-cookies")?.addEventListener("click", () => {
+        localStorage.setItem("cookie-consent", "rejected");
+        this.closeBanner();
+      });
+    }
+
+    loadGoogleAnalytics() {
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=G-Z7SJT3Z527";
+      document.head.appendChild(script);
+
+      script.onload = () => {
+        // @ts-expect-error - dataLayer is added by gtag.js
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          // @ts-expect-error - dataLayer is added by gtag.js
+          window.dataLayer.push(arguments);
+        }
+        // @ts-expect-error - gtag function is defined above
+        gtag("js", new Date());
+        // @ts-expect-error - gtag function is defined above
+        gtag("config", "G-Z7SJT3Z527");
+      };
+    }
+
+    closeBanner() {
+      const container = this.querySelector("#cookie-banner-container");
+      if (container) {
+        container.classList.add("translate-y-4", "opacity-0");
+        setTimeout(() => {
+          this.innerHTML = "";
+        }, 300);
+      }
+    }
+  }
+
+  customElements.define("cookie-banner", CookieBanner);
+</script>

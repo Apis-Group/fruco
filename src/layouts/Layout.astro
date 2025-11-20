@@ -1,8 +1,5 @@
 ---
-import Analytics from "@vercel/analytics/astro";
-import SpeedInsights from "@vercel/speed-insights/astro";
-
-import CookieBanner from "@/components/CookieBanner";
+import CookieBanner from "@/components/CookieBanner.astro";
 
 const { title, lang = "es" } = Astro.props;
 const description =
@@ -102,9 +99,7 @@ const description =
 		<!-- End Google Analytics 4 -->
 	</head>
 	<body>
-		<Analytics />
-		<SpeedInsights />
-		<CookieBanner language={lang} client:load />
+		<CookieBanner language={lang} />
 		<slot />
 	</body>
 </html>
