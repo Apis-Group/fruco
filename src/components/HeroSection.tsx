@@ -21,17 +21,13 @@ const HeroSection = ({
   const t = useTranslations();
   const subtitle = t.hero.subtitle;
 
-  // Dividir el subtítulo en caracteres al montar
   useEffect(() => {
     setSubtitleChars(subtitle.split(""));
   }, [subtitle]);
 
-  // Usar el hook de animación de entrada del hero
   useEffect(() => {
-    // Delay para permitir que la imagen se renderice primero
     const timer = setTimeout(() => {
       if (logoRef.current && subtitleRef.current) {
-        // Animar logo
         gsap.fromTo(
           logoRef.current,
           { opacity: 0, transform: "translate3d(0, 20px, 0)" },
@@ -44,7 +40,6 @@ const HeroSection = ({
           },
         );
 
-        // Animar cada letra del subtítulo con efecto de escritura a mano
         const chars = subtitleRef.current.querySelectorAll(".char");
         gsap.fromTo(
           chars,
@@ -61,39 +56,33 @@ const HeroSection = ({
             y: 0,
             duration: 0.12,
             ease: "back.out(2)",
-            stagger: 0.02, // Efecto de escritura letra por letra más rápido
+            stagger: 0.02,
             delay: 0.6,
             onComplete: () => {
-              // Disparar evento personalizado cuando termine la animación del hero
               window.dispatchEvent(new CustomEvent("heroAnimationComplete"));
             },
           },
         );
       }
-    }, 50); // Delay reducido para renderizado del logo
+    }, 50);
 
     return () => clearTimeout(timer);
   }, [subtitleChars]);
 
-  // Detectar cuando el logo principal sale del viewport
   useEffect(() => {
     const handleScroll = () => {
       if (logoRef.current) {
         const rect = logoRef.current.getBoundingClientRect();
-        // El logo sticky aparece solo cuando el logo principal está completamente fuera de la vista (arriba)
-        // y desaparece cuando el logo principal vuelve a ser visible
         setShowStickyLogo(rect.bottom < 0);
       }
     };
 
-    // Ejecutar una vez al inicio para establecer el estado inicial
     handleScroll();
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Animar el logo sticky cuando aparece y desaparece
   useEffect(() => {
     if (stickyLogoRef.current) {
       if (showStickyLogo) {
@@ -116,7 +105,6 @@ const HeroSection = ({
 
   return (
     <>
-      {/* Logo sticky en la esquina superior izquierda */}
       <div
         ref={stickyLogoRef}
         className={`fixed top-0 left-4 z-50 w-full md:w-auto bg-black transition-opacity duration-300 ${
@@ -141,9 +129,7 @@ const HeroSection = ({
         className="relative overflow-hidden flex items-center justify-center pt-30 pb-10"
         id="inicio"
       >
-        {/* Contenido principal */}
         <div className="text-center z-10 relative max-w-4xl mx-auto px-4">
-          {/* Logo */}
           <div className="mb-6">
             <img
               ref={logoRef}
@@ -164,7 +150,6 @@ const HeroSection = ({
             />
           </div>
 
-          {/* Subtítulo */}
           <h1
             ref={subtitleRef}
             className="text-2xl md:text-3xl lg:text-4xl text-gray-300 leading-relaxed font-light"

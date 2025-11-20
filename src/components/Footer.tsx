@@ -17,9 +17,7 @@ export default function Footer() {
   return (
     <footer className="text-gray-300 border-t border-fruco-gold/20 mt-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Footer Content */}
         <div className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Brand Section */}
           <div className="lg:col-span-1">
             <img
               src="/top_icon.avif"
@@ -30,7 +28,6 @@ export default function Footer() {
             <p className="text-sm text-gray-400 leading-relaxed mb-4">
               {t.footer.tagline}
             </p>
-            {/* Social Media */}
             <div className="flex gap-4">
               <a
                 href="https://www.facebook.com/profile.php?id=61583976511602"
@@ -65,7 +62,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Contact Section */}
           <div className="lg:col-span-1">
             <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
               {t.footer.contact}
@@ -144,7 +140,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Legal Links Section - Split into two columns */}
           <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-8">
             <div>
               <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
@@ -185,12 +180,11 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="border-t border-gray-800 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
             <p>
               © 2025 CARNES Y VEGETALES S.L. {"·"} {t.footer.rights}
-            </p>{" "}
+            </p>
           </div>
         </div>
       </div>

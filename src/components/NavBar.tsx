@@ -2,7 +2,6 @@ import { useRef, useState } from "preact/hooks";
 import { useTranslations } from "@/hooks/useI18n";
 
 export default function NavBar() {
-  const [, setHoveredIndex] = useState<number | null>(null);
   const [hoverStyle, setHoverStyle] = useState({});
   const navRef = useRef<HTMLFieldSetElement>(null);
   const t = useTranslations();
@@ -15,13 +14,12 @@ export default function NavBar() {
     { label: t.navigation.contact, target: "contacto" },
   ];
 
-  const handleMouseEnter = (index: number, event: MouseEvent) => {
+  const handleMouseEnter = (_index: number, event: MouseEvent) => {
     const button = event.currentTarget as HTMLButtonElement;
     const rect = button.getBoundingClientRect();
     const navRect = navRef.current?.getBoundingClientRect();
 
     if (navRect) {
-      setHoveredIndex(index);
       setHoverStyle({
         left: rect.left - navRect.left,
         width: rect.width,
@@ -31,7 +29,6 @@ export default function NavBar() {
   };
 
   const handleMouseLeave = () => {
-    setHoveredIndex(null);
     setHoverStyle((prev) => ({ ...prev, opacity: 0 }));
   };
 
@@ -42,7 +39,6 @@ export default function NavBar() {
         className="relative flex bg-white/10 backdrop-blur-md rounded-full border border-white/20"
         onMouseLeave={handleMouseLeave}
       >
-        {/* Elemento de hover deslizante */}
         <div
           className="absolute top-0 bottom-0 bg-white/20 rounded-full transition-all duration-300 ease-out pointer-events-none"
           style={hoverStyle}
@@ -61,7 +57,7 @@ export default function NavBar() {
           >
             {item.label}
           </button>
-        ))}{" "}
+        ))}
       </fieldset>
     </nav>
   );
