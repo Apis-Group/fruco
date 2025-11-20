@@ -1,0 +1,91 @@
+---
+import { readFile } from "fs/promises";
+import { join } from "path";
+
+import Layout from "@/layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const legalDocs = [
+    { slug: "aviso-legal", file: "aviso-legal.md" },
+    { slug: "politica-cookies", file: "politica-cookies.md" },
+    { slug: "politica-privacidad", file: "politica-privacidad.md" },
+    { slug: "politica-calidad", file: "politica-calidad.md" },
+    { slug: "politica-confidencialidad", file: "politica-confidencialidad.md" },
+    { slug: "canal-etico", file: "canal-etico.md" },
+    { slug: "codigo-conducta", file: "codigo-conducta.md" },
+  ];
+
+  const languages = ["es", "en", "fr", "pt"];
+
+  const paths = [];
+  for (const lang of languages) {
+    for (const doc of legalDocs) {
+      paths.push({
+        params: { slug: `${lang}/${doc.slug}` },
+        props: { lang, file: doc.file },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { lang, file } = Astro.props;
+
+// Leer el contenido del archivo markdown
+const filePath = join(
+  process.cwd(),
+  "src",
+  "content",
+  "legal",
+  lang,
+  file
+);
+
+let markdownContent = "";
+try {
+  markdownContent = await readFile(filePath, "utf-8");
+} catch (error) {
+  console.error(`Error reading file: ${filePath}`, error);
+  markdownContent = "# Contenido no disponible\n\nEste contenido aún no está disponible.";
+}
+
+// Función simple para convertir markdown a HTML básico
+// @ts-expect-error - Astro frontmatter doesn't support explicit typing
+function markdownToHtml(markdown) {
+  return markdown
+    .replace(/^# (.+)$/gm, '<h1 class="text-4xl font-bold mb-6 text-fruco-gold">$1</h1>')
+    .replace(/^## (.+)$/gm, '<h2 class="text-3xl font-semibold mb-4 mt-8 text-white">$1</h2>')
+    .replace(/^### (.+)$/gm, '<h3 class="text-2xl font-semibold mb-3 mt-6 text-white">$1</h3>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em class="italic">$1</em>')
+    .replace(/\n\n/g, '</p><p class="mb-4 text-gray-300 leading-relaxed">')
+    .replace(/<!--.*?-->/gs, '')
+    .replace(/^(?!<[h|p])(.+)$/gm, '<p class="mb-4 text-gray-300 leading-relaxed">$1</p>')
+    .trim();
+}
+
+const htmlContent = markdownToHtml(markdownContent);
+---
+
+<Layout title={`Fruco - ${file.replace('.md', '').replace(/-/g, ' ')}`} lang={lang}>
+  <div class="min-h-screen pt-24 pb-12 px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="prose prose-invert prose-lg max-w-none">
+        <Fragment set:html={htmlContent} />
+      </div>
+      
+      <div class="mt-12 pt-8 border-t border-fruco-gold/20">
+        <a 
+          href={`/${lang === 'es' ? '' : lang}`}
+          class="inline-flex items-center text-fruco-gold hover:text-fruco-gold/80 transition-colors"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          </svg>
+          Volver al inicio
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>
