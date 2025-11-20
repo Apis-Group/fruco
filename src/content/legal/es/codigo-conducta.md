@@ -345,4 +345,4 @@ El Código de Conducta se hará llegar en su propio idioma a todos los empleados
 
 ---
 
-_Última actualización: 20 de noviembre de 2025_
+**Última actualización:** 20 de noviembre de 2025

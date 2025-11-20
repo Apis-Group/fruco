@@ -41,4 +41,4 @@ Para cualquier consulta relacionada con el Canal Ético:
 
 ---
 
-_Última actualización: 20 de noviembre de 2025_
+**Última actualización:** 20 de noviembre de 2025

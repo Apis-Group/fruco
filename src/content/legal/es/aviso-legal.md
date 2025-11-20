@@ -111,4 +111,4 @@ La lengua utilizada será el castellano.
 
 ---
 
-_Última actualización: 20 de noviembre de 2025_
+**Última actualización:** 20 de noviembre de 2025

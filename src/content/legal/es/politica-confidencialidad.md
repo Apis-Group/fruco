@@ -42,4 +42,4 @@ El presente Aviso Legal se rige por la normativa estatal aplicable.
 
 ---
 
-_Última actualización: 20 de noviembre de 2025_
+**Última actualización:** 20 de noviembre de 2025

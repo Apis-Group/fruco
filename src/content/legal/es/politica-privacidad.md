@@ -179,4 +179,4 @@ Las categorías de datos que se tratan son:
 
 ---
 
-_Última actualización: 20 de noviembre de 2025_
+**Última actualización:** 20 de noviembre de 2025

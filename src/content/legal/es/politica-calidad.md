@@ -84,4 +84,4 @@ Esta política integrada será revisada anualmente, comunicada a todos los emple
 
 ---
 
-_Última actualización: 20 de noviembre de 2025_
+**Última actualización:** 20 de noviembre de 2025
