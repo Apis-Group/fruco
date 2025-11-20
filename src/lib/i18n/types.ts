@@ -101,5 +101,14 @@ export interface Translations {
     location: string;
     phone: string;
     email: string;
+    legal: {
+      legalNotice: string;
+      cookiePolicy: string;
+      privacyPolicy: string;
+      qualityPolicy: string;
+      confidentialityPolicy: string;
+      ethicsChannel: string;
+      codeOfConduct: string;
+    };
   };
 }

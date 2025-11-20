@@ -193,5 +193,15 @@ export const es: Translations = {
     location: "España",
     phone: "Tel: 660 85 80 90",
     email: "Email: info@fruco.es",
+    legal: {
+      legalNotice: "Aviso legal",
+      cookiePolicy: "Política de cookies",
+      privacyPolicy: "Política de privacidad",
+      qualityPolicy: "Política de calidad",
+      confidentialityPolicy:
+        "Política de Confidencialidad y Propiedad Industrial e Intelectual",
+      ethicsChannel: "Canal ético",
+      codeOfConduct: "Código de conducta",
+    },
   },
 };
