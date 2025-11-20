@@ -167,7 +167,7 @@ function VisionMision() {
 
       <div
         ref={visionElementsRef}
-        className="flex justify-center items-center flex-col md:flex-row mt-20 gap-16 md:gap-4 lg:gap-6 w-full mx-auto px-6"
+        className="flex justify-center items-center flex-col md:flex-row mt-20 gap-8 md:gap-0 lg:gap-1 w-full mx-auto px-50"
       >
         {VISION_ELEMENTS.map((element) => {
           const { imgRef, isLoaded } = useLazyImage({

@@ -71,8 +71,10 @@ const HeroSection = ({
 
   useEffect(() => {
     const handleScroll = () => {
-      if (logoRef.current) {
-        const rect = logoRef.current.getBoundingClientRect();
+      const productsSection = document.getElementById("productos");
+      if (productsSection) {
+        const rect = productsSection.getBoundingClientRect();
+        // Mostrar el logo cuando la sección de productos haya pasado completamente
         setShowStickyLogo(rect.bottom < 0);
       }
     };
@@ -107,7 +109,7 @@ const HeroSection = ({
     <>
       <div
         ref={stickyLogoRef}
-        className={`fixed top-0 left-4 z-50 w-full md:w-auto bg-black transition-opacity duration-300 ${
+        className={`fixed top-0 left-4 xl:left-52 z-50 w-full md:w-auto bg-black transition-opacity duration-300 ${
           showStickyLogo
             ? "pointer-events-auto"
             : "opacity-0 pointer-events-none"
