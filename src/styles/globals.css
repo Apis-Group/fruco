@@ -34,7 +34,7 @@
 }
 
 @utility section-container {
-  @apply min-h-screen flex items-center justify-center px-4;
+  @apply flex min-h-screen items-center justify-center px-4;
 }
 
 @utility font-heading {

@@ -84,17 +84,17 @@ const HeroSection = ({
     <>
       <div
         ref={stickyLogoRef}
-        className={`fixed top-0 left-4 xl:left-30 z-50 w-full md:w-auto bg-black transition-opacity duration-300 ${
+        className={`fixed top-0 left-4 z-50 w-full bg-black transition-opacity duration-300 md:w-auto xl:left-30 ${
           showStickyLogo
             ? "pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+            : "pointer-events-none opacity-0"
         }`}
       >
         <a onClick={handleLogoClick} className="block">
           <img
             src={topSrc}
             alt="Fruco"
-            className="w-20 md:w-24 lg:w-28 hover:scale-110 transition-transform duration-300"
+            className="w-20 transition-transform duration-300 hover:scale-110 md:w-24 lg:w-28"
             width={400}
             height={334}
           />
@@ -103,13 +103,13 @@ const HeroSection = ({
 
       <section
         ref={containerRef}
-        className="relative overflow-hidden flex items-center justify-center"
+        className="relative flex items-center justify-center overflow-hidden"
         id="inicio"
       >
         <div className="relative w-full">
           <video
             ref={videoRef}
-            className="w-full h-140 object-cover"
+            className="h-140 w-full object-cover"
             poster={posterSrc}
             autoPlay
             muted

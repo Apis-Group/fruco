@@ -130,14 +130,14 @@ function VisionMision() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-20 px-6 bg-linear-to-b from-fruco-black via-fruco-black/95 to-fruco-black"
+      className="from-fruco-black via-fruco-black/95 to-fruco-black relative bg-linear-to-b px-6 py-20"
       id="vision-mision"
     >
-      <div className="max-w-4xl mx-auto text-center">
+      <div className="mx-auto max-w-4xl text-center">
         {/* Título */}
         <h2
           ref={titleRef}
-          className="text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-white"
+          className="mb-12 text-4xl font-bold text-white md:text-5xl lg:text-6xl"
         >
           {t.vision.title}
         </h2>
@@ -145,14 +145,14 @@ function VisionMision() {
         {/* Contenido */}
         <div
           ref={contentRef}
-          className="space-y-8 text-lg md:text-xl lg:text-2xl leading-relaxed text-white/90"
+          className="space-y-8 text-lg leading-relaxed text-white/90 md:text-xl lg:text-2xl"
         >
           <p className="font-light">{t.vision.content[0]}</p>
 
           <p className="font-light">{t.vision.content[1]}</p>
 
           <p
-            className="text-fruco-gold font-medium text-xl md:text-2xl lg:text-3xl italic"
+            className="text-fruco-gold text-xl font-medium italic md:text-2xl lg:text-3xl"
             style={{ fontFamily: "Playfair Display, serif" }}
           >
             "{t.vision.content[2]}"
@@ -161,13 +161,13 @@ function VisionMision() {
       </div>
 
       {/* Decoración de fondo */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-fruco-gold/5 rounded-full blur-3xl" />
+      <div className="pointer-events-none absolute inset-0">
+        <div className="bg-fruco-gold/5 absolute top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 transform rounded-full blur-3xl" />
       </div>
 
       <div
         ref={visionElementsRef}
-        className="flex justify-center items-center flex-col md:flex-row mt-20 gap-8 md:gap-0 lg:gap-1 w-full mx-auto px-50"
+        className="mx-auto mt-20 flex w-full flex-col items-center justify-center gap-8 px-50 md:flex-row md:gap-0 lg:gap-1"
       >
         {VISION_ELEMENTS.map((element) => {
           const { imgRef, isLoaded } = useLazyImage({
@@ -178,21 +178,21 @@ function VisionMision() {
           return (
             <div
               key={element.id}
-              className="w-full md:w-1/3 relative vision-element flex justify-center items-center"
+              className="vision-element relative flex w-full items-center justify-center md:w-1/3"
             >
-              <div className="relative w-48 h-48 md:w-40 md:h-40 lg:w-52 lg:h-52 shrink-0">
+              <div className="relative h-48 w-48 shrink-0 md:h-40 md:w-40 lg:h-52 lg:w-52">
                 <img
                   ref={imgRef}
                   data-src={element.image}
                   alt={element.alt}
-                  className={`rounded-full grayscale-50 transition-opacity duration-500 w-full h-full object-cover ${
+                  className={`h-full w-full rounded-full object-cover grayscale-50 transition-opacity duration-500 ${
                     isLoaded ? "opacity-100" : "opacity-0"
                   }`}
                   style={{
                     backgroundColor: isLoaded ? "transparent" : "#1a1a1a",
                   }}
                 />
-                <p className="uppercase absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white px-2 py-1 text-3xl md:text-2xl lg:text-4xl xl:text-5xl font-bold z-10 whitespace-nowrap pointer-events-none text-center">
+                <p className="pointer-events-none absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform px-2 py-1 text-center text-3xl font-bold whitespace-nowrap text-white uppercase md:text-2xl lg:text-4xl xl:text-5xl">
                   {element.title}
                 </p>
               </div>

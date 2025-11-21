@@ -15,11 +15,11 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="text-gray-300 border-t border-fruco-gold/20 mt-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="border-fruco-gold/20 mt-10 border-t text-gray-300">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-8 py-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-1">
-            <p className="text-sm text-gray-400 leading-relaxed mb-4">
+            <p className="mb-4 text-sm leading-relaxed text-gray-400">
               {t.footer.tagline}
             </p>
             <div className="flex gap-4">
@@ -27,11 +27,11 @@ export default function Footer() {
                 href="https://www.facebook.com/profile.php?id=61583976511602"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-gray-800 hover:bg-fruco-gold flex items-center justify-center transition-colors duration-300 group"
+                className="hover:bg-fruco-gold group flex h-10 w-10 items-center justify-center rounded-full bg-gray-800 transition-colors duration-300"
                 aria-label="Facebook"
               >
                 <svg
-                  className="w-5 h-5 text-gray-300 group-hover:text-gray-900"
+                  className="h-5 w-5 text-gray-300 group-hover:text-gray-900"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -42,11 +42,11 @@ export default function Footer() {
                 href="https://www.instagram.com/fruco_oficial/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-gray-800 hover:bg-fruco-gold flex items-center justify-center transition-colors duration-300 group"
+                className="hover:bg-fruco-gold group flex h-10 w-10 items-center justify-center rounded-full bg-gray-800 transition-colors duration-300"
                 aria-label="Instagram"
               >
                 <svg
-                  className="w-5 h-5 text-gray-300 group-hover:text-gray-900"
+                  className="h-5 w-5 text-gray-300 group-hover:text-gray-900"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -57,13 +57,13 @@ export default function Footer() {
           </div>
 
           <div className="lg:col-span-1">
-            <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
+            <h3 className="mb-4 text-sm font-semibold tracking-wider text-white uppercase">
               {t.footer.contact}
             </h3>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2">
                 <svg
-                  className="w-5 h-5 text-fruco-gold shrink-0 mt-0.5"
+                  className="text-fruco-gold mt-0.5 h-5 w-5 shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -91,7 +91,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <svg
-                  className="w-5 h-5 text-fruco-gold shrink-0"
+                  className="text-fruco-gold h-5 w-5 shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -105,14 +105,14 @@ export default function Footer() {
                 </svg>
                 <a
                   href="tel:+34924330170"
-                  className="text-gray-400 hover:text-fruco-gold transition-colors"
+                  className="hover:text-fruco-gold text-gray-400 transition-colors"
                 >
                   +34 924 330 170
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <svg
-                  className="w-5 h-5 text-fruco-gold shrink-0"
+                  className="text-fruco-gold h-5 w-5 shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -126,7 +126,7 @@ export default function Footer() {
                 </svg>
                 <a
                   href="mailto:info@fruco.es"
-                  className="text-gray-400 hover:text-fruco-gold transition-colors"
+                  className="hover:text-fruco-gold text-gray-400 transition-colors"
                 >
                   info@fruco.es
                 </a>
@@ -134,9 +134,9 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2">
             <div>
-              <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
+              <h3 className="mb-4 text-sm font-semibold tracking-wider text-white uppercase">
                 {t.footer.legalTitle}
               </h3>
               <ul className="space-y-2 text-sm">
@@ -144,7 +144,7 @@ export default function Footer() {
                   <li key={link.key}>
                     <a
                       href={`/legal/${language}/${link.slug}`}
-                      className="text-gray-400 hover:text-fruco-gold transition-colors inline-flex items-center gap-1"
+                      className="hover:text-fruco-gold inline-flex items-center gap-1 text-gray-400 transition-colors"
                     >
                       <span className="text-fruco-gold/50">›</span>
                       {t.footer.legal[link.key as keyof typeof t.footer.legal]}
@@ -154,7 +154,7 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
+              <h3 className="mb-4 text-sm font-semibold tracking-wider text-white uppercase">
                 {t.footer.compliance}
               </h3>
               <ul className="space-y-2 text-sm">
@@ -162,7 +162,7 @@ export default function Footer() {
                   <li key={link.key}>
                     <a
                       href={`/legal/${language}/${link.slug}`}
-                      className="text-gray-400 hover:text-fruco-gold transition-colors inline-flex items-center gap-1"
+                      className="hover:text-fruco-gold inline-flex items-center gap-1 text-gray-400 transition-colors"
                     >
                       <span className="text-fruco-gold/50">›</span>
                       {t.footer.legal[link.key as keyof typeof t.footer.legal]}
@@ -175,7 +175,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+          <div className="flex flex-col items-center justify-between gap-4 text-sm text-gray-500 md:flex-row">
             <p>
               © 2025 CARNES Y VEGETALES S.L. {"·"} {t.footer.rights}
             </p>

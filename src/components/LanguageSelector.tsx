@@ -23,16 +23,16 @@ export default function LanguageSelector() {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg px-3 py-2 text-white/90 text-sm font-medium cursor-pointer hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/30 min-w-[100px]"
+          className="flex min-w-[100px] cursor-pointer items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-sm font-medium text-white/90 backdrop-blur-md transition-colors hover:bg-white/20 focus:ring-2 focus:ring-white/30 focus:outline-none"
         >
           <img
             src={currentLanguage.flagSrc}
             alt={currentLanguage.name}
-            className="w-4 h-3 object-cover rounded-sm"
+            className="h-3 w-4 rounded-sm object-cover"
           />
           <span>{currentLanguage.name}</span>
           <svg
-            className={`w-4 h-4 text-white/70 transition-transform ${isOpen ? "rotate-180" : ""}`}
+            className={`h-4 w-4 text-white/70 transition-transform ${isOpen ? "rotate-180" : ""}`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -48,7 +48,7 @@ export default function LanguageSelector() {
 
         {/* Dropdown */}
         {isOpen && (
-          <div className="absolute top-full mt-1 right-0 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg overflow-hidden min-w-[100px]">
+          <div className="absolute top-full right-0 mt-1 min-w-[100px] overflow-hidden rounded-lg border border-white/20 bg-white/10 backdrop-blur-md">
             {languages.map((lang) => (
               <button
                 key={lang.code}
@@ -57,7 +57,7 @@ export default function LanguageSelector() {
                   setLanguage(lang.code);
                   setIsOpen(false);
                 }}
-                className={`flex items-center gap-2 w-full px-3 py-2 text-sm font-medium cursor-pointer hover:bg-white/20 transition-colors text-left ${
+                className={`flex w-full cursor-pointer items-center gap-2 px-3 py-2 text-left text-sm font-medium transition-colors hover:bg-white/20 ${
                   lang.code === language
                     ? "bg-white/10 text-white"
                     : "text-white/90"
@@ -66,7 +66,7 @@ export default function LanguageSelector() {
                 <img
                   src={lang.flagSrc}
                   alt={lang.name}
-                  className="w-4 h-3 object-cover rounded-sm"
+                  className="h-3 w-4 rounded-sm object-cover"
                 />
                 <span>{lang.name}</span>
               </button>

@@ -33,66 +33,95 @@ export async function getStaticPaths() {
 const { lang, file } = Astro.props;
 
 // Leer el contenido del archivo markdown
-const filePath = join(
-  process.cwd(),
-  "src",
-  "content",
-  "legal",
-  lang,
-  file
-);
+const filePath = join(process.cwd(), "src", "content", "legal", lang, file);
 
 let markdownContent = "";
 try {
   markdownContent = await readFile(filePath, "utf-8");
 } catch (error) {
   console.error(`Error reading file: ${filePath}`, error);
-  markdownContent = "# Contenido no disponible\n\nEste contenido aún no está disponible.";
+  markdownContent =
+    "# Contenido no disponible\n\nEste contenido aún no está disponible.";
 }
 
 // Función simple para convertir markdown a HTML básico
 // @ts-expect-error - Astro frontmatter doesn't support explicit typing
 function markdownToHtml(markdown) {
-  return markdown
-    // Eliminar comentarios HTML
-    .replace(/<!--.*?-->/gs, '')
-    // Títulos
-    .replace(/^# (.+)$/gm, '<h1 class="text-4xl font-bold mb-6 text-fruco-gold">$1</h1>')
-    .replace(/^## (.+)$/gm, '<h2 class="text-3xl font-semibold mb-4 mt-8 text-white">$1</h2>')
-    .replace(/^### (.+)$/gm, '<h3 class="text-2xl font-semibold mb-3 mt-6 text-white">$1</h3>')
-    .replace(/^#### (.+)$/gm, '<h4 class="text-xl font-semibold mb-2 mt-4 text-gray-200">$1</h4>')
-    // Enlaces [texto](url)
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-fruco-gold hover:text-fruco-gold/80 underline transition-colors" target="_blank" rel="noopener noreferrer">$1</a>')
-    // Listas no ordenadas
-    .replace(/^- (.+)$/gm, '<li class="ml-6 mb-2 text-gray-300">$1</li>')
-    // Negrita y cursiva (debe ir después de los enlaces)
-    .replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>')
-    .replace(/\*(.+?)\*/g, '<em class="italic">$1</em>')
-    // Separadores de línea horizontal
-    .replace(/^---$/gm, '<hr class="my-8 border-fruco-gold/20">')
-    // Párrafos
-    .replace(/\n\n/g, '</p><p class="mb-4 text-gray-300 leading-relaxed">')
-    .replace(/^(?!<[h|p|l|a|hr])(.+)$/gm, '<p class="mb-4 text-gray-300 leading-relaxed">$1</p>')
-    .trim();
+  return (
+    markdown
+      // Eliminar comentarios HTML
+      .replace(/<!--.*?-->/gs, "")
+      // Títulos
+      .replace(
+        /^# (.+)$/gm,
+        '<h1 class="text-4xl font-bold mb-6 text-fruco-gold">$1</h1>',
+      )
+      .replace(
+        /^## (.+)$/gm,
+        '<h2 class="text-3xl font-semibold mb-4 mt-8 text-white">$1</h2>',
+      )
+      .replace(
+        /^### (.+)$/gm,
+        '<h3 class="text-2xl font-semibold mb-3 mt-6 text-white">$1</h3>',
+      )
+      .replace(
+        /^#### (.+)$/gm,
+        '<h4 class="text-xl font-semibold mb-2 mt-4 text-gray-200">$1</h4>',
+      )
+      // Enlaces [texto](url)
+      .replace(
+        /\[([^\]]+)\]\(([^)]+)\)/g,
+        '<a href="$2" class="text-fruco-gold hover:text-fruco-gold/80 underline transition-colors" target="_blank" rel="noopener noreferrer">$1</a>',
+      )
+      // Listas no ordenadas
+      .replace(/^- (.+)$/gm, '<li class="ml-6 mb-2 text-gray-300">$1</li>')
+      // Negrita y cursiva (debe ir después de los enlaces)
+      .replace(
+        /\*\*(.+?)\*\*/g,
+        '<strong class="font-semibold text-white">$1</strong>',
+      )
+      .replace(/\*(.+?)\*/g, '<em class="italic">$1</em>')
+      // Separadores de línea horizontal
+      .replace(/^---$/gm, '<hr class="my-8 border-fruco-gold/20">')
+      // Párrafos
+      .replace(/\n\n/g, '</p><p class="mb-4 text-gray-300 leading-relaxed">')
+      .replace(
+        /^(?!<[h|p|l|a|hr])(.+)$/gm,
+        '<p class="mb-4 text-gray-300 leading-relaxed">$1</p>',
+      )
+      .trim()
+  );
 }
 
 const htmlContent = markdownToHtml(markdownContent);
 ---
 
-<Layout title={`Fruco - ${file.replace('.md', '').replace(/-/g, ' ')}`} lang={lang}>
-  <div class="min-h-screen pt-24 pb-12 px-4">
-    <div class="max-w-4xl mx-auto">
+<Layout
+  title={`Fruco - ${file.replace(".md", "").replace(/-/g, " ")}`}
+  lang={lang}
+>
+  <div class="min-h-screen px-4 pt-24 pb-12">
+    <div class="mx-auto max-w-4xl">
       <div class="prose prose-invert prose-lg max-w-none">
         <Fragment set:html={htmlContent} />
       </div>
-      
-      <div class="mt-12 pt-8 border-t border-fruco-gold/20">
-        <a 
-          href={`/${lang === 'es' ? '' : lang}`}
-          class="inline-flex items-center text-fruco-gold hover:text-fruco-gold/80 transition-colors"
+
+      <div class="border-fruco-gold/20 mt-12 border-t pt-8">
+        <a
+          href={`/${lang === "es" ? "" : lang}`}
+          class="text-fruco-gold hover:text-fruco-gold/80 inline-flex items-center transition-colors"
         >
-          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          <svg
+            class="mr-2 h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
           </svg>
           Volver al inicio
         </a>

@@ -33,14 +33,14 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 hidden md:block">
+    <nav className="fixed top-8 left-1/2 z-50 hidden -translate-x-1/2 transform md:block">
       <fieldset
         ref={navRef}
-        className="relative flex bg-white/10 backdrop-blur-md rounded-full border border-white/20"
+        className="relative flex rounded-full border border-white/20 bg-white/10 backdrop-blur-md"
         onMouseLeave={handleMouseLeave}
       >
         <div
-          className="absolute top-0 bottom-0 bg-white/20 rounded-full transition-all duration-300 ease-out pointer-events-none"
+          className="pointer-events-none absolute top-0 bottom-0 rounded-full bg-white/20 transition-all duration-300 ease-out"
           style={hoverStyle}
         />
         {navItems.map((item, index) => (
@@ -53,7 +53,7 @@ export default function NavBar() {
                 ?.scrollIntoView({ behavior: "smooth", block: "center" })
             }
             onMouseEnter={(e) => handleMouseEnter(index, e)}
-            className="relative z-10 px-4 py-3 text-white/70 text-nowrap hover:text-white transition-colors duration-300 text-sm font-medium cursor-pointer"
+            className="relative z-10 cursor-pointer px-4 py-3 text-sm font-medium text-nowrap text-white/70 transition-colors duration-300 hover:text-white"
           >
             {item.label}
           </button>

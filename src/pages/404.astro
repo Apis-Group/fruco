@@ -1,80 +1,80 @@
 ---
-import Layout from '@/layouts/Layout.astro';
+import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout title="Página no encontrada">
-	<div
-		class="min-h-screen bg-linear-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center px-4"
-	>
-		<div class="max-w-2xl mx-auto text-center">
-			<!-- Logo Fruco -->
-			<div class="mb-8">
-				<img
-					src="/logo_fruco.svg"
-					alt="Fruco Logo"
-					class="mx-auto max-w-xs opacity-50"
-					width="300"
-					height="167"
-				/>
-			</div>
+  <div
+    class="flex min-h-screen items-center justify-center bg-linear-to-br from-gray-900 via-gray-800 to-black px-4"
+  >
+    <div class="mx-auto max-w-2xl text-center">
+      <!-- Logo Fruco -->
+      <div class="mb-8">
+        <img
+          src="/logo_fruco.svg"
+          alt="Fruco Logo"
+          class="mx-auto max-w-xs opacity-50"
+          width="300"
+          height="167"
+        />
+      </div>
 
-			<!-- Error 404 -->
-			<h1 class="text-8xl md:text-9xl font-bold text-white mb-4 opacity-20">
-				404
-			</h1>
+      <!-- Error 404 -->
+      <h1 class="mb-4 text-8xl font-bold text-white opacity-20 md:text-9xl">
+        404
+      </h1>
 
-			<!-- Título principal -->
-			<h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-				¡Ups! Esta página se ha perdido
-			</h2>
+      <!-- Título principal -->
+      <h2 class="mb-6 text-3xl font-bold text-white md:text-4xl">
+        ¡Ups! Esta página se ha perdido
+      </h2>
 
-			<!-- Descripción -->
-			<p class="text-gray-400 text-lg mb-8 leading-relaxed">
-				Parece que la página que buscas no existe o ha sido movida. No te
-				preocupes, te ayudamos a encontrar lo que necesitas.
-			</p>
+      <!-- Descripción -->
+      <p class="mb-8 text-lg leading-relaxed text-gray-400">
+        Parece que la página que buscas no existe o ha sido movida. No te
+        preocupes, te ayudamos a encontrar lo que necesitas.
+      </p>
 
-			<!-- Enlaces útiles -->
-			<div class="space-y-4 mb-8">
-				<a
-					href="/"
-					class="inline-block bg-fruco-gold text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-				>
-					Volver al Inicio
-				</a>
-			</div>
+      <!-- Enlaces útiles -->
+      <div class="mb-8 space-y-4">
+        <a
+          href="/"
+          class="bg-fruco-gold inline-block transform rounded-full px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+        >
+          Volver al Inicio
+        </a>
+      </div>
 
-			<!-- Decoración -->
-			<div
-				class="absolute top-1/4 left-1/4 w-32 h-32 bg-orange-500/10 rounded-full blur-3xl"
-			>
-			</div>
-			<div
-				class="absolute bottom-1/4 right-1/4 w-40 h-40 bg-red-500/10 rounded-full blur-3xl"
-			>
-			</div>
-		</div>
-	</div>
+      <!-- Decoración -->
+      <div
+        class="absolute top-1/4 left-1/4 h-32 w-32 rounded-full bg-orange-500/10 blur-3xl"
+      >
+      </div>
+      <div
+        class="absolute right-1/4 bottom-1/4 h-40 w-40 rounded-full bg-red-500/10 blur-3xl"
+      >
+      </div>
+    </div>
+  </div>
 
-	<style>
-		/* Animación sutil para el logo */
-		img {
-			animation: float 6s ease-in-out infinite;
-		}
+  <style>
+    /* Animación sutil para el logo */
+    img {
+      animation: float 6s ease-in-out infinite;
+    }
 
-		@keyframes float {
-			0%,
-			100% {
-				transform: translateY(0px);
-			}
-			50% {
-				transform: translateY(-10px);
-			}
-		}
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
 
-		/* Efecto hover para los enlaces */
-		a:hover {
-			transform: translateY(-2px);
-		}
-	</style>
+    /* Efecto hover para los enlaces */
+    a:hover {
+      transform: translateY(-2px);
+    }
+  </style>
 </Layout>
