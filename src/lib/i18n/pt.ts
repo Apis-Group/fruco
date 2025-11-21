@@ -160,7 +160,7 @@ export const pt: Translations = {
       "Fruco é uma família que escolhe o autêntico, o honesto... o que é feito com o coração",
     ],
     elements: {
-      artesania: "Artesanato",
+      artesania: "Origem",
       tradicion: "Tradição",
       vanguardia: "Vanguarda",
     },
