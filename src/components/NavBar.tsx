@@ -84,11 +84,23 @@ export default function NavBar({ topSrc = "/top_icon.avif" }: NavBarProps) {
     <>
       <div
         ref={stickyLogoRef}
-        className="fixed top-4 left-4 z-50 cursor-pointer opacity-0"
-        onClick={handleLogoClick}
+        className={`fixed top-0 left-4 xl:left-30 z-50 w-full md:w-auto bg-black transition-opacity duration-300 ${
+          showStickyLogo
+            ? "pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
       >
-        <img src={topSrc} alt="Fruco Logo" className="h-12 w-auto" />
+        <a onClick={handleLogoClick} className="block">
+          <img
+            src={topSrc}
+            alt="Fruco"
+            className="w-20 md:w-24 lg:w-28 hover:scale-110 transition-transform duration-300"
+            width={400}
+            height={334}
+          />
+        </a>
       </div>
+
       <nav className="fixed top-8 left-1/2 z-50 hidden -translate-x-1/2 transform md:block">
         <fieldset
           ref={navRef}
