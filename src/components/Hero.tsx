@@ -1,20 +1,20 @@
 import { gsap } from "gsap";
 import { useEffect, useRef } from "preact/hooks";
+import { useI18n } from "@/hooks/useI18n";
 
 interface HeroProps {
   logoSrc?: string;
-  subtitle?: string;
 }
 
 const Hero = ({
   logoSrc = "/logo_fruco.svg",
-  subtitle = "Salsa de tomate tradicional desde 1959",
 }: HeroProps) => {
+  const { t } = useI18n();
   const logoRef = useRef<HTMLImageElement>(null);
   const subtitleRef = useRef<HTMLHeadingElement>(null);
 
   // Dividir el subtítulo en caracteres para animación
-  const subtitleChars = subtitle.split("");
+  const subtitleChars = t.hero.subtitle.split("");
 
   useEffect(() => {
     // Animación del logo

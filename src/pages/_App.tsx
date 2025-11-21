@@ -67,7 +67,7 @@ function App() {
 
       <NavBar topSrc="/top_icon.avif" />
       <main>
-        <Hero logoSrc="/logo_fruco.svg" subtitle="Sabor y tradicón desde 1959" />
+        <Hero logoSrc="/logo_fruco.svg" />
         <VideoHero videoSrc="/hero-video.mp4" posterSrc="/hero-poster.png" />
 
         <Spliter />
