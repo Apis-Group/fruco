@@ -119,10 +119,10 @@ export default function Footer() {
                   />
                 </svg>
                 <a
-                  href="tel:+34924330170"
+                  href="tel:+34660858090"
                   className="hover:text-fruco-gold text-gray-400 transition-colors"
                 >
-                  +34 924 330 170
+                  +34 660 85 80 90
                 </a>
               </li>
               <li className="flex items-center gap-2">
