@@ -1,73 +1,43 @@
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "preact/hooks";
-import { useTranslations } from "@/hooks/useI18n";
 
 interface HeroSectionProps {
-  logoSrc?: string;
   topSrc?: string;
-  title?: string;
+  videoSrc?: string;
+  posterSrc?: string;
 }
 
 const HeroSection = ({
-  logoSrc = "/logo_fruco.svg",
   topSrc = "/top_icon.avif",
+  videoSrc = "/hero-video.mp4",
+  posterSrc = "/hero-poster.png",
 }: HeroSectionProps) => {
-  const logoRef = useRef<HTMLImageElement>(null);
-  const subtitleRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLElement>(null);
   const stickyLogoRef = useRef<HTMLDivElement>(null);
-  const [subtitleChars, setSubtitleChars] = useState<string[]>([]);
   const [showStickyLogo, setShowStickyLogo] = useState(false);
-  const t = useTranslations();
-  const subtitle = t.hero.subtitle;
-
-  useEffect(() => {
-    setSubtitleChars(subtitle.split(""));
-  }, [subtitle]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (logoRef.current && subtitleRef.current) {
+      if (videoRef.current) {
         gsap.fromTo(
-          logoRef.current,
-          { opacity: 0, transform: "translate3d(0, 20px, 0)" },
-          {
-            opacity: 1,
-            transform: "translate3d(0, 0, 0)",
-            duration: 0.5,
-            ease: "power2.out",
-            delay: 0.05,
-          },
-        );
-
-        const chars = subtitleRef.current.querySelectorAll(".char");
-        gsap.fromTo(
-          chars,
-          {
-            opacity: 0,
-            scale: 0.5,
-            rotateZ: -10,
-            y: 20,
-          },
+          videoRef.current,
+          { opacity: 0, scale: 0.98 },
           {
             opacity: 1,
             scale: 1,
-            rotateZ: 0,
-            y: 0,
-            duration: 0.12,
-            ease: "back.out(2)",
-            stagger: 0.02,
-            delay: 0.6,
+            duration: 1.2,
+            ease: "power2.out",
             onComplete: () => {
               window.dispatchEvent(new CustomEvent("heroAnimationComplete"));
             },
           },
         );
       }
-    }, 50);
+    }, 100);
 
     return () => clearTimeout(timer);
-  }, [subtitleChars]);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -133,52 +103,26 @@ const HeroSection = ({
 
       <section
         ref={containerRef}
-        className="relative overflow-hidden flex items-center justify-center pt-30 pb-10"
+        className="relative overflow-hidden flex items-center justify-center"
         id="inicio"
       >
-        <div className="text-center z-10 relative max-w-4xl mx-auto px-4">
-          <div className="mb-6">
-            <img
-              ref={logoRef}
-              src={logoSrc}
-              alt="Fruco Logo"
-              className="mx-auto w-48 md:w-64 lg:w-72 transition-transform duration-300 ease-out"
-              style={{
-                willChange: "transform, opacity",
-                opacity: 0,
-                transform: "translateY(20px) translateZ(0)",
-              }}
-              width={400}
-              height={334}
-              fetchPriority="high"
-              loading="eager"
-              decoding="sync"
-              sizes="(max-width: 768px) 192px, (max-width: 1024px) 256px, 288px"
-            />
-          </div>
-
-          <h1
-            ref={subtitleRef}
-            className="text-2xl md:text-3xl lg:text-4xl text-gray-300 leading-relaxed font-light"
+        <div className="relative w-full">
+          <video
+            ref={videoRef}
+            className="w-full h-140 object-cover"
+            poster={posterSrc}
+            autoPlay
+            muted
+            loop
+            playsInline
             style={{
-              fontFamily: "'Caveat', cursive",
+              opacity: 0,
               willChange: "transform, opacity",
             }}
           >
-            {subtitleChars.map((char, index) => (
-              <span
-                key={index}
-                className="char inline-block"
-                style={{
-                  opacity: 0,
-                  display: char === " " ? "inline" : "inline-block",
-                  whiteSpace: char === " " ? "pre" : "normal",
-                }}
-              >
-                {char}
-              </span>
-            ))}
-          </h1>
+            <source src={videoSrc} type="video/mp4" />
+            Tu navegador no soporta la reproducción de video.
+          </video>
         </div>
       </section>
     </>
