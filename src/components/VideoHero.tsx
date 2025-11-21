@@ -43,7 +43,7 @@ const VideoHero = ({
       <div className="relative w-full">
         <video
           ref={videoRef}
-          className="h-140 w-full object-cover"
+          className="h-[30vh] w-full object-cover"
           poster={posterSrc}
           autoPlay
           muted
