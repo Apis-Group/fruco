@@ -44,16 +44,16 @@ const Hero = ({
 
   return (
     <section
-      className="bg-fruco-black relative flex items-center justify-center overflow-hidden pt-30 pb-10"
+      className="bg-fruco-black relative flex items-center justify-center overflow-hidden pt-10 md:pt-30 pb-10"
       id="inicio"
     >
       <div className="relative z-10 mx-auto max-w-4xl px-4 text-center">
-        <div>
+        <div className={"mb-4"}>
           <img
             ref={logoRef}
             src={logoSrc}
             alt="Fruco Logo"
-            className="mx-auto w-48 transition-transform duration-300 ease-out md:w-64 lg:w-72"
+            className="mx-auto w-42 transition-transform duration-300 ease-out md:w-42 lg:w-42"
             style={{
               willChange: "transform, opacity",
               opacity: 0,
@@ -70,20 +70,22 @@ const Hero = ({
 
         <h1
           ref={subtitleRef}
-          className="-mt-4 text-2xl font-light leading-relaxed text-gray-300 md:text-3xl lg:text-4xl"
+          className="-mt-4 font-bold text-2xl leading-relaxed text-gray-300 lg:text-3xl flex wrap-normal"
           style={{
             fontFamily: "'Caveat', cursive",
             willChange: "transform, opacity",
+            wordSpacing: "normal",
+            letterSpacing: "normal",
           }}
         >
           {subtitleChars.map((char, index) => (
             <span
               key={index}
-              className="char inline-block"
+              className="char p-0.5"
               style={{
                 opacity: 0,
                 display: char === " " ? "inline" : "inline-block",
-                whiteSpace: char === " " ? "pre" : "normal",
+                transform: "translateY(0)",
               }}
             >
               {char}

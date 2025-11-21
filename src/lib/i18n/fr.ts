@@ -47,7 +47,7 @@ export const fr: Translations = {
     seeDetails: "Voir détails",
     close: "Fermer",
     qualityText:
-      "Chaque produit Fruco est élaboré avec les plus hauts standards de qualité, en utilisant des ingrédients sélectionnés pour vous offrir une expérience gastronomique exceptionnelle.",
+      "Chaque produit Fruco est élaboré selon les plus hauts standards de qualité, avec des ingrédients soigneusement sélectionnés pour vous offrir une expérience gastronomique exceptionnelle.",
     items: {
       frito: {
         name: "Tomate frite",
@@ -139,7 +139,7 @@ export const fr: Translations = {
     highlights: [
       "Plus de 65 ans de tradition depuis 1959",
       "Tomates cultivées par nos propres agriculteurs",
-      "Élaboration artisanale avec amour et dévotion",
+      "Élaboration avec amour, dévouement et tradition artisanale",
       "Engagement envers l'authenticité et l'honnêteté",
     ],
     stats: {
@@ -158,10 +158,10 @@ export const fr: Translations = {
     content: [
       "Nos tomates sont le fruit du travail de nos propres agriculteurs, qui prennent soin de la terre avec patience et sagesse, comme cela s'est fait toute la vie.",
       "Chez Fruco nous croyons en la tradition, en la qualité qui se cultive jour après jour et en l'engagement d'offrir le meilleur. Nous fabriquons des sauces et créons des expériences qui unissent les personnes dans des moments spéciaux. Nous voulons faire partie de votre histoire, de votre table et de votre vie.",
-      "Fruco c'est une famille qui choisit l'authentique, l'honnête... ce qui est fait avec le cœur",
+      "Fruco c'est une famille qui chérit l'authentique, l'honnête... ce qui est fait avec le cœur.",
     ],
     elements: {
-      artesania: "Artisanat",
+      artesania: "Origine",
       tradicion: "Tradition",
       vanguardia: "Avant-garde",
     },
