@@ -1,6 +1,7 @@
 # 🎯 Estrategia de SEO de Marca para "Fruco"
 
 ## Objetivo Principal
+
 **Dominar el término de búsqueda "Fruco" en Google** para asegurar que la página oficial aparezca en la posición #1.
 
 ## 📊 Mejoras Implementadas
@@ -8,46 +9,53 @@
 ### 1. **Optimización de Keywords con Alta Densidad de Marca**
 
 #### Homepage (index.astro)
+
 - **Título**: `Fruco - Salsa de Tomate Original Española desde 1959 | Oficial`
   - Incluye la marca "Fruco" al principio (máxima relevancia)
-  - Añade símbolo  para reforzar identidad de marca registrada
+  - Añade símbolo para reforzar identidad de marca registrada
   - Incluye año de fundación para autoridad histórica
   - Etiqueta "Oficial" para distinguirse de otros sitios
 
 - **Meta Description**:
+
   ```
-  Fruco - La marca española de salsa de tomate más auténtica desde 1959. 
-  Tomate 100% español, receta tradicional, sabor casero. Fruco es calidad, 
+  Fruco - La marca española de salsa de tomate más auténtica desde 1959.
+  Tomate 100% español, receta tradicional, sabor casero. Fruco es calidad,
   Fruco es tradición. Fruco Official Website.
   ```
+
   - Repite "Fruco" 5 veces en 160 caracteres
   - Incluye variaciones: "marca fruco", "Fruco es...", "Fruco Official"
   - Lenguaje natural que refuerza asociaciones de marca
 
-- **Keywords**: 
+- **Keywords**:
   ```
-  fruco, fruco españa, fruco salsa, fruco tomate, fruco oficial, 
-  salsa fruco, tomate fruco, fruco 1959, marca fruco, fruco original, 
+  fruco, fruco españa, fruco salsa, fruco tomate, fruco oficial,
+  salsa fruco, tomate fruco, fruco 1959, marca fruco, fruco original,
   comprar fruco, fruco tradicional, fruco calidad, tomate frito fruco
   ```
+
   - 15+ variaciones de "fruco" combinadas con términos relevantes
   - Incluye intención de búsqueda: "comprar fruco", "fruco oficial"
 
 #### Layout Global (Layout.astro)
+
 - **Keywords por defecto**:
   ```
-  fruco, fruco españa, fruco salsa, fruco tomate, fruco oficial, 
-  salsa fruco, tomate fruco, fruco 1959, marca fruco, fruco original, 
-  comprar fruco, fruco tradicional, fruco calidad, fruco conservas, 
-  fruco mérida, fruco badajoz, salsa tomate española, tomate frito fruco, 
+  fruco, fruco españa, fruco salsa, fruco tomate, fruco oficial,
+  salsa fruco, tomate fruco, fruco 1959, marca fruco, fruco original,
+  comprar fruco, fruco tradicional, fruco calidad, fruco conservas,
+  fruco mérida, fruco badajoz, salsa tomate española, tomate frito fruco,
   fruco artesano, fruco brick, productos fruco
   ```
+
   - Incluye ubicaciones: "fruco mérida", "fruco badajoz"
   - Nombres de productos específicos: "fruco artesano", "fruco brick"
 
 ### 2. **Meta Tags de Identidad de Marca**
 
 Añadidos en `Layout.astro`:
+
 ```html
 <meta property="og:brand" content="Fruco" />
 <meta name="application-name" content="Fruco" />
@@ -63,6 +71,7 @@ Añadidos en `Layout.astro`:
 Creado nuevo archivo: `src/lib/brand-schema.ts` con 3 schemas especializados:
 
 #### A. Brand Schema
+
 ```typescript
 {
   "@type": "Brand",
@@ -75,11 +84,13 @@ Creado nuevo archivo: `src/lib/brand-schema.ts` con 3 schemas especializados:
 ```
 
 **Características clave**:
+
 - `alternateName`: Variaciones de búsqueda comunes
 - `slogan`: Frase asociativa de marca
 - `foundingDate`: Autoridad histórica desde 1959
 
 #### B. Enhanced Organization Schema
+
 ```typescript
 {
   "@type": ["Organization", "LocalBusiness", "FoodEstablishment"],
@@ -93,6 +104,7 @@ Creado nuevo archivo: `src/lib/brand-schema.ts` con 3 schemas especializados:
 ```
 
 **Características clave**:
+
 - Múltiples tipos de Schema para mejor cobertura
 - Link al Brand Schema mediante `@id`
 - Ratings y reviews para trust signals
@@ -100,6 +112,7 @@ Creado nuevo archivo: `src/lib/brand-schema.ts` con 3 schemas especializados:
 - Keywords específicos de marca en el campo `keywords`
 
 #### C. Website Schema
+
 ```typescript
 {
   "@type": "WebSite",
@@ -113,6 +126,7 @@ Creado nuevo archivo: `src/lib/brand-schema.ts` con 3 schemas especializados:
 ```
 
 **Características clave**:
+
 - `alternateName`: Variaciones de nombre del sitio
 - `SearchAction`: Habilita sitelinks de búsqueda en Google
 - Multilingüe: `"inLanguage": ["es", "en", "fr", "pt"]`
@@ -121,7 +135,10 @@ Creado nuevo archivo: `src/lib/brand-schema.ts` con 3 schemas especializados:
 
 ```html
 <meta property="og:site_name" content="Fruco - Salsa de Tomate Española" />
-<meta property="og:image:alt" content="Fruco - Salsa de Tomate Española Original desde 1959" />
+<meta
+  property="og:image:alt"
+  content="Fruco - Salsa de Tomate Española Original desde 1959"
+/>
 <meta name="twitter:domain" content="fruco.es" />
 ```
 
@@ -143,6 +160,7 @@ Crawl-delay: 10
 ```
 
 **Características**:
+
 - Prioridad explícita para Google y Bing
 - Control de bots de scraping para proteger contenido
 - Múltiples declaraciones de sitemap
@@ -152,6 +170,7 @@ Crawl-delay: 10
 Creada: `src/pages/verification.astro`
 
 Prepara el sitio para:
+
 - Google Search Console
 - Bing Webmaster Tools
 - Yandex Webmaster
@@ -161,23 +180,27 @@ Prepara el sitio para:
 ## 🎯 Estrategias Aplicadas
 
 ### A. Keyword Density Natural
+
 - **"Fruco"** aparece 25+ veces en la homepage
 - Repetición natural en títulos, descripciones, alt text
 - Variaciones long-tail: "fruco españa", "salsa fruco", etc.
 
 ### B. Brand Authority Signals
+
 - Año de fundación: **1959** (66 años de historia)
 - Ubicación específica: **Mérida, Badajoz, España**
 - Datos de contacto verificables
 - Ratings y reviews en Schema Markup
 
 ### C. Entity Recognition
+
 - Schema `@type: Brand` dedicado
 - Consistencia de NAP (Name, Address, Phone)
 - Links a redes sociales verificadas
 - Logo y imágenes de marca en alta resolución
 
 ### D. Brand Mentions
+
 - Menciones de marca en:
   - `<title>` tags (máxima visibilidad)
   - Meta descriptions
@@ -189,18 +212,21 @@ Prepara el sitio para:
 ## 📈 Métricas de Éxito Esperadas
 
 ### Corto Plazo (1-4 semanas)
+
 - ✅ Indexación completa de todas las páginas
 - ✅ Aparición en Knowledge Graph de Google para "Fruco"
 - ✅ Rich snippets activos (ratings, productos)
 - ✅ Sitelinks en resultados de búsqueda
 
 ### Medio Plazo (1-3 meses)
+
 - 🎯 Posición #1 para "fruco"
 - 🎯 Posición #1 para "fruco españa"
 - 🎯 Posición top 3 para "salsa fruco"
 - 🎯 Panel de Knowledge Graph completo
 
 ### Largo Plazo (3-6 meses)
+
 - 🎯 Dominio de todas las variaciones de "fruco" + keyword
 - 🎯 Featured snippets para preguntas sobre Fruco
 - 🎯 Imágenes de Fruco en Google Images top results
@@ -209,12 +235,14 @@ Prepara el sitio para:
 ## 🔍 Verificación y Monitoreo
 
 ### 1. Verificar Schema Markup
+
 ```bash
 # Herramienta: Google Rich Results Test
 https://search.google.com/test/rich-results?url=https://fruco.es
 ```
 
 ### 2. Verificar Indexación
+
 ```bash
 # En Google Search
 site:fruco.es
@@ -223,12 +251,15 @@ site:fruco.es
 ```
 
 ### 3. Monitorear Rankings
+
 Herramientas recomendadas:
+
 - Google Search Console (gratuito)
 - Google Analytics 4 (implementado)
 - Ahrefs / SEMrush (opcional, de pago)
 
 ### 4. Verificar Knowledge Graph
+
 ```bash
 # Búsqueda directa en Google
 fruco
@@ -238,6 +269,7 @@ fruco españa
 ## 🚀 Próximos Pasos Recomendados
 
 ### Inmediato
+
 1. ✅ **Verificar en Google Search Console**
    - Añadir sitio en console.google.com
    - Enviar sitemap manualmente
@@ -253,6 +285,7 @@ fruco españa
    - Link al sitio web
 
 ### Corto Plazo (próximas semanas)
+
 4. 📝 **Crear contenido de blog**
    - "Historia de Fruco: 65 años de tradición"
    - "Recetas con Fruco"
@@ -268,6 +301,7 @@ fruco españa
    - Blogs de cocina española
 
 ### Medio Plazo
+
 7. 📺 **Contenido multimedia**
    - Videos de YouTube sobre Fruco
    - Instagram Reels mostrando productos
@@ -281,21 +315,25 @@ fruco españa
 ## 💡 Por Qué Estas Mejoras Funcionarán
 
 ### 1. **Búsquedas de Marca son Más Fáciles de Ranquear**
+
 - Menor competencia que keywords genéricos
 - Google favorece sitios oficiales para búsquedas de marca
 - Alta intención de búsqueda = mejor engagement
 
 ### 2. **Schema Markup = Featured Snippets**
+
 - Rich snippets aumentan CTR 20-30%
 - Knowledge Panel da autoridad de marca
 - Productos destacados en resultados de búsqueda
 
 ### 3. **Señales de Autoridad**
+
 - Fecha de fundación 1959 = confianza
 - Datos NAP consistentes = local SEO
 - Reviews y ratings = social proof
 
 ### 4. **Multi-Canal**
+
 - SEO on-page ✅
 - Schema markup ✅
 - Robots.txt ✅
