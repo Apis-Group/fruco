@@ -172,7 +172,7 @@ export const fr: Translations = {
       "Rejoignez la famille Fruco et expérimentez la tradition à chaque bouchée. Contactez-nous pour en savoir plus sur nos produits et où les trouver.",
     contactInfo: {
       email: "info@fruco.es",
-      phone: "660 85 80 90",
+      phone: "+34 660 85 80 90",
       address: "Mérida, Espagne",
     },
     locations: {
@@ -191,7 +191,24 @@ export const fr: Translations = {
   footer: {
     rights: "Tous droits réservés.",
     location: "Espagne",
-    phone: "Tél : 660 85 80 90",
+    phone: "Tél : +34 660 85 80 90",
     email: "Email : info@fruco.es",
+    tagline:
+      "Sauce tomate traditionnelle depuis 1959. Ingrédients naturels et saveur maison dans chaque recette.",
+    contact: "Contact",
+    legalTitle: "Légal",
+    compliance: "Conformité",
+    made: "Fabriqué avec",
+    in: "en",
+    legal: {
+      legalNotice: "Mentions légales",
+      cookiePolicy: "Politique de cookies",
+      privacyPolicy: "Politique de confidentialité",
+      qualityPolicy: "Politique de qualité",
+      confidentialityPolicy:
+        "Politique de Confidentialité et Propriété Intellectuelle",
+      ethicsChannel: "Canal éthique",
+      codeOfConduct: "Code de conduite",
+    },
   },
 };

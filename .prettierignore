@@ -1,8 +1,25 @@
-dist/
-.astro/
+# Dependencias
 node_modules/
-public/
 pnpm-lock.yaml
 package-lock.json
+
+# Build outputs
+dist/
+.astro/
+.vercel/
+
+# Cache y logs
+.cache/
+coverage/
+*.log
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Assets públicos
+public/
+
+# Archivos minificados
 *.min.js
 *.min.css

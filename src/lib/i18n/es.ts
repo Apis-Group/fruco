@@ -119,7 +119,7 @@ export const es: Translations = {
       },
       "pasta-pizza": {
         name: "Pasta & Pizza",
-        description: "Perfecta combinación para tus platos italianos favoritos",
+        description: "Perfecta combinación para tus platos favoritos",
         detailedDescription:
           "Salsa de color rojizo elaborada por mezcla de tomate y concentrado de tomate, con aceite, sal y especias. Es espesa, consistente, si bien, su viscosidad le permite fluir fácilmente.",
         ingredients: [
@@ -172,7 +172,7 @@ export const es: Translations = {
       "Únete a la familia Fruco y experimenta la tradición en cada bocado. Contáctanos para conocer más sobre nuestros productos y dónde encontrarlos.",
     contactInfo: {
       email: "info@fruco.es",
-      phone: "660 85 80 90",
+      phone: "+34 660 85 80 90",
       address: "Mérida, España",
     },
     locations: {
@@ -191,7 +191,24 @@ export const es: Translations = {
   footer: {
     rights: "Todos los derechos reservados.",
     location: "España",
-    phone: "Tel: 660 85 80 90",
+    phone: "Tel: +34 660 85 80 90",
     email: "Email: info@fruco.es",
+    tagline:
+      "Salsa de tomate tradicional desde 1959. Ingredientes naturales y sabor casero en cada receta.",
+    contact: "Contacto",
+    legalTitle: "Legal",
+    compliance: "Cumplimiento",
+    made: "Hecho con",
+    in: "en",
+    legal: {
+      legalNotice: "Aviso legal",
+      cookiePolicy: "Política de cookies",
+      privacyPolicy: "Política de privacidad",
+      qualityPolicy: "Política de calidad",
+      confidentialityPolicy:
+        "Política de Confidencialidad y Propiedad Industrial e Intelectual",
+      ethicsChannel: "Canal ético",
+      codeOfConduct: "Código de conducta",
+    },
   },
 };

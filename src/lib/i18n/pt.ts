@@ -118,7 +118,7 @@ export const pt: Translations = {
       },
       "pasta-pizza": {
         name: "Massa & Pizza",
-        description: "Combinação perfeita para seus pratos italianos favoritos",
+        description: "Combinação perfeita para seus pratos  favoritos",
         detailedDescription:
           "Molho de cor avermelhada elaborado por mistura de tomate e concentrado de tomate, com óleo, sal e especiarias. É espesso, consistente, embora sua viscosidade permita fluir facilmente.",
         ingredients: [
@@ -171,7 +171,7 @@ export const pt: Translations = {
       "Junte-se à família Fruco e experimente a tradição em cada mordida. Entre em contato conosco para saber mais sobre nossos produtos e onde encontrá-los.",
     contactInfo: {
       email: "info@fruco.es",
-      phone: "660 85 80 90",
+      phone: "+34 660 85 80 90",
       address: "Mérida, Espanha",
     },
     locations: {
@@ -190,7 +190,24 @@ export const pt: Translations = {
   footer: {
     rights: "Todos os direitos reservados.",
     location: "Espanha",
-    phone: "Tel: 660 85 80 90",
+    phone: "Tel: +34 660 85 80 90",
     email: "Email: info@fruco.es",
+    tagline:
+      "Molho de tomate tradicional desde 1959. Ingredientes naturais e sabor caseiro em cada receita.",
+    contact: "Contacto",
+    legalTitle: "Legal",
+    compliance: "Conformidade",
+    made: "Feito com",
+    in: "em",
+    legal: {
+      legalNotice: "Aviso Legal",
+      cookiePolicy: "Política de Cookies",
+      privacyPolicy: "Política de Privacidade",
+      qualityPolicy: "Política de Qualidade",
+      confidentialityPolicy:
+        "Política de Confidencialidade e Propriedade Intelectual",
+      ethicsChannel: "Canal Ético",
+      codeOfConduct: "Código de Conduta",
+    },
   },
 };

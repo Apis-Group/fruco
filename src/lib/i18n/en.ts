@@ -118,7 +118,7 @@ export const en: Translations = {
       },
       "pasta-pizza": {
         name: "Pasta & Pizza",
-        description: "Perfect combination for your favorite Italian dishes",
+        description: "Perfect combination for your favorite dishes",
         detailedDescription:
           "Reddish sauce made by mixing tomato and tomato concentrate, with oil, salt and spices. It is thick, consistent, although its viscosity allows it to flow easily.",
         ingredients: [
@@ -171,7 +171,7 @@ export const en: Translations = {
       "Join the Fruco family and experience tradition in every bite. Contact us to learn more about our products and where to find them.",
     contactInfo: {
       email: "info@fruco.es",
-      phone: "660 85 80 90",
+      phone: "+34 660 85 80 90",
       address: "Mérida, Spain",
     },
     locations: {
@@ -190,7 +190,23 @@ export const en: Translations = {
   footer: {
     rights: "All rights reserved.",
     location: "Spain",
-    phone: "Tel: 660 85 80 90",
+    phone: "Tel: +34 660 85 80 90",
     email: "Email: info@fruco.es",
+    tagline:
+      "Traditional tomato sauce since 1959. Natural ingredients and homemade flavor in every recipe.",
+    contact: "Contact",
+    legalTitle: "Legal",
+    compliance: "Compliance",
+    made: "Made with",
+    in: "in",
+    legal: {
+      legalNotice: "Legal Notice",
+      cookiePolicy: "Cookie Policy",
+      privacyPolicy: "Privacy Policy",
+      qualityPolicy: "Quality Policy",
+      confidentialityPolicy: "Confidentiality and Intellectual Property Policy",
+      ethicsChannel: "Ethics Channel",
+      codeOfConduct: "Code of Conduct",
+    },
   },
 };

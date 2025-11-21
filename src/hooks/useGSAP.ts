@@ -5,39 +5,32 @@ import { useCallback, useEffect, useRef } from "preact/hooks";
 import {
   cleanupScrollTriggers,
   fadeInOnScroll,
-  heroEntrance,
   parallaxEffect,
   productGridAnimation,
   refreshScrollTrigger,
   slideUpOnScroll,
 } from "@/utils/animations";
 
-// Registrar ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
-// Hook principal para manejar animaciones GSAP - optimizado
 export const useGSAP = () => {
   const animationsRef = useRef<gsap.core.Tween[]>([]);
 
-  // Función para agregar animación al registro
   const addAnimation = useCallback((animation: gsap.core.Tween) => {
     animationsRef.current.push(animation);
     return animation;
   }, []);
 
-  // Limpiar todas las animaciones al desmontar - optimizado
   useEffect(() => {
     const animations = animationsRef.current;
 
     return () => {
-      // Limpiar animaciones GSAP
       animations.forEach((animation) => {
         if (animation?.kill) {
           animation.kill();
         }
       });
 
-      // Limpiar ScrollTriggers
       cleanupScrollTriggers();
     };
   }, []);
@@ -48,7 +41,6 @@ export const useGSAP = () => {
   };
 };
 
-// Hook específico para animaciones de fade in - optimizado
 export const useFadeIn = (
   elementRef: { current: HTMLElement | null },
   options?: {
@@ -69,7 +61,6 @@ export const useFadeIn = (
 ) => {
   useEffect(() => {
     if (elementRef.current) {
-      // Si immediate es true, animar sin ScrollTrigger
       if (options?.immediate) {
         const animation = gsap.fromTo(
           elementRef.current,
@@ -105,7 +96,6 @@ export const useFadeIn = (
   }, [elementRef, options]);
 };
 
-// Hook específico para animaciones de slide up
 export const useSlideUp = (
   elementRef: { current: HTMLElement | null },
   delay: number = 0,
@@ -120,7 +110,6 @@ export const useSlideUp = (
   }, [elementRef, addAnimation, delay]);
 };
 
-// Hook específico para efectos parallax
 export const useParallax = (
   elementRef: { current: HTMLElement | null },
   speed: number = 0.5,
@@ -135,30 +124,12 @@ export const useParallax = (
   }, [elementRef, addAnimation, speed]);
 };
 
-// Hook para animación de entrada del hero
-export const useHeroEntrance = (
-  logoRef: { current: HTMLElement | null },
-  titleRef: { current: HTMLElement | null },
-  subtitleRef: { current: HTMLElement | null },
+export const useProductGrid = (
+  containerRef: {
+    current: HTMLElement | null;
+  },
+  immediate: boolean = false,
 ) => {
-  const { addAnimation } = useGSAP();
-
-  useEffect(() => {
-    if (logoRef.current && titleRef.current && subtitleRef.current) {
-      const timeline = heroEntrance({
-        logo: logoRef.current,
-        title: titleRef.current,
-        subtitle: subtitleRef.current,
-      });
-      addAnimation(timeline as unknown as gsap.core.Tween);
-    }
-  }, [logoRef, titleRef, subtitleRef, addAnimation]);
-};
-
-// Hook para animación de grid de productos
-export const useProductGrid = (containerRef: {
-  current: HTMLElement | null;
-}, immediate: boolean = false) => {
   const { addAnimation } = useGSAP();
 
   useEffect(() => {
@@ -169,12 +140,8 @@ export const useProductGrid = (containerRef: {
   }, [containerRef, addAnimation, immediate]);
 };
 
-// Hook eliminado: useProductHover - ahora se usa CSS para mejor rendimiento
-
-// Hook para animaciones con scroll suave
 export const useSmoothScroll = () => {
   useEffect(() => {
-    // Configurar scroll suave
     const smoothScroll = (target: string) => {
       const element = document.querySelector(target);
       if (element) {
@@ -186,7 +153,6 @@ export const useSmoothScroll = () => {
       }
     };
 
-    // Agregar event listeners para navegación
     const navLinks = document.querySelectorAll('a[href^="#"]');
     navLinks.forEach((link) => {
       link.addEventListener("click", (e) => {

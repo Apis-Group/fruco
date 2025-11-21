@@ -3,13 +3,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect } from "preact/hooks";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import HeroSection from "@/components/HeroSection";
+import Hero from "@/components/Hero";
 import History from "@/components/History";
 // import LanguageSelector from "@/components/LanguageSelector";
 // Componentes
 import NavBar from "@/components/NavBar";
 import ProductShowcase from "@/components/ProductShowcase";
 import Spliter from "@/components/Spliter";
+import VideoHero from "@/components/VideoHero";
 import VisionMision from "@/components/VisionAndMision";
 import { useSmoothScroll } from "@/hooks/useGSAP";
 import { I18nProvider } from "@/hooks/useI18n";
@@ -64,9 +65,10 @@ function App() {
     <I18nProvider>
       {/* <LanguageSelector /> */}
 
-      <NavBar />
+      <NavBar topSrc="/top_icon.avif" />
       <main>
-        <HeroSection />
+        <Hero logoSrc="/logo_fruco.svg" />
+        <VideoHero videoSrc="/hero-video.mp4" posterSrc="/hero-poster.png" />
 
         <Spliter />
 

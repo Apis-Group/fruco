@@ -144,11 +144,11 @@ const Contact = ({ title, subtitle, contactInfo }: ContactProps) => {
       className="section-container relative overflow-hidden pt-12 md:pt-20"
       id="contacto"
     >
-      <div className="max-w-4xl mx-auto px-4 text-center">
+      <div className="mx-auto max-w-4xl px-4 text-center">
         {/* Título principal */}
         <h2
           ref={titleRef}
-          className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
+          className="mb-6 text-4xl leading-tight font-bold text-white md:text-5xl lg:text-6xl"
           style={{ willChange: "transform, opacity" }}
         >
           {finalTitle}
@@ -157,7 +157,7 @@ const Contact = ({ title, subtitle, contactInfo }: ContactProps) => {
         {/* Subtítulo */}
         <p
           ref={subtitleRef}
-          className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+          className="mx-auto mb-12 max-w-3xl text-lg leading-relaxed text-gray-300 md:text-xl"
           style={{ willChange: "transform, opacity" }}
         >
           {finalSubtitle}
@@ -166,17 +166,17 @@ const Contact = ({ title, subtitle, contactInfo }: ContactProps) => {
         {/* Información de contacto */}
         <div
           ref={contactRef}
-          className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto"
+          className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 md:grid-cols-2"
           style={{ willChange: "transform, opacity" }}
         >
           {finalContactInfo.email && (
             <a
               href={`mailto:${finalContactInfo.email}`}
-              className="group cursor-pointer block"
+              className="group block cursor-pointer"
             >
-              <div className="w-12 h-12 mx-auto mb-4 bg-fruco-gold rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <div className="bg-fruco-gold mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110">
                 <svg
-                  className="w-6 h-6 text-white"
+                  className="h-6 w-6 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -191,7 +191,7 @@ const Contact = ({ title, subtitle, contactInfo }: ContactProps) => {
                   />
                 </svg>
               </div>
-              <p className="text-gray-300 group-hover:text-white transition-colors duration-300">
+              <p className="text-gray-300 transition-colors duration-300 group-hover:text-white">
                 {finalContactInfo.email}
               </p>
             </a>
@@ -200,11 +200,11 @@ const Contact = ({ title, subtitle, contactInfo }: ContactProps) => {
           {finalContactInfo.phone && (
             <a
               href={`tel:${finalContactInfo.phone.replace(/\s/g, "")}`}
-              className="group cursor-pointer block"
+              className="group block cursor-pointer"
             >
-              <div className="w-12 h-12 mx-auto mb-4 bg-fruco-gold rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <div className="bg-fruco-gold mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110">
                 <svg
-                  className="w-6 h-6 text-white"
+                  className="h-6 w-6 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -219,7 +219,7 @@ const Contact = ({ title, subtitle, contactInfo }: ContactProps) => {
                   />
                 </svg>
               </div>
-              <p className="text-gray-300 group-hover:text-white transition-colors duration-300">
+              <p className="text-gray-300 transition-colors duration-300 group-hover:text-white">
                 {finalContactInfo.phone}
               </p>
             </a>
@@ -230,24 +230,24 @@ const Contact = ({ title, subtitle, contactInfo }: ContactProps) => {
         <div className="mt-16 space-y-8">
           <h3
             ref={mapsTitleRef}
-            className="text-2xl md:text-3xl font-bold text-white mb-8"
+            className="mb-8 text-2xl font-bold text-white md:text-3xl"
             style={{ willChange: "transform, opacity" }}
           >
             {t.contact.locations.title}
           </h3>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-3xl mx-auto">
+          <div className="mx-auto grid max-w-3xl grid-cols-1 gap-8 lg:grid-cols-2">
             {/* Primera ubicación - Mérida */}
             <a
               ref={map1Ref}
               href="https://www.google.com/maps/place/APIS+FRUCO/@38.9179174,-6.3857546,17z/data=!3m1!4b1!4m6!3m5!1s0xd1427121bd2a0d7:0x6650603617384c14!8m2!3d38.9179174!4d-6.3831797!16s%2Fg%2F1tfc5z9k"
               target="_blank"
               rel="noopener noreferrer"
-              className="group block p-8 bg-linear-to-br from-fruco-gold/10 to-transparent border-2 border-fruco-gold/30 rounded-xl hover:border-fruco-gold hover:shadow-2xl hover:shadow-fruco-gold/20 transition-all duration-300"
+              className="group from-fruco-gold/10 border-fruco-gold/30 hover:border-fruco-gold hover:shadow-fruco-gold/20 block rounded-xl border-2 bg-linear-to-br to-transparent p-8 transition-all duration-300 hover:shadow-2xl"
               style={{ willChange: "opacity" }}
             >
-              <div className="w-20 h-20 mx-auto mb-6 bg-fruco-gold rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <div className="bg-fruco-gold mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110">
                 <svg
-                  className="w-10 h-10 text-white"
+                  className="h-10 w-10 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -268,10 +268,10 @@ const Contact = ({ title, subtitle, contactInfo }: ContactProps) => {
                   />
                 </svg>
               </div>
-              <h4 className="text-2xl md:text-3xl font-semibold text-white mb-2 group-hover:text-fruco-gold transition-colors duration-300">
+              <h4 className="group-hover:text-fruco-gold mb-2 text-2xl font-semibold text-white transition-colors duration-300 md:text-3xl">
                 {t.contact.locations.merida.name}
               </h4>
-              <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">
+              <p className="text-sm text-gray-400 transition-colors duration-300 group-hover:text-gray-300">
                 {t.contact.locations.merida.address}
               </p>
             </a>
@@ -282,12 +282,12 @@ const Contact = ({ title, subtitle, contactInfo }: ContactProps) => {
               href="https://www.google.com/maps/place/Apis+Fruco/@38.9148476,-6.5998126,17z/data=!3m1!4b1!4m6!3m5!1s0xd1690ec8ce03ae5:0xd67aca27bbab419b!8m2!3d38.9148476!4d-6.5972377!16s%2Fg%2F1tqy_b7_"
               target="_blank"
               rel="noopener noreferrer"
-              className="group block p-8 bg-linear-to-br from-fruco-gold/10 to-transparent border-2 border-fruco-gold/30 rounded-xl hover:border-fruco-gold hover:shadow-2xl hover:shadow-fruco-gold/20 transition-all duration-300"
+              className="group from-fruco-gold/10 border-fruco-gold/30 hover:border-fruco-gold hover:shadow-fruco-gold/20 block rounded-xl border-2 bg-linear-to-br to-transparent p-8 transition-all duration-300 hover:shadow-2xl"
               style={{ willChange: "opacity" }}
             >
-              <div className="w-20 h-20 mx-auto mb-6 bg-fruco-gold rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <div className="bg-fruco-gold mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110">
                 <svg
-                  className="w-10 h-10 text-white"
+                  className="h-10 w-10 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -308,10 +308,10 @@ const Contact = ({ title, subtitle, contactInfo }: ContactProps) => {
                   />
                 </svg>
               </div>
-              <h4 className="text-2xl md:text-3xl font-semibold text-white mb-2 group-hover:text-fruco-gold transition-colors duration-300">
+              <h4 className="group-hover:text-fruco-gold mb-2 text-2xl font-semibold text-white transition-colors duration-300 md:text-3xl">
                 {t.contact.locations.montijo.name}
               </h4>
-              <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">
+              <p className="text-sm text-gray-400 transition-colors duration-300 group-hover:text-gray-300">
                 {t.contact.locations.montijo.address}
               </p>
             </a>

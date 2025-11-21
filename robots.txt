@@ -1,4 +1,37 @@
+# Robots.txt for Fruco.es - Official Website
+# Optimized for maximum search engine visibility
+
 User-agent: *
 Allow: /
+Crawl-delay: 0
 
-Sitemap: https://fruco.vercel.app/favicon/site.webmanifest
+# Priority sitemaps
+Sitemap: https://fruco.es/sitemap.xml
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Disallow admin or private paths (if any in future)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Brand Protection
+# Block scrapers and unauthorized bots
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10

@@ -278,17 +278,46 @@ pnpm serve
 ### Calidad de Código
 
 ```bash
-# Lint y auto-fix
+# ESLint: Análisis y corrección automática
 pnpm lint
-# → ESLint con configuración TypeScript
+# → ESLint 9 con configuración flat config
+# → Soporte para TypeScript y Astro
 # → Auto-fix de errores comunes
-# → Detecta imports no usados
 
-# Formateo de código
+# ESLint: Solo verificar (sin cambios)
+pnpm lint:check
+# → Verifica errores sin modificar archivos
+# → Útil para CI/CD
+
+# Prettier: Formateo automático
 pnpm format
-# → Prettier en todos los archivos
+# → Prettier con plugins de Astro y Tailwind CSS
+# → Ordenamiento automático de clases Tailwind
 # → Aplica reglas de estilo consistente
+
+# Prettier: Solo verificar formato
+pnpm format:check
+# → Verifica formato sin modificar archivos
+# → Útil para pre-commit hooks
 ```
+
+#### Configuración de ESLint
+
+- **ESLint 9** con configuración moderna (flat config)
+- Soporte para **TypeScript**, **JavaScript** y **Astro**
+- Integración con Prettier (sin conflictos)
+- Reglas personalizadas:
+  - Advertencias para variables no utilizadas (excepto `_`)
+  - Control de uso de `console.log`
+  - Preferencia de `const` sobre `let`/`var`
+
+#### Configuración de Prettier
+
+- Formato consistente con 80 caracteres por línea
+- 2 espacios de indentación
+- Plugins integrados:
+  - `prettier-plugin-astro` - Formato de archivos `.astro`
+  - `prettier-plugin-tailwindcss` - Orden automático de clases Tailwind
 
 ---
 
@@ -305,7 +334,8 @@ Fruco utiliza la arquitectura **Islands** de Astro, que permite:
 ```astro
 <!-- index.astro -->
 <Layout>
-  <App client:load />  <!-- ← Isla interactiva -->
+  <App client:load />
+  <!-- ← Isla interactiva -->
 </Layout>
 ```
 

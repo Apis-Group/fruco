@@ -1,90 +1,248 @@
 ---
-import Analytics from '@vercel/analytics/astro';
-import SpeedInsights from '@vercel/speed-insights/astro';
+import CookieBanner from "@/components/CookieBanner.astro";
+import {
+  brandSchema,
+  enhancedOrganizationSchema,
+  websiteSchema,
+} from "@/lib/brand-schema";
 
-const { title } = Astro.props;
-const description =
-	'Descubre Fruco, la auténtica salsa de tomate española con más de 60 años de tradición. Ingredientes naturales, sabor casero y calidad premium desde 1959.';
+interface Props {
+  title: string;
+  lang?: string;
+  description?: string;
+  keywords?: string;
+  ogImage?: string;
+  ogType?: string;
+  canonical?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  lang = "es",
+  description = "Fruco - La marca española de salsa de tomate más auténtica desde 1959. Tomate 100% español, receta tradicional y sabor casero. Fruco es calidad, Fruco es tradición. Sitio web oficial de Fruco España.",
+  keywords = "fruco, fruco españa, fruco salsa, fruco tomate, fruco oficial, salsa fruco, tomate fruco, fruco 1959, marca fruco, fruco original, comprar fruco, fruco tradicional, fruco calidad, fruco conservas, fruco mérida, fruco badajoz, salsa tomate española, tomate frito fruco, fruco artesano, fruco brick, productos fruco",
+  ogImage = "/og-image.png",
+  ogType = "website",
+  canonical,
+  noindex = false,
+} = Astro.props;
+
+const SITE_URL = "https://fruco.es";
+const currentUrl = canonical || `${SITE_URL}${Astro.url.pathname}`;
+const fullImageUrl = ogImage.startsWith("http")
+  ? ogImage
+  : `${SITE_URL}${ogImage}`;
+
+// Alternate languages for hreflang
+const alternateLanguages = {
+  es: "Español",
+  en: "English",
+  fr: "Français",
+  pt: "Português",
+};
 ---
 
 <!doctype html>
-<html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>{title}</title>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<meta name="description" content={description} />
-		<meta
-			name="keywords"
-			content="fruco, salsa tomate, salsa, tomate, tradicional, salsa española, tomate natural, tradición 1959, salsa casera, ingredientes naturales, tomate premium, salsa artesanal, cocina española"
-		/>
-		<meta name="author" content="Jon Imanol Ruiz Hermoso" />
-		<meta name="robots" content="index, follow" />
+    <!-- Title and Basic SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="CARNES Y VEGETALES S.L." />
+    <meta
+      name="robots"
+      content={noindex
+        ? "noindex, nofollow"
+        : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}
+    />
+    <meta name="googlebot" content="index, follow" />
 
-		<!-- FAVICONS -->
-		<link rel="icon" href="/favicon/favicon.ico" />
-		<link rel="apple-touch-icon" href="/favicon/favicon.ico" />
+    <!-- Brand and Identity -->
+    <meta property="og:brand" content="Fruco" />
+    <meta name="application-name" content="Fruco" />
+    <meta name="apple-mobile-web-app-title" content="Fruco" />
+    <meta name="copyright" content="© 2025 Fruco - CARNES Y VEGETALES S.L." />
+    <meta name="publisher" content="Fruco - CARNES Y VEGETALES S.L." />
 
-		<link rel="manifest" href="/favicon/site.webmanifest" />
-		<meta name="theme-color" content="#2d5016" />
-		<meta name="msapplication-TileColor" content="#2d5016" />
+    <!-- Canonical URL -->
+    <link rel="canonical" href={currentUrl} />
 
-		<!-- Preload LCP image -->
-		<link
-			rel="preload"
-			href="/logo_fruco.svg"
-			as="image"
-			fetchpriority="high"
-			imagesizes="(max-width: 768px) 320px, (max-width: 1024px) 384px, 448px"
-		/>
+    <!-- Alternate Languages (hreflang) -->
+    {
+      Object.keys(alternateLanguages).map((langCode) => (
+        <link
+          rel="alternate"
+          hreflang={langCode}
+          href={`${SITE_URL}${Astro.url.pathname}`}
+        />
+      ))
+    }
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={`${SITE_URL}${Astro.url.pathname}`}
+    />
 
-		<!-- Optimized Google Fonts Loading -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Geographic and Business Info -->
+    <meta name="geo.region" content="ES-BA" />
+    <meta name="geo.placename" content="Mérida" />
+    <meta name="geo.position" content="38.9157;-6.3369" />
+    <meta name="ICBM" content="38.9157, -6.3369" />
 
-		<!-- Preload only critical font weights -->
-		<link
-			rel="preload"
-			href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Caveat:wght@400;700&display=swap"
-			as="style"
-			onload="this.onload=null;this.rel='stylesheet'"
-		/>
-		<noscript
-			><link
-				rel="stylesheet"
-				href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Caveat:wght@400;700&display=swap"
-			/></noscript
-		>
+    <!-- Revisit and Cache Control -->
+    <meta name="revisit-after" content="7 days" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content="/logo_fruco.svg" />
+    <!-- FAVICONS -->
+    <link rel="icon" href="/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon/favicon.ico" />
 
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:image" content="/logo_fruco.svg" />
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://fruco.vercel.app/" />
+    <meta name="theme-color" content="#2d5016" />
+    <meta name="msapplication-TileColor" content="#2d5016" />
 
-		<script type="application/ld+json" is:inline>
-			{
-				"@context": "https://schema.org",
-				"@type": "Organization",
-				"name": "Fruco",
-				"url": "https://fruco.vercel.app/",
-				"logo": "https://fruco.vercel.app/logo_fruco.svg"
-			}
-		</script>
-	</head>
-	<body>
-		<Analytics />
-		<SpeedInsights />
-		<slot />
-	</body>
+    <!-- Preload LCP image -->
+    <link
+      rel="preload"
+      href="/logo_fruco.svg"
+      as="image"
+      fetchpriority="high"
+      imagesizes="(max-width: 768px) 320px, (max-width: 1024px) 384px, 448px"
+    />
+
+    <!-- Optimized Google Fonts Loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Preload only critical font weights -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Caveat:wght@400;700&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Caveat:wght@400;700&display=swap"
+      /></noscript
+    >
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={currentUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Fruco - Salsa de Tomate Española Original desde 1959"
+    />
+    <meta property="og:site_name" content="Fruco - Salsa de Tomate Española" />
+    <meta property="og:locale" content={`${lang}_ES`} />
+    {
+      Object.keys(alternateLanguages)
+        .filter((l) => l !== lang)
+        .map((langCode) => (
+          <meta property="og:locale:alternate" content={`${langCode}_ES`} />
+        ))
+    }
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={currentUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullImageUrl} />
+    <meta
+      name="twitter:image:alt"
+      content="Fruco - Salsa de Tomate Española Original desde 1959"
+    />
+    <meta name="twitter:creator" content="@fruco_oficial" />
+    <meta name="twitter:site" content="@fruco_oficial" />
+    <meta name="twitter:domain" content="fruco.es" />
+
+    <!-- Structured Data - JSON-LD with Enhanced Brand Schema -->
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(brandSchema)}
+    />
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(enhancedOrganizationSchema)}
+    />
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(websiteSchema)}
+    />
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": currentUrl + "#webpage",
+        url: currentUrl,
+        name: title,
+        description: description,
+        isPartOf: {
+          "@id": "https://fruco.es/#website",
+        },
+        about: {
+          "@id": "https://fruco.es/#organization",
+        },
+        inLanguage: lang,
+        breadcrumb: {
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Inicio",
+              item: "https://fruco.es/",
+            },
+          ],
+        },
+      })}
+    />
+
+    <!-- Google Analytics 4 - Load only if consent exists -->
+    <script is:inline>
+      (function () {
+        const consent = localStorage.getItem("cookie-consent");
+        if (consent === "accepted") {
+          const script = document.createElement("script");
+          script.async = true;
+          script.src =
+            "https://www.googletagmanager.com/gtag/js?id=G-Z7SJT3Z527";
+          document.head.appendChild(script);
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag(...args) {
+            window.dataLayer.push(args);
+          }
+          gtag("js", new Date());
+          gtag("config", "G-Z7SJT3Z527");
+        }
+      })();
+    </script>
+    <!-- End Google Analytics 4 -->
+  </head>
+  <body>
+    <CookieBanner language={lang} />
+    <slot />
+  </body>
 </html>
 
 <style is:global>
-	@import '@/styles/globals.css';
+  @import "@/styles/globals.css";
 </style>

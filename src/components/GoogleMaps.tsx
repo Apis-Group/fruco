@@ -12,7 +12,7 @@ const GoogleMaps = ({
   allowFullScreen = true,
 }: GoogleMapsEmbedProps) => {
   return (
-    <div className="w-full flex justify-center">
+    <div className="flex w-full justify-center">
       <iframe
         src={src}
         width={width}

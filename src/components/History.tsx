@@ -91,18 +91,18 @@ const History = ({ content, highlights }: HistoryProps) => {
       className="section-container relative overflow-hidden"
       id="historia"
     >
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="mx-auto max-w-6xl px-4">
+        <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
           {/* Contenido principal */}
           <div className="space-y-8">
             {/* Título */}
             <h2
               ref={titleRef}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight"
+              className="text-4xl leading-tight font-bold text-white md:text-5xl lg:text-6xl"
               style={{ willChange: "transform, opacity" }}
             >
               {t.history.title.split(" ").slice(0, -1).join(" ")}
-              <span className="block bg-fruco-gold bg-clip-text text-transparent">
+              <span className="bg-fruco-gold block bg-clip-text text-transparent">
                 {t.history.title.split(" ").slice(-1)[0]}
               </span>
             </h2>
@@ -110,7 +110,7 @@ const History = ({ content, highlights }: HistoryProps) => {
             {/* Contenido descriptivo */}
             <p
               ref={contentRef}
-              className="text-lg md:text-xl text-gray-300 leading-relaxed font-light"
+              className="text-lg leading-relaxed font-light text-gray-300 md:text-xl"
               style={{ willChange: "transform, opacity" }}
             >
               {finalContent}
@@ -119,24 +119,24 @@ const History = ({ content, highlights }: HistoryProps) => {
             {/* Estadísticas */}
             <div ref={statsRef} className="grid grid-cols-2 gap-8 pt-8">
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-fruco-gold mb-2">
+                <div className="text-fruco-gold mb-2 text-4xl font-bold md:text-5xl">
                   <span className="animate-number" data-target="65">
                     65
                   </span>
                   +
                 </div>
-                <p className="text-gray-400 text-sm uppercase tracking-wider">
+                <p className="text-sm tracking-wider text-gray-400 uppercase">
                   {t.history.stats.years}
                 </p>
               </div>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+                <div className="mb-2 text-4xl font-bold text-white md:text-5xl">
                   <span className="animate-number" data-target="100">
                     100
                   </span>
                   %
                 </div>
-                <p className="text-gray-400 text-sm uppercase tracking-wider">
+                <p className="text-sm tracking-wider text-gray-400 uppercase">
                   {t.history.stats.natural}
                 </p>
               </div>
@@ -154,15 +154,15 @@ const History = ({ content, highlights }: HistoryProps) => {
               {finalHighlights.map((highlight) => (
                 <div
                   key={`highlight-${highlight.slice(0, 20).replace(/\s+/g, "-").toLowerCase()}`}
-                  className="flex items-center space-x-4 group cursor-pointer"
+                  className="group flex cursor-pointer items-center space-x-4"
                 >
                   {/* Icono decorativo */}
                   <div
-                    className={`w-3 h-3 rounded-full bg-white group-hover:scale-125 transition-transform duration-300`}
+                    className={`h-3 w-3 rounded-full bg-white transition-transform duration-300 group-hover:scale-125`}
                   />
 
                   {/* Texto */}
-                  <p className="text-gray-300 group-hover:text-white transition-colors duration-300 font-medium">
+                  <p className="font-medium text-gray-300 transition-colors duration-300 group-hover:text-white">
                     {highlight}
                   </p>
                 </div>
@@ -176,13 +176,13 @@ const History = ({ content, highlights }: HistoryProps) => {
               style={{ willChange: "transform" }}
             >
               {/* Círculos decorativos */}
-              <div className="relative w-64 h-64 mx-auto">
+              <div className="relative mx-auto h-64 w-64">
                 {/* Centro */}
                 <div className="flex">
                   <img
                     src="/tomato_100_spain.svg"
                     alt="Sello de calidad, tomate 100% español"
-                    class={"w-52 h-52 mx-auto"}
+                    class={"mx-auto h-52 w-52"}
                   />
                 </div>
               </div>
