@@ -157,7 +157,7 @@ export const en: Translations = {
     content: [
       "Our tomatoes are the result of the work of our own farmers, who care for the land with patience and wisdom, as it has been done all their lives.",
       "At Fruco we believe in tradition, in quality that is cultivated day by day and in the commitment to offer the best. We manufacture sauces and create experiences that unite people in special moments. We want to be part of your story, your table and your life.",
-      "Fruco is a family that chooses the authentic, the honest... what is made with the heart",
+      "Fruco is a family that treasures the authentic, the honest... what is made with the heart.",
     ],
     elements: {
       artesania: "Origin",

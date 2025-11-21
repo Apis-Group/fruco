@@ -158,7 +158,7 @@ export const es: Translations = {
     content: [
       "Nuestros tomates son fruto del trabajo de nuestros propios agricultores, que cuidan la tierra con paciencia y sabiduría, como se ha hecho toda la vida.",
       "En Fruco creemos en la tradición, en la calidad que se cultiva día a día y en el compromiso de ofrecer lo mejor. Fabricamos salsas y creamos experiencias que unen a las personas en momentos especiales. Queremos formar parte de tu historia, de tu mesa y de tu vida.",
-      "Fruco es una familia que elige lo auténtico, lo honesto… lo que está hecho con el corazón",
+      "Fruco es una familia que atesora lo auténtico, lo honesto… lo que está hecho con el corazón.",
     ],
     elements: {
       artesania: "Origen",
