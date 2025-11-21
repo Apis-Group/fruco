@@ -74,16 +74,18 @@ const Hero = ({
           style={{
             fontFamily: "'Caveat', cursive",
             willChange: "transform, opacity",
+            wordSpacing: "normal",
+            letterSpacing: "normal",
           }}
         >
           {subtitleChars.map((char, index) => (
             <span
               key={index}
-              className="char inline-block"
+              className="char p-0.5"
               style={{
                 opacity: 0,
                 display: char === " " ? "inline" : "inline-block",
-                whiteSpace: char === " " ? "pre" : "normal",
+                transform: "translateY(0)",
               }}
             >
               {char}
