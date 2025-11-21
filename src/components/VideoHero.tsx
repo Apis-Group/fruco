@@ -1,6 +1,5 @@
 import { gsap } from "gsap";
 import { useEffect, useRef } from "preact/hooks";
-import { useTranslations } from "@/hooks/useI18n";
 
 interface VideoHeroProps {
   videoSrc?: string;
@@ -13,10 +12,6 @@ const VideoHero = ({
 }: VideoHeroProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLElement>(null);
-  const scrollIndicatorRef = useRef<HTMLDivElement>(null);
-  const arrowRef = useRef<SVGSVGElement>(null);
-  const t = useTranslations();
-
   useEffect(() => {
     const timer = setTimeout(() => {
       if (videoRef.current) {
@@ -33,32 +28,6 @@ const VideoHero = ({
             },
           },
         );
-      }
-
-      // Animar el indicador de scroll
-      if (scrollIndicatorRef.current) {
-        gsap.fromTo(
-          scrollIndicatorRef.current,
-          { opacity: 0, y: -10 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            delay: 1.5,
-            ease: "power2.out",
-          },
-        );
-      }
-
-      // Animación de rebote continua solo para la flecha
-      if (arrowRef.current) {
-        gsap.to(arrowRef.current, {
-          y: 10,
-          duration: 1.5,
-          repeat: -1,
-          yoyo: true,
-          ease: "power1.inOut",
-        });
       }
     }, 100);
 
@@ -87,26 +56,19 @@ const VideoHero = ({
           <source src={videoSrc} type="video/mp4" />
           Tu navegador no soporta la reproducción de video.
         </video>
-
-        {/* Indicador de scroll */}
         <div
-          ref={scrollIndicatorRef}
-          className="absolute bottom-8 left-1/2 h-16 -translate-x-1/2 opacity-0"
+          className={"absolute bottom-2 left-1/2 -translate-x-1/2 transform animate-bounce"}
         >
-          <span className="block text-center text-sm font-medium tracking-wider text-white drop-shadow-lg">
-            {t.hero.scrollIndicator}
-          </span>
-          <svg
-            ref={arrowRef}
-            className="absolute top-6 left-1/2 h-6 w-6 -translate-x-1/2 text-white drop-shadow-lg"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+          <svg 
+            width="40" 
+            height="40" 
+            viewBox="0 0 32 32" 
+            xmlns="http://www.w3.org/2000/svg"
+            className="drop-shadow-lg -rotate-90 text-white/30 "
+            fill="currentColor"
           >
-            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            <path d="M17.387,20.587,14.754,18H22.02A1.979,1.979,0,0,0,24,16.02v-.04A1.979,1.979,0,0,0,22.02,14H15.057l.042-.26,2.227-2.248a2.091,2.091,0,0,0,.293-2.657A1.973,1.973,0,0,0,14.6,8.58L8.581,14.654a2.017,2.017,0,0,0,0,2.833l6,5.934a1.97,1.97,0,0,0,2.806,0A2.016,2.016,0,0,0,17.387,20.587Z"></path>
+            <path d="M32,16A16,16,0,1,0,16,32,16,16,0,0,0,32,16ZM4,16A12,12,0,1,1,16,28,12.013,12.013,0,0,1,4,16Z"></path>
           </svg>
         </div>
       </div>
